@@ -17,13 +17,14 @@ La idea gira alrededor de hacer un videojuego (en Godot) el cual controlemos des
 
 
 * [Awesome Godot](https://github.com/godotengine/awesome-godot) (lista con recursos para Godot como documentación, plugins, herramientas, etc).
+* [Invitación al servidor de Discord para la actividad de Laboratorio.](https://discord.gg/ZQaNtRF)
 
-## Discord: Trabajo a distancia
-[Invitación al servidor de Discord para la actividad de Laboratorio.](https://discord.gg/ZQaNtRF)
+---
 </details>
 
 
 <details><summary>Chuleta configuración VS Code y Godot</summary>
+  
   
   Para abrir los scripts con VS Code, y no con godot, hay que hacer esto:
 * En Godot ir a ```Editor>Configuración del editor```
@@ -35,6 +36,8 @@ La idea gira alrededor de hacer un videojuego (en Godot) el cual controlemos des
 Finalmente, instalar el plugin godot tools en VS Code.
 
   ¡Y ya está! ¡Puedes considerarte un genio!</p>
+ 
+ ---
 
 
 </details>
@@ -45,7 +48,9 @@ Finalmente, instalar el plugin godot tools en VS Code.
   
   1- Entrar en el archivo ```.gitconfig``` y eliminas user.
 
-  ### 2- En Windows:
+  2-
+    En Windows:
+  
    ```Step 1: Open Control panel. ```
 
    ```Step 2: Click on Credential Manager.```
@@ -56,7 +61,9 @@ Finalmente, instalar el plugin godot tools en VS Code.
 
    ```Step 5: Click on Remove and then confirm by clicking Yes button.```
 
-   ### 3- En Linux:
+     3- En Linux:
+  
    ```git config --global --unset-all```
 
+  ---
   </details>
