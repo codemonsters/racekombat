@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="RaceKombat Client"
+run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
 
 [display]
