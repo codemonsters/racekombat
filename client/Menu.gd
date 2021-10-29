@@ -7,8 +7,6 @@ extends Node
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	$HSplitContainer2/CenterContainer3/ArrowLeft.rotation_degrees = (180)
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
