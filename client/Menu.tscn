@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/ArrowLeft.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ArrowLeft.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Menu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/ArrowRight.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ArrowRight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Button.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
