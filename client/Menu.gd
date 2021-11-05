@@ -1,21 +1,17 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var containers = { 
+	1: "ArrowLeft",
+	2: "ArrowRight",
+	3: "ButtonA",
+	4: "ButtonB",
+	
+}
 
 
-# Called when the node enters the scene tree for the first time.
+func _on_container_gui_input(event, container_number):
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	print($Arrow.scale)
-#	$Arrow.scale += 0.25 * $Arrow.scale
-#	pass
-
-
-#func _on_Timer_timeout():
-#	print($Arrow.scale)
-#	$Arrow.scale += 0.25 * $Arrow.scale
-#	pass # Replace with function body.
+	if (event is InputEventMouseButton or event is InputEventScreenTouch) \
+			and event.pressed:
+		print(containers[container_number])
