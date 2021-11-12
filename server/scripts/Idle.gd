@@ -2,6 +2,7 @@ extends State
 
 func enter(_msg := {}) -> void:
 	owner.velocity = Vector2.ZERO
+	owner.animatedSprite.play("idle")
 
 func handleInput(event):
 	if Input.is_action_just_pressed("ui_accept") and owner.is_on_floor():
