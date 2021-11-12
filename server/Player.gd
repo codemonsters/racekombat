@@ -4,6 +4,7 @@ var velocity = Vector2()
 var velocidad = 300
 var gravedad = 800
 var velocidadSalto = -400
+onready var animatedSprite = $AnimatedSprite
 
 func _ready():
 	pass

@@ -3,8 +3,13 @@ extends State
 func enter(msg := {}) -> void:
 	if msg.has("jump"):
 		owner.velocity.y = owner.velocidadSalto
+		owner.animatedSprite.play("jump")
+	else:
+		owner.animatedSprite.play("fall")
 
 func physicsUpdate(delta: float) -> void:
+	if owner.velocity.y > 0:
+		owner.animatedSprite.play("fall")
 	var inputDirectionX: float = (
 		Input.get_action_strength("ui_right")
 		- Input.get_action_strength("ui_left")
