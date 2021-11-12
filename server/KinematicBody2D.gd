@@ -10,6 +10,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_left"):
 		move_local_x(-1)
 	if Input.is_action_pressed("ui_up"):
-		move_local_y()
+		pass
+		#move_local_y()
 	#if Input.is_action_pressed("ui_down"):
 		#move_local_y(-1)
