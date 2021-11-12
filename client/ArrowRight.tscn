@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="ArrowRight" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Arrow" type="Polygon2D" parent="Node2D"]
+position = Vector2( -72, -24 )
+scale = Vector2( 1.0625, 0.75 )
+polygon = PoolVector2Array( 0, 0, 0, 64, 64, 64, 64, 96, 135.529, 32, 64, -32, 64, 0 )
