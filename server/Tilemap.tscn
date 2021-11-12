@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://KinematicBody2D.gd" type="Script" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://TileMap.gd" type="Script" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -69,19 +68,25 @@ points = PoolVector2Array( 16, 7.63641, 0.579834, 6.23131, 0, 0, 16, 0 )
 2/shapes = [  ]
 2/z_index = 0
 
+<<<<<<< HEAD
+=======
 [sub_resource type="RectangleShape2D" id=4]
 
+>>>>>>> ce85040c12f5c4e0b3238f951fb69820a84f39bb
 [node name="Node2D" type="Node2D"]
-position = Vector2( 302, 201 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
-cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+cell_custom_transform = Transform2D( 1, 0, 0, 16, 0, 0 )
 show_collision = true
 format = 1
 script = ExtResource( 4 )
 
+<<<<<<< HEAD
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 50, 50 )
+=======
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 position = Vector2( 0, -75 )
 script = ExtResource( 3 )
@@ -98,3 +103,4 @@ shape = SubResource( 4 )
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 position = Vector2( 0.7565, -0.570793 )
 current = true
+>>>>>>> ce85040c12f5c4e0b3238f951fb69820a84f39bb
