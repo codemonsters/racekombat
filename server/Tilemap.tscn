@@ -68,6 +68,11 @@ points = PoolVector2Array( 16, 7.63641, 0.579834, 6.23131, 0, 0, 16, 0 )
 2/shapes = [  ]
 2/z_index = 0
 
+<<<<<<< HEAD
+=======
+[sub_resource type="RectangleShape2D" id=4]
+
+>>>>>>> ce85040c12f5c4e0b3238f951fb69820a84f39bb
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -78,5 +83,24 @@ show_collision = true
 format = 1
 script = ExtResource( 4 )
 
+<<<<<<< HEAD
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 50, 50 )
+=======
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -75 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 1.2063, -1.05566 )
+scale = Vector2( 0.317737, 0.31035 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 1.18948, -0.964264 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+position = Vector2( 0.7565, -0.570793 )
+current = true
+>>>>>>> ce85040c12f5c4e0b3238f951fb69820a84f39bb
