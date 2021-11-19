@@ -1,8 +1,13 @@
 extends Node
 class_name ControllersManager
 
-var controllers: Array # of Controllers
+var _controllers: Array # of Controllers
 
 
 func _init():
-	controllers = [Controller.new()]
+	_controllers = []
+
+
+func add_controller(controller: Controller):
+	_controllers.append(controller)
+	print("New controller added: " + controller.to_string())
