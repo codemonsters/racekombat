@@ -1,11 +1,18 @@
 extends State
 
+var velocidadInicial
+
+
 func enter(msg := {}) -> void:
 	if msg.has("jump"):
 		owner.velocity.y = owner.velocidadSalto
 		owner.animatedSprite.play("jump")
 	else:
 		owner.animatedSprite.play("fall")
+	if msg.has("velocidadInicial"):
+		velocidadInicial = msg.velocidadInicial * 1.0
+	else:
+		velocidadInicial = 0
 
 func physicsUpdate(delta: float) -> void:
 	if owner.velocity.y > 0:
@@ -14,7 +21,12 @@ func physicsUpdate(delta: float) -> void:
 		Input.get_action_strength("ui_right")
 		- Input.get_action_strength("ui_left")
 	)
-	owner.velocity.x = owner.velocidad * inputDirectionX
+	if inputDirectionX * velocidadInicial < 0:
+		owner.velocity.x = velocidadInicial + (owner.velocidad * inputDirectionX * 1.5)
+	elif inputDirectionX * velocidadInicial == 0:
+		owner.velocity.x = owner.velocidad * inputDirectionX
+	else:
+		owner.velocity.x = velocidadInicial
 	owner.velocity.y += owner.gravedad * delta
 	owner.velocity = owner.move_and_slide(owner.velocity, Vector2.UP)
 	
