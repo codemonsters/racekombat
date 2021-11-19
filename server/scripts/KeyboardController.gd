@@ -17,12 +17,17 @@ func _init(key_up: int, key_down: int, key_left: int, key_right: int, keys_actio
 
 
 func _to_string():
+	var action_keys_names = ""
+	for key in _keys_action:
+		action_keys_names += ", " + OS.get_scancode_string(key)
+	
 	return (
 		   "Keyboard Controller (" + 
 		   OS.get_scancode_string(_key_up) + ", " +
 		   OS.get_scancode_string(_key_down) + ", " +
 		   OS.get_scancode_string(_key_left) + ", " +
 		   OS.get_scancode_string(_key_right) +
+		   action_keys_names +
 		   ")"
 	)
 
