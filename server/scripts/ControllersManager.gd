@@ -15,6 +15,6 @@ func add_controller(controller: Controller):
 func handle_input(event):
 	for controller in _controllers:
 		if controller.input(event):
-			get_tree().set_input_as_handled()
+			# get_tree().set_input_as_handled()
 			break
-	# TODO: recorrer la lista de controllers y por cada controller que sea teclado comprobar si ese controller particular se encarga de atender este evento
+			# Set input as handled no funciona. Mirarlo
