@@ -31,8 +31,13 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="."]
+<<<<<<< HEAD
 margin_right = 40.0
 margin_bottom = 40.0
+=======
+margin_right = 1280.0
+margin_bottom = 720.0
+>>>>>>> 49edadaf04a42c33815afc80f5d15599e941ad79
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,6 +57,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+<<<<<<< HEAD
 [node name="Button2" type="Button" parent="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -67,4 +73,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+=======
+>>>>>>> 49edadaf04a42c33815afc80f5d15599e941ad79
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
