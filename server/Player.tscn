@@ -38,7 +38,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 24.1034, 38.0217 )
+extents = Vector2( 29.2085, 40.9764 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
