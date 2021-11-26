@@ -25,3 +25,7 @@ func change_to_saladeespera():
 	var screen_node = get_parent()
 	var sala_de_espera = preload("res://WaitingRoom.tscn")
 	screen_node.add_child(sala_de_espera.instance())
+
+
+func _input(event):
+	controllerManager.handle_input(event)
