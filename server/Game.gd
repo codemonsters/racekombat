@@ -16,15 +16,16 @@ func _ready():
 	
 	# Conecta la señal con la función. La hay que asignar a una variable pq sino 
 	# lanza un warning :S
-	var _im_just_trash = $Menu.connect("change_to_saladeespera", self,
+	var _im_just_trash = $CurrentScene/Menu.connect("change_to_saladeespera", self,
 									   "change_to_saladeespera")
 
 
 func change_to_saladeespera():
-	get_node("Menu").queue_free()
-	var screen_node = get_parent()
+	get_node("CurrentScene/Menu").queue_free()
+	var current_scene_container = get_node("CurrentScene")
+	print(current_scene_container)
 	var sala_de_espera = preload("res://WaitingRoom.tscn")
-	screen_node.add_child(sala_de_espera.instance())
+	current_scene_container.add_child(sala_de_espera.instance())
 
 
 func _input(event):
