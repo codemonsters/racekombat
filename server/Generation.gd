@@ -33,7 +33,7 @@ func _create_noise(width,height,pos_x,pos_y):
 		for y in range(height):
 			var noise_height = noise.get_noise_1d(x)
 			
-			if ceil(noise_height * 40) < y :
+			if ceil(noise_height * 25) < y :
 				$TileMap.set_cellv(Vector2(pos_x+x, pos_y+y), 2)
 				
 	$TileMap.update_bitmask_region()
