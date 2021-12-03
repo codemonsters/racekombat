@@ -1,9 +1,20 @@
 class_name KeyboardController extends Controller
 
+var _controllersManager: ControllersManager
+var _key_up: int
+var _key_down: int
+var _key_left: int
+var _key_right: int
+var _keys_action: Array
 
-func _init(key_up: int, key_down: int, key_left: int, key_right: int, keys_action: Array).(key_up, key_down, key_left, key_right, keys_action):
-	#Calls parent init function
-	pass
+
+func _init(controllersManager: ControllersManager, key_up: int, key_down: int, key_left: int, key_right: int, keys_action: Array):
+	_controllersManager = controllersManager
+	_key_up = key_up
+	_key_down = key_down
+	_key_left = key_left
+	_key_right = key_right
+	_keys_action = keys_action
 
 func _to_string():
 	var action_keys_names = ""
@@ -21,5 +32,8 @@ func _to_string():
 	)
 
 
-func input(event: InputEvent):
-	.input(event)
+func _input(event: InputEvent):
+	if event is InputEventKey:
+		if event.scancode == _key_up:
+			_controllersManager.controller_input(self, "up")
+	# TODO: Implementar el resto de acciones

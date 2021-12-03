@@ -1,16 +1,16 @@
 extends Node2D
 
 
-var controllerManager: ControllersManager
+var controller_manager: ControllersManager
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	controllerManager = ControllersManager.new()
-	controllerManager.add_controller(KeyboardController.new(
+	controller_manager = ControllersManager.new()
+	controller_manager.add_controller(KeyboardController.new(controller_manager,
 		KEY_W, KEY_S, KEY_A, KEY_D, [KEY_SPACE, KEY_SHIFT])
 	)
-	controllerManager.add_controller(KeyboardController.new(
+	controller_manager.add_controller(KeyboardController.new(controller_manager,
 		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, [KEY_ENTER, KEY_KP_ENTER])
 	)
 	
@@ -29,4 +29,5 @@ func change_to_saladeespera():
 
 
 func _input(event):
-	controllerManager.handle_input(event)
+	# TODO: ¡Esto ya no existe!
+	controller_manager.handle_input(event)
