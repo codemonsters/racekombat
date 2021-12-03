@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Pendulo.gd" type="Script" id=1]
+
+[node name="Pendulo" type="Node2D"]
+script = ExtResource( 1 )
+ancho_plataforma = 300
+
+[node name="Plataforma" type="StaticBody2D" parent="."]
+position = Vector2( 226.195, 118.66 )
+
+[node name="ColorRect" type="ColorRect" parent="Plataforma"]
+margin_top = 0.529724
+margin_right = 50.0
+margin_bottom = 20.5297
+__meta__ = {
+"_edit_use_anchors_": false
+}
