@@ -16,13 +16,14 @@ func _init(controllersManager: ControllersManager, key_up: int, key_down: int, k
 	_key_right = key_right
 	_keys_action = keys_action
 
+
 func _to_string():
 	var action_keys_names = ""
 	for key in _keys_action:
 		action_keys_names += ", " + OS.get_scancode_string(key)
-	
+
 	return (
-		   "Keyboard Controller (" + 
+		   "Keyboard Controller (" +
 		   OS.get_scancode_string(_key_up) + ", " +
 		   OS.get_scancode_string(_key_down) + ", " +
 		   OS.get_scancode_string(_key_left) + ", " +
@@ -32,8 +33,21 @@ func _to_string():
 	)
 
 
-func _input(event: InputEvent):
-	if event is InputEventKey:
+func input(event: InputEvent):
+	if event is InputEventKey and event.pressed:
 		if event.scancode == _key_up:
 			_controllersManager.controller_input(self, "up")
-	# TODO: Implementar el resto de acciones
+		elif event.scancode == _key_down:
+			_controllersManager.controller_input(self, "down")
+		elif event.scancode == _key_left:
+			_controllersManager.controller_input(self, "left")
+		elif event.scancode == _key_right:
+			_controllersManager.controller_input(self, "right")
+		else:
+			return false
+		return true
+
+
+
+func get_class() : 
+	return "KeyboardController"

@@ -11,8 +11,8 @@ class_name Controller
 #	_keys_action = keys_action
 
 
-#func input(event: InputEvent):
-#	# print("Recibí el evento" + event.as_text())
+# func input(event: InputEvent):
+# 	print("Recibí el evento" + event.as_text())
 #
 #	if event is InputEventKey:
 #		if event.scancode in [_key_up, _key_down, _key_left, _key_right] or \

@@ -6,7 +6,7 @@ var controller_manager: ControllersManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	controller_manager = ControllersManager.new()
+	controller_manager = ControllersManager.new(self)
 	controller_manager.add_controller(KeyboardController.new(controller_manager,
 		KEY_W, KEY_S, KEY_A, KEY_D, [KEY_SPACE, KEY_SHIFT])
 	)
@@ -29,5 +29,4 @@ func change_to_saladeespera():
 
 
 func _input(event):
-	# TODO: ¡Esto ya no existe!
-	controller_manager.handle_input(event)
+	controller_manager.input(event)

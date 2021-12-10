@@ -3,10 +3,18 @@ class_name ControllersManager
 
 var _controllers: Array # of Controllers
 var _main_controller: Controller	# Controlador principal (el que maneja la UI)
+var _main_node: Node2D
 
 
-func _init():
+func _init(main_node: Node2D):
+	_main_node = main_node
 	_controllers = []
+
+
+func input(event: InputEvent):
+	for controller in _controllers:
+		if controller.get_class() == ("KeyboardController"):
+			controller.input(event)
 
 
 func add_controller(controller: Controller):
@@ -21,9 +29,12 @@ func add_controller(controller: Controller):
 #			break
 #			# Set input as handled no funciona. Mirarlo
 
+
 func controller_input(controller: Controller, action: String):
-	# TODO: id no existe, _main_controller no está asignado, controller_input ni existe
-	if controller.id == _main_controller.id:
-		$currentScene.controller_input(controller, action, true)
+	if _main_controller == null:
+		_main_controller = controller
+
+	if controller.get_instance_id() != _main_controller.get_instance_id():
+		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, false)
 	else:
-		$currentScene.controller_input(controller, action, false)
+		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, true)
