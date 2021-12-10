@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://PenduloTween.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="PenduloTween" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Plataforma" type="KinematicBody2D" parent="Pivot"]
+
+[node name="ColorRect" type="ColorRect" parent="Pivot/Plataforma"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Plataforma"]
+shape = SubResource( 1 )
+
+[node name="RotationTween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="RotationTween" to="." method="_on_RotationTween_tween_completed"]
