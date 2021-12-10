@@ -11,7 +11,7 @@ var tween_angle_values := []
 export var period := 0.0
 
 func _ready():
-	final_angle = initial_angle - amplitude
+	final_angle = initial_angle + amplitude
 	tween_angle_values = [initial_angle, final_angle]
 	$Pivot/Plataforma.position = radio_vector
 	$Pivot/Plataforma/ColorRect.rect_size = Vector2(platform_width, 10)
