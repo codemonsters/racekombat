@@ -25,7 +25,7 @@ func _process(delta):
 		k = -1
 	elif angulo <= 0:
 		k = 1
-	v = 1.25 - (abs((amplitud/2) - angulo)/(amplitud/2))
+	v = 1.1 - (abs((amplitud/2) - angulo)/(amplitud/2))
 	angulo += delta * k * v
 	plataforma.position = radio.rotated(angulo) - Vector2(ancho_plataforma/2, 0)
 	update() # Para llamar a _draw()
