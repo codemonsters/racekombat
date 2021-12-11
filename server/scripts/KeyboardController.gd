@@ -43,6 +43,8 @@ func input(event: InputEvent):
 			_controllersManager.controller_input(self, "left")
 		elif event.scancode == _key_right:
 			_controllersManager.controller_input(self, "right")
+		elif event.scancode in _keys_action:
+			_controllersManager.controller_input(self, "action")
 		else:
 			return false
 		return true

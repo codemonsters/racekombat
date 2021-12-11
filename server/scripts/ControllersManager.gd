@@ -14,7 +14,9 @@ func _init(main_node: Node2D):
 func input(event: InputEvent):
 	for controller in _controllers:
 		if controller.get_class() == ("KeyboardController"):
-			controller.input(event)
+			if controller.input(event):
+				return true
+	return false
 
 
 func add_controller(controller: Controller):

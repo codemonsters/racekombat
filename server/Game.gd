@@ -29,4 +29,5 @@ func change_to_saladeespera():
 
 
 func _input(event):
-	controller_manager.input(event)
+	if controller_manager.input(event):
+		get_tree().set_input_as_handled()

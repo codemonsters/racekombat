@@ -20,10 +20,13 @@ func _process(_delta):
 	$Control.get_children()[active_button].grab_focus()
 
 
-func controller_input(controller, action, is_main):
+func controller_input(_controller, action, is_main):
 	if is_main:
 		match action:
 			"up":
 				active_button -= 1
 			"down":
 				active_button += 1
+			"action":
+				$Control.get_children()[active_button].set_pressed(true)
+				$Control.get_children()[active_button].emit_signal("pressed")
