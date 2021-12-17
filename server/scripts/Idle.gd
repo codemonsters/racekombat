@@ -1,6 +1,5 @@
 extends State
 
-var snap = Vector2.DOWN * 60
 
 func enter(_msg := {}) -> void:
 	owner.velocity = Vector2.ZERO
@@ -20,9 +19,9 @@ func handleInput(event):
 
 func update(delta: float) -> void:
 	if owner.is_on_floor():
-		snap = Vector2.DOWN * 60
-		owner.velocity = owner.move_and_slide_with_snap(owner.velocity, snap, Vector2.UP)
+		owner.snap = owner.defaultSnap
+		owner.velocity = owner.move_and_slide_with_snap(owner.velocity, owner.snap, Vector2.UP)
 	else:
-		snap = Vector2.ZERO
+		owner.snap = Vector2.ZERO
 		stateMachine.transitionTo("Air")
 		return

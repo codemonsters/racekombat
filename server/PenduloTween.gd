@@ -5,7 +5,7 @@ export var platform_width = 100
 
 onready var rotation_tween = get_node("RotationTween")
 export var initial_angle := 0
-export var amplitude := 0
+export var amplitude := 90
 var final_angle := 0
 var tween_angle_values := []
 export var period := 0.0
