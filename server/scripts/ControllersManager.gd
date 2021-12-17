@@ -24,14 +24,6 @@ func add_controller(controller: Controller):
 	print_debug("New controller added: " + controller.to_string())
 
 
-#func handle_input(event):
-#	for controller in _controllers:
-#		if controller.input(event):
-#			# get_tree().set_input_as_handled()
-#			break
-#			# Set input as handled no funciona. Mirarlo
-
-
 func controller_input(controller: Controller, action: String):
 	if _main_controller == null:
 		_main_controller = controller
