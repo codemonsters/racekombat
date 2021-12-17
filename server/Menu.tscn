@@ -66,5 +66,4 @@ text = "COURSE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
