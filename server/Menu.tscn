@@ -1,14 +1,98 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/FasterOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Ubuntu-BI.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/particles/whitePuff12.png" type="Texture" id=4]
+[ext_resource path="res://assets/particles/whitePuff24.png" type="Texture" id=5]
+[ext_resource path="res://assets/particles/whitePuff19.png" type="Texture" id=6]
+[ext_resource path="res://assets/particles/whitePuff15.png" type="Texture" id=7]
+[ext_resource path="res://assets/particles/whitePuff13.png" type="Texture" id=8]
+[ext_resource path="res://assets/particles/whitePuff23.png" type="Texture" id=9]
+[ext_resource path="res://assets/particles/whitePuff17.png" type="Texture" id=10]
+[ext_resource path="res://assets/particles/whitePuff16.png" type="Texture" id=11]
+[ext_resource path="res://assets/particles/whitePuff22.png" type="Texture" id=12]
+[ext_resource path="res://assets/particles/whitePuff21.png" type="Texture" id=13]
+[ext_resource path="res://assets/particles/whitePuff14.png" type="Texture" id=14]
+[ext_resource path="res://assets/particles/whitePuff20.png" type="Texture" id=15]
+[ext_resource path="res://assets/particles/whitePuff18.png" type="Texture" id=16]
+[ext_resource path="res://assets/particles/whitePuff04.png" type="Texture" id=17]
+[ext_resource path="res://assets/particles/whitePuff00.png" type="Texture" id=18]
+[ext_resource path="res://assets/particles/whitePuff01.png" type="Texture" id=19]
+[ext_resource path="res://assets/particles/whitePuff03.png" type="Texture" id=20]
+[ext_resource path="res://assets/particles/whitePuff02.png" type="Texture" id=21]
+[ext_resource path="res://assets/particles/whitePuff05.png" type="Texture" id=22]
+[ext_resource path="res://assets/particles/whitePuff08.png" type="Texture" id=23]
+[ext_resource path="res://assets/particles/whitePuff06.png" type="Texture" id=24]
+[ext_resource path="res://assets/particles/whitePuff07.png" type="Texture" id=25]
+[ext_resource path="res://assets/particles/whitePuff10.png" type="Texture" id=26]
+[ext_resource path="res://assets/particles/whitePuff11.png" type="Texture" id=27]
+[ext_resource path="res://assets/particles/whitePuff09.png" type="Texture" id=28]
+[ext_resource path="res://Particles2D.gd" type="Script" id=29]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="AnimatedTexture" id=3]
+flags = 4
+frames = 25
+oneshot = true
+fps = 21.0
+frame_0/texture = ExtResource( 18 )
+frame_1/texture = ExtResource( 19 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 21 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 20 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 17 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 22 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 24 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 25 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 23 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 28 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 26 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 27 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 4 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 8 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 14 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 7 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 11 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 10 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 16 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 6 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 15 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 13 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 12 )
+frame_22/delay_sec = 0.0
+frame_23/texture = ExtResource( 9 )
+frame_23/delay_sec = 0.0
+frame_24/texture = ExtResource( 5 )
+frame_24/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=4]
 size = 70
 font_data = ExtResource( 2 )
 
@@ -17,9 +101,9 @@ script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 100.0
+margin_left = -1000.0
 margin_top = 50.0
-margin_right = -100.0
+margin_right = -1200.0
 margin_bottom = 220.4
 custom_fonts/font = SubResource( 1 )
 text = "RaceKombat"
@@ -29,6 +113,23 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+
+[node name="Particles2D" type="Particles2D" parent="Label"]
+modulate = Color( 1, 1, 1, 0.352941 )
+self_modulate = Color( 1, 1, 1, 0.352941 )
+show_behind_parent = true
+material = SubResource( 2 )
+position = Vector2( 130.603, 89.1853 )
+rotation = 1.37706
+scale = Vector2( 0.35, 0.35 )
+emitting = false
+amount = 4
+lifetime = 0.9
+one_shot = true
+visibility_rect = Rect2( 0, 0, 500, 500 )
+draw_order = 1
+texture = SubResource( 3 )
+script = ExtResource( 29 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -46,13 +147,13 @@ margin_left = 470.0
 margin_top = 265.0
 margin_right = 770.0
 margin_bottom = 415.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "START"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="Control"]
+[node name="CourseButton" type="Button" parent="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -61,9 +162,10 @@ margin_left = 470.0
 margin_top = 430.0
 margin_right = 770.0
 margin_bottom = 580.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "COURSE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
