@@ -9,10 +9,23 @@ export var inicialMult := 1.0
 export var airMult := 1.0
 var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
+var input_direction_x := 0.0
 
 func _ready():
 	pass
 
 func _process(delta):
-	pass
+	clamp(input_direction_x, -1.0, 1.0)
 	#print(get_node("Player SM").state.name)
+
+func _handle_input(action):
+	match action:
+		"left":
+			input_direction_x -= 1.0
+		"right":
+			input_direction_x += 1.0
+		"action":
+			_jump()
+
+func _jump():
+	$"Player SM".transitionTo("Air", {jump = true})

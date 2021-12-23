@@ -16,14 +16,14 @@ func enter(msg := {}) -> void:
 func physicsUpdate(delta: float) -> void:
 	if owner.velocity.y > 0:
 		owner.animatedSprite.play("fall")
-	var inputDirectionX: float = (
-		Input.get_action_strength("ui_right")
-		- Input.get_action_strength("ui_left")
-	)
-	if inputDirectionX * velocidadInicial < 0:
-		owner.velocity.x = velocidadInicial + (owner.velocidad * inputDirectionX * owner.airMult)
-	elif inputDirectionX * velocidadInicial == 0:
-		owner.velocity.x = owner.velocidad * inputDirectionX
+	#var inputDirectionX: float = (
+	#	Input.get_action_strength("ui_right")
+	#	- Input.get_action_strength("ui_left")
+	#)
+	if owner.input_direction_x * velocidadInicial < 0:
+		owner.velocity.x = velocidadInicial + (owner.velocidad * owner.input_direction_x * owner.airMult)
+	elif owner.input_direction_x * velocidadInicial == 0:
+		owner.velocity.x = owner.velocidad * owner.input_direction_x
 	else:
 		owner.velocity.x = velocidadInicial
 	owner.velocity.y += owner.gravedad * delta
