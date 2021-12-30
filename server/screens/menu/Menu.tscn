@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/FasterOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Ubuntu-BI.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Menu.gd" type="Script" id=3]
+[ext_resource path="res://screens/menu/Menu.gd" type="Script" id=3]
 [ext_resource path="res://assets/particles/whitePuff12.png" type="Texture" id=4]
 [ext_resource path="res://assets/particles/whitePuff24.png" type="Texture" id=5]
 [ext_resource path="res://assets/particles/whitePuff19.png" type="Texture" id=6]
@@ -28,7 +28,7 @@
 [ext_resource path="res://assets/particles/whitePuff10.png" type="Texture" id=26]
 [ext_resource path="res://assets/particles/whitePuff11.png" type="Texture" id=27]
 [ext_resource path="res://assets/particles/whitePuff09.png" type="Texture" id=28]
-[ext_resource path="res://Particles2D.gd" type="Script" id=29]
+[ext_resource path="res://screens/menu/Particles2D.gd" type="Script" id=29]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100

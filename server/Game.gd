@@ -23,7 +23,7 @@ func _ready():
 func change_to_saladeespera():
 	get_node("CurrentScene/Menu").queue_free()
 	var current_scene_container = get_node("CurrentScene")
-	var sala_de_espera = preload("res://WaitingRoom.tscn")
+	var sala_de_espera = preload("res://screens/game/WaitingRoom.tscn")
 	current_scene_container.add_child(sala_de_espera.instance())
 
 

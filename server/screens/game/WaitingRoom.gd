@@ -3,7 +3,7 @@ extends Node2D
 var players : Array
 var player_id := 0
 
-const PlayerResource = preload("res://Player.tscn")
+const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 func controller_input(_controller, action, is_main, is_pressed):
 	var found := false

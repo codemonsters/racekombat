@@ -8,8 +8,7 @@ func _ready():
 	var lbl := $Label
 	_move_text(lbl)
 
-# TODO: ¿Por qué detecta "action" venga del controller que venga, y a continuación cambia de escena?
-# ¿Podría tener que ver con el focus?
+
 func _on_StartButton_pressed():
 	emit_signal("change_to_saladeespera")
 
