@@ -24,11 +24,11 @@ func add_controller(controller: Controller):
 	print_debug("New controller added: " + controller.to_string())
 
 
-func controller_input(controller: Controller, action: String):
+func controller_input(controller: Controller, action: String, is_pressed: bool):
 	if _main_controller == null:
 		_main_controller = controller
 	
 	if controller.get_instance_id() != _main_controller.get_instance_id():
-		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, false)
+		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, false, is_pressed)
 	else:
-		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, true)
+		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, true, is_pressed)

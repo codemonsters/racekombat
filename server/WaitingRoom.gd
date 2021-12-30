@@ -5,7 +5,7 @@ var player_id := 0
 
 const PlayerResource = preload("res://Player.tscn")
 
-func controller_input(_controller, action, is_main):
+func controller_input(_controller, action, is_main, is_pressed):
 	var found := false
 	var controller_index : int
 	for i in players.size():
@@ -17,6 +17,6 @@ func controller_input(_controller, action, is_main):
 		new_player.position = Vector2(300, 300)
 		add_child(new_player)
 		players.append({_controller: new_player})
-	if found:
+	else:
 		var active_player = players[controller_index][_controller]
-		active_player._handle_input(action)
+		active_player._handle_input(action, is_pressed)

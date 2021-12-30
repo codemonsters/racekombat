@@ -15,17 +15,28 @@ func _ready():
 	pass
 
 func _process(delta):
-	clamp(input_direction_x, -1.0, 1.0)
+	pass
 	#print(get_node("Player SM").state.name)
 
-func _handle_input(action):
-	match action:
-		"left":
-			input_direction_x -= 1.0
-		"right":
-			input_direction_x += 1.0
-		"action":
-			_jump()
+func _handle_input(action, is_pressed):
+	if is_pressed:
+		match action:
+			"left":
+				input_direction_x -= 1.0
+			"right":
+				input_direction_x += 1.0
+			"action":
+				_jump()
+	else:
+		match action:
+			"left":
+				input_direction_x += 1.0
+			"right":
+				input_direction_x -= 1.0
+	
+	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
+
 
 func _jump():
-	$"Player SM".transitionTo("Air", {jump = true})
+	if $"Player SM".state.name != "Air":
+		$"Player SM".transitionTo("Air", {jump = true})

@@ -34,17 +34,17 @@ func _to_string():
 
 
 func input(event: InputEvent):
-	if event is InputEventKey and event.pressed:
+	if event is InputEventKey:
 		if event.scancode == _key_up:
-			_controllersManager.controller_input(self, "up")
+			_controllersManager.controller_input(self, "up", event.pressed)
 		elif event.scancode == _key_down:
-			_controllersManager.controller_input(self, "down")
+			_controllersManager.controller_input(self, "down", event.pressed)
 		elif event.scancode == _key_left:
-			_controllersManager.controller_input(self, "left")
+			_controllersManager.controller_input(self, "left", event.pressed)
 		elif event.scancode == _key_right:
-			_controllersManager.controller_input(self, "right")
+			_controllersManager.controller_input(self, "right", event.pressed)
 		elif event.scancode in _keys_action:
-			_controllersManager.controller_input(self, "action")
+			_controllersManager.controller_input(self, "action", event.pressed)
 		else:
 			return false
 		return true
