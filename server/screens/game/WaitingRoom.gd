@@ -5,7 +5,7 @@ var player_id := 0
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
-func controller_input(_controller, action, is_main, is_pressed):
+func controller_input(_controller, action, _is_main, is_pressed):
 	var found := false
 	var controller_index : int
 	for i in players.size():

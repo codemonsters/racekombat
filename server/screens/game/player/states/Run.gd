@@ -3,9 +3,6 @@ extends State
 func enter(_msg := {}) -> void:
 	owner.animatedSprite.play("run")
 
-func handleInput(event):
-	if Input.is_action_just_pressed("ui_accept"):
-		stateMachine.transitionTo("Air", {jump = true, velocidadInicial = owner.velocity.x})
 
 func physicsUpdate(delta: float) -> void:
 	if not owner.is_on_floor():
@@ -23,8 +20,8 @@ func physicsUpdate(delta: float) -> void:
 		owner.animatedSprite.flip_h = true
 	elif owner.input_direction_x > 0:
 		owner.animatedSprite.flip_h = false
-	owner.velocity.x = owner.velocidad * owner.input_direction_x
-	owner.velocity.y += owner.gravedad * delta
+	owner.velocity.x = owner.speed_run * owner.input_direction_x
+	owner.velocity.y += owner.gravity * delta
 	owner.velocity = owner.move_and_slide_with_snap(owner.velocity, owner.snap, Vector2.UP)
 	if is_equal_approx(owner.input_direction_x, 0.0):
 		stateMachine.transitionTo("Idle")

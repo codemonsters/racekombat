@@ -1,22 +1,16 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
-var velocidad = 300
-var gravedad = 1000
-var velocidadSalto = -600
+export var gravity = 1000
+export var speed_run = 300
+export var speed_jump = 600
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
-export var airMult := 1.0
+export var airMult := 0.5
 var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
 
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-	#print(get_node("Player SM").state.name)
 
 func _handle_input(action, is_pressed):
 	if is_pressed:
