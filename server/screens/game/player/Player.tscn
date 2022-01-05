@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/crocodile/idle/frame-1.png" type="Texture" id=1]
 [ext_resource path="res://screens/game/player/states/Player SM.gd" type="Script" id=2]
 [ext_resource path="res://screens/game/player/states/Idle.gd" type="Script" id=3]
+[ext_resource path="res://screens/game/player/Player.gd" type="Script" id=4]
 [ext_resource path="res://screens/game/player/states/Run.gd" type="Script" id=5]
 [ext_resource path="res://screens/game/player/states/Air.gd" type="Script" id=6]
 [ext_resource path="res://assets/crocodile/idle/frame-2.png" type="Texture" id=7]
@@ -13,51 +14,6 @@
 [ext_resource path="res://assets/crocodile/jump fall/frame.png" type="Texture" id=12]
 [ext_resource path="res://assets/crocodile/run/frame-4.png" type="Texture" id=13]
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends KinematicBody2D
-
-var velocity = Vector2()
-var velocidad = 300
-var gravedad = 800
-var velocidadSalto = -400
-onready var animatedSprite = $AnimatedSprite
-export var inicialMult := 1.0
-export var airMult := 1.0
-var defaultSnap = Vector2.DOWN * 15
-var snap = defaultSnap
-var input_direction_x := 0.0
-
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-	#print(get_node(\"Player SM\").state.name)
-
-func _handle_input(action, is_pressed):
-	if is_pressed:
-		match action:
-			\"left\":
-				input_direction_x -= 1.0
-			\"right\":
-				input_direction_x += 1.0
-			\"action\":
-				_jump()
-	else:
-		match action:
-			\"left\":
-				input_direction_x += 1.0
-			\"right\":
-				input_direction_x -= 1.0
-	
-	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
-
-
-func _jump():
-	if $\"Player SM\".state.name != \"Air\":
-		$\"Player SM\".transitionTo(\"Air\", {jump = true})
-"
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
@@ -65,19 +21,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "fall",
 "speed": 5.0
 } ]
 
@@ -86,13 +42,12 @@ extents = Vector2( 28.5051, 40.9764 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
-script = SubResource( 3 )
+script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

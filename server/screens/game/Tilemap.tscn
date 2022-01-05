@@ -340,3 +340,4 @@ position = Vector2( 34.7963, 0 )
 position = Vector2( 0.592529, 5.79358 )
 scale = Vector2( 2, 2 )
 current = true
+zoom = Vector2( 2, 2 )

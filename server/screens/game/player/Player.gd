@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 var velocity = Vector2()
 var velocidad = 300
-var gravedad = 800
-var velocidadSalto = -400
+var gravedad = 1000
+var velocidadSalto = -600
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
 export var airMult := 1.0
