@@ -20,7 +20,7 @@ func _ready():
 	var layout_dict = Client.layout_dict
 	
 	if !layout_dict:
-		left_sideControl.spawn_control(joystick)
+		left_sideControl.spawn_control(dpad)
 #		right_sideControl.spawn_control(singleButton, 'bottom', 'B')
 #		right_sideControl.spawn_control(singleButton, 'right', 'A')
 #		right_sideControl.spawn_control(singleButton, 'left', 'X')
