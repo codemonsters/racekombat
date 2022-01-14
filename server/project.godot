@@ -19,27 +19,51 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://utils/ControllersManager.gd"
 }, {
-"base": "Reference",
+"base": "VBoxContainer",
+"class": "DropDownContainer",
+"language": "GDScript",
+"path": "res://addons/GodotGamePad/LayoutConfiguration/DropDownContainer/DropDownContainer.gd"
+}, {
+"base": "EditorProperty",
+"class": "DropDownProperty",
+"language": "GDScript",
+"path": "res://addons/GodotGamePad/LayoutConfiguration/my_inspector_plugin/DropDown.gd"
+}, {
+"base": "Control",
+"class": "GamePadLayout",
+"language": "GDScript",
+"path": "res://addons/GodotGamePad/LayoutConfiguration/GamePad_Layout_Config/GamePadLayoutConfig.gd"
+}, {
+"base": "Controller",
 "class": "KeyboardController",
 "language": "GDScript",
 "path": "res://utils/KeyboardController.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://utils/State.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://utils/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "UI_Builder",
+"language": "GDScript",
+"path": "res://addons/GodotGamePad/UI_builder_functions.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
 "ControllersManager": "",
+"DropDownContainer": "",
+"DropDownProperty": "",
+"GamePadLayout": "res://addons/GodotGamePad/LayoutConfiguration/AddOn_Images/GodotGamepadIcon.svg",
 "KeyboardController": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"UI_Builder": ""
 }
 
 [application]
@@ -48,12 +72,22 @@ config/name="RaceKombat Server"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+UdpBroadcast="*res://addons/GodotGamePad/Networking/UDP_Broadcast.gd"
+Server="*res://addons/GodotGamePad/Networking/Server.gd"
+GamePad="*res://addons/GodotGamePad/Networking/GamePad.tscn"
+
 [display]
 
 window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/GodotGamePad/plugin.cfg" )
 
 [physics]
 
