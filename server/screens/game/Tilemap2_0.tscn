@@ -161,6 +161,20 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
+3/name = "Vacío"
+3/texture = ExtResource( 2 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 96, 112, 16, 16 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -315,11 +329,9 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 0/z_index = 0
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( 319.959, 205.49 )
 script = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( 33.6739, 1.12247 )
 tile_set = SubResource( 15 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
@@ -327,17 +339,14 @@ show_collision = true
 format = 1
 
 [node name="RoofTileMap" type="TileMap" parent="."]
-position = Vector2( 35.9188, 1.12247 )
 tile_set = SubResource( 30 )
 cell_size = Vector2( 16, 16 )
 show_collision = true
 format = 1
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34.7963, 0 )
+position = Vector2( 0, -50 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 0.592529, 5.79358 )
 scale = Vector2( 2, 2 )
 current = true
-zoom = Vector2( 2, 2 )
