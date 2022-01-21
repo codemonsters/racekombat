@@ -2,6 +2,7 @@ extends Node2D
 
 var players : Array
 var player_id := 0
+var bodies_in_door = []
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
@@ -20,3 +21,18 @@ func controller_input(_controller, action, _is_main, is_pressed):
 	else:
 		var active_player = players[controller_index][_controller]
 		active_player._handle_input(action, is_pressed)
+
+
+
+func _on_Limite_body_entered(body):
+	print("sfsdghvbuxdf")
+
+
+func _on_DoorOpeningArea_body_entered(body):
+	bodies_in_door.append(body)
+	$Door.open()
+
+
+func _on_DoorOpeningArea_body_exited(body):
+	bodies_in_door.erase(body)
+	$Door.close()

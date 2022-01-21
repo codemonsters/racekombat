@@ -19,17 +19,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://utils/ControllersManager.gd"
 }, {
-"base": "Controller",
+"base": "Reference",
 "class": "KeyboardController",
 "language": "GDScript",
 "path": "res://utils/KeyboardController.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "State",
 "language": "GDScript",
 "path": "res://utils/State.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://utils/StateMachine.gd"
@@ -54,6 +54,11 @@ window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Blocks"
 
 [physics]
 
