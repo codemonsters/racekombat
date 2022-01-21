@@ -98,7 +98,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 extents = Vector2( 35.2749, 32.5194 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 325.543, 214.83 )
+extents = Vector2( 170.24, 145.359 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
