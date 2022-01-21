@@ -2,15 +2,19 @@ extends CanvasLayer
 
 signal change_to_saladeespera
 
+
 var active_button = 0
 
 func _ready():
 	var lbl := $Label
 	_move_text(lbl)
+	MenuMusic.MenuMusicPlay(true)
 
 
 func _on_StartButton_pressed():
 	emit_signal("change_to_saladeespera")
+	StartButton.StartButtonSound()
+	MenuMusic.MenuMusicPlay(false)
 
 
 func _process(_delta):

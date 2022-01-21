@@ -48,6 +48,15 @@ config/name="RaceKombat Server"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+StartButton="*res://screens/StartButton.gd"
+MenuMusic="*res://screens/MenuMusic.gd"
+PlayerJump="*res://screens/PlayerJump.gd"
+PlayerAppear="*res://screens/PlayerAppear.gd"
+PlayerStart="*res://screens/PlayerStart.gd"
+PlayerStep="*res://screens/PlayerStep.gd"
+
 [display]
 
 window/size/width=1280

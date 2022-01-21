@@ -18,6 +18,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 		new_player.position = Vector2(300, 300)
 		add_child(new_player)
 		players.append({_controller: new_player})
+		PlayerAppear.PlayerSpawnSound()
 	else:
 		var active_player = players[controller_index][_controller]
 		active_player._handle_input(action, is_pressed)
@@ -27,6 +28,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 
 func _on_Limite_body_entered(body):
 	print("sfsdghvbuxdf")
+	PlayerStart.PlayerStartSound()
 
 
 func _on_DoorOpeningArea_body_entered(body):
