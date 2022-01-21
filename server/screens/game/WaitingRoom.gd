@@ -25,7 +25,6 @@ func controller_input(_controller, action, _is_main, is_pressed):
 
 
 
-
 func _on_Limite_body_entered(body):
 	print("sfsdghvbuxdf")
 	PlayerStart.PlayerStartSound()
