@@ -21,7 +21,10 @@ func _ready():
 	
 	if !layout_dict:
 		left_sideControl.spawn_control(dpad)
-#		right_sideControl.spawn_control(singleButton, 'bottom', 'B')
+		right_sideControl.spawn_control(action_buttons, {
+			'anchor_location': 'center',
+			'button_text':"A",
+			'color_unpressed':"ffffff"})
 #		right_sideControl.spawn_control(singleButton, 'right', 'A')
 #		right_sideControl.spawn_control(singleButton, 'left', 'X')
 #		right_sideControl.spawn_control(singleButton, 'top', 'Y')
@@ -56,6 +59,7 @@ func _ready():
 
 
 func _on_button_pressed(side, button):
+	print("Button pressed")
 	if Client.connected:
 		for rpc in rpcs_to_send:
 			rpc_unreliable_id(1, '_on_button_pressed', side, button)

@@ -39,7 +39,8 @@ func _on_GamePad_controller_connected(id):
 			player_name = test_player
 			break
 	players[id] = player_name
-	
+
+
 	#var new_player_display = PlayerDisplay.instance()
 	#new_player_display.player_name = player_name
 # warning-ignore:return_value_discarded
@@ -64,5 +65,13 @@ func change_to_saladeespera():
 
 
 func _input(event):
-	if controller_manager.input(event):
-		get_tree().set_input_as_handled()
+
+	pass
+
+# func _on_Gamepad_button_pressed(side, button):
+# 	print("Button pressed. Side: " + side + ", Button: " + button)
+# 	pass
+
+# func _on_Gamepad_button_released(side, button):
+# 	print("Button released. Side: " + side + ", Button: " + button)
+# 	pass

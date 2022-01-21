@@ -73,8 +73,8 @@ func _on_Server_network_peer_disconnected(id):
 # likely 
 
 remote func _on_button_pressed(side, button):
+	print("Presionado botón" + str(button))	
 	var id = get_tree().get_rpc_sender_id()
-	print(button)
 #	var current_player = Server.clients[id]
 #	current_player.set(button, true)
 
@@ -85,6 +85,7 @@ remote func _on_button_released(side, button):
 
 
 remote func _on_input_direction_calculated(side, direction, intensity):
+	print("Direction calculated")
 	var id = get_tree().get_rpc_sender_id()
 #	var current_player = Server.clients[id]
 #	current_player.input_vector = direction
