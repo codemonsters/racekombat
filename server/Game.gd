@@ -4,6 +4,7 @@ extends Node2D
 var controller_manager: ControllersManager
 var players = {}
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	controller_manager = ControllersManager.new(self)
@@ -23,6 +24,13 @@ func _ready():
 	GamePad.connect("gamepad_connected", self, "_on_GamePad_controller_connected")
 	# warning-ignore:return_value_discarded
 	GamePad.connect("gamepad_disconnected", self, "_on_GamePad_controller_disconnected")
+
+#TODO: Not working
+	# warning-ignore:return_value_discarded
+	GamePad.connect("gamepad_button_pressed", self, "_on_GamePad_button_pressed")
+	# warning-ignore:return_value_discarded
+	GamePad.connect("gamepad_button_released", self, "_on_GamePad_button_released")
+
 	# Allow controllers to get connected
 	GamePad.search_for_controllers()
 
@@ -39,7 +47,6 @@ func _on_GamePad_controller_connected(id):
 			player_name = test_player
 			break
 	players[id] = player_name
-
 
 	#var new_player_display = PlayerDisplay.instance()
 	#new_player_display.player_name = player_name
@@ -64,14 +71,12 @@ func change_to_saladeespera():
 	current_scene_container.add_child(sala_de_espera.instance())
 
 
-func _input(event):
-
+func _process(delta):
 	pass
 
-# func _on_Gamepad_button_pressed(side, button):
-# 	print("Button pressed. Side: " + side + ", Button: " + button)
-# 	pass
+func _on_Gamepad_button_pressed(button, id):
+	print("Signal received: gamepad_button_pressed")
 
-# func _on_Gamepad_button_released(side, button):
-# 	print("Button released. Side: " + side + ", Button: " + button)
-# 	pass
+
+func _on_Gamepad_button_released(button, id):
+	print("Signal received: gamepad_button_released")

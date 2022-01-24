@@ -10,8 +10,13 @@ extends Node
 # create and maintain a server to which the GodotGamePad mobile app will
 # connect to.  Do not modify them unless you know what you are doing.
 
+
 signal gamepad_connected(id)
 signal gamepad_disconnected(id)
+
+#TODO: TESTING
+signal gamepad_button_pressed(button, id)
+signal gamepad_button_released(button, id)
 
 
 func _notification(what): # DO NOT MODIFY
@@ -73,20 +78,23 @@ func _on_Server_network_peer_disconnected(id):
 # likely 
 
 remote func _on_button_pressed(side, button):
-	print("Presionado botón" + str(button))	
 	var id = get_tree().get_rpc_sender_id()
-#	var current_player = Server.clients[id]
-#	current_player.set(button, true)
+	print("id: " + String(id) + " pressed: " + String(button))
+	emit_signal("gamepad_button_pressed", button, id)
+
+	var current_player = Server.clients[id]
+	current_player.set(button, true)
 
 remote func _on_button_released(side, button):
 	var id = get_tree().get_rpc_sender_id()
+	print("id: " + String(id) + " released: " + String(button))
+	emit_signal("gamepad_button_released", button, id)
 #	var current_player = Server.clients[id]
 #	current_player.set(button, false)
 
 
 remote func _on_input_direction_calculated(side, direction, intensity):
-	print("Direction calculated")
 	var id = get_tree().get_rpc_sender_id()
+	print("id: " + String(id) + " direction calculated: " + String(direction) + " with intensity: " + String(intensity))
 #	var current_player = Server.clients[id]
 #	current_player.input_vector = direction
-
