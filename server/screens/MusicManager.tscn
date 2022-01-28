@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://screens/MenuMusic.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/New.wav" type="AudioStream" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://screens/PlayerAppear.gd" type="Script" id=5]
 [ext_resource path="res://screens/PlayerStart.gd" type="Script" id=6]
 [ext_resource path="res://screens/PlayerStep.gd" type="Script" id=7]
+[ext_resource path="res://screens/WaitingRoomMusic.gd" type="Script" id=8]
 
 [node name="Node" type="Node"]
 
@@ -29,3 +30,6 @@ script = ExtResource( 6 )
 
 [node name="PlayerStep" type="AudioStreamPlayer" parent="."]
 script = ExtResource( 7 )
+
+[node name="WaitingRoomMusic" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 8 )

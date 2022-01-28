@@ -6,6 +6,9 @@ var bodies_in_door = []
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
+func _ready():
+	WaitingRoomMusic.WaitingRoomMusicPlay()
+
 func controller_input(_controller, action, _is_main, is_pressed):
 	var found := false
 	var controller_index : int

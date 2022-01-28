@@ -56,6 +56,7 @@ PlayerJump="*res://screens/PlayerJump.gd"
 PlayerAppear="*res://screens/PlayerAppear.gd"
 PlayerStart="*res://screens/PlayerStart.gd"
 PlayerStep="*res://screens/PlayerStep.gd"
+WaitingRoomMusic="*res://screens/WaitingRoomMusic.gd"
 
 [display]
 
@@ -63,6 +64,19 @@ window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[importer_defaults]
+
+wav={
+"compress/mode": 0,
+"edit/loop": false,
+"edit/normalize": false,
+"edit/trim": false,
+"force/8_bit": false,
+"force/max_rate": false,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
 
 [layer_names]
 
