@@ -2,7 +2,7 @@ extends Node2D
 
 
 var controller_manager: ControllersManager
-var players = {}
+# var players = {}
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,17 +36,22 @@ func _ready():
 
 func _on_GamePad_controller_connected(id):
 	print("Network GamePad connected (id = " + str(id) + ")")
-	var player_name
-	var values = []
-	for player in players:
-		values.append(players.get(player))
+
+	# Add the controller to the manager
+	controller_manager.add_controller(GamePadController.new(controller_manager, id))
+
+	
+	# var player_name
+	# var values = []
+	# for player in players:
+	# 	values.append(players.get(player))
 		
-	for i in range(1, 4):
-		var test_player = "player %s" % str(i)
-		if !test_player in values:
-			player_name = test_player
-			break
-	players[id] = player_name
+	# for i in range(1, 4):
+	# 	var test_player = "player %s" % str(i)
+	# 	if !test_player in values:
+	# 		player_name = test_player
+	# 		break
+	# players[id] = player_name
 
 	#var new_player_display = PlayerDisplay.instance()
 	#new_player_display.player_name = player_name
@@ -58,10 +63,9 @@ func _on_GamePad_controller_connected(id):
 func _on_GamePad_controller_disconnected(id):
 	print("Network GamePad DISCONNECTED (id = " + str(id) + ")")
 
-	print(players)
-	emit_signal("player_disconnected", players.get(id))
-	players.erase(id)
-	print(players)
+	# emit_signal("player_disconnected", players.get(id))
+	# players.erase(id)
+	# print(players)
 
 
 func change_to_saladeespera():
@@ -70,13 +74,18 @@ func change_to_saladeespera():
 	var sala_de_espera = preload("res://screens/game/WaitingRoom.tscn")
 	current_scene_container.add_child(sala_de_espera.instance())
 
+func _input(event):
+	if controller_manager.input(event):
+		get_tree().set_input_as_handled()
 
 func _process(delta):
 	pass
 
-func _on_Gamepad_button_pressed(button, id):
-	print("Signal received: gamepad_button_pressed")
+func _on_GamePad_button_pressed(button, id):
+	print("id: " + String(id) + " pressed: " + String(button) + " received")
+	controller_manager.input_gamepad(id, button, true)
 
 
-func _on_Gamepad_button_released(button, id):
-	print("Signal received: gamepad_button_released")
+func _on_GamePad_button_released(button, id):
+	print("id: " + String(id) + " released: " + String(button) + " received")
+	controller_manager.input_gamepad(id, button, false)
