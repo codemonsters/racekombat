@@ -13,14 +13,14 @@ La idea gira alrededor de hacer un videojuego (en Godot) el cual controlemos des
 
 ## Cosas varias:
 
-##Links varios
+## Links varios
 
 * [Awesome Godot](https://github.com/godotengine/awesome-godot) (lista con recursos para Godot como documentación, plugins, herramientas, etc).
 * [Invitación al servidor de Discord para la actividad de Laboratorio.](https://discord.gg/ZQaNtRF)
 
 ---
 
-##Chuleta configuración VS Code y Godot
+## Chuleta configuración VS Code y Godot
   
 Para abrir los scripts con VS Code, y no con godot, hay que hacer esto:
 * En Godot ir a ```Editor>Configuración del editor```
@@ -34,7 +34,7 @@ Finalmente, instalar el plugin godot tools en VS Code.
 
 ¡Y ya está! ¡Puedes considerarte un genio!</p>
 
-###Método 2 (Mejor)
+### Método 2 (Mejor)
 1. Abre el directorio del projecto en vscode.
 2. Instala godot-tools.
 3. Averigua el path a tu ejecutable godot.
@@ -43,7 +43,7 @@ Finalmente, instalar el plugin godot tools en VS Code.
  
 ---
 
-##¿Problemas con la cuenta de Git?
+## ¿Problemas con la cuenta de Git?
 
 * Para actualizar el url de origin con un nuevo nombre de usuario:
   
@@ -67,16 +67,16 @@ Finalmente, instalar el plugin godot tools en VS Code.
 
   ---
 
-##iOS notes
+## iOS notes
 
-###Godot iOS export
+### Godot iOS export
 You will need a computer running MacOS to do this
 1. Choose any Team ID. (Ex. ```1234```)
 2. Choose Identifier. (Ex. ```es.codemonsters.racekombat.gamepad```)
 3. Choose Required Icons.
 4. Export Project to an empty folder.
 
-###How to build unsigned ```.ipa``` without developer account
+### How to build unsigned ```.ipa``` without developer account
 1. Open terminal, go to your project directory.
 2. Run this command: ```xcodebuild -scheme YOUR_SCHEME -archivePath archived.xcarchive CODE_SIGNING_ALLOWED=NO``` - replace YOUR_SCHEME with your scheme (target/app name, or run ```xcodebuild -list``` if unsure)
 3. Then just go into ```archived.xcarchive/Products/Applications```. Your .app will be there. (In my case, ```~/Library/Developer/Xcode/DerivedData/appname-gibberish/Build/Products/Debug-iphoneos/gamepad.app```)
@@ -85,10 +85,10 @@ Make a new folder called Payload, drop your .app into it. Zip it, and rename it 
 
 [Source](https://www.reddit.com/r/jailbreakdevelopers/comments/gj93vc/question_exporting_app_in_xcode_without_a/)
 
-###How to install app
+### How to install app
 * Without developer account, I recommend using [AltStore]([https](https://altstore.io)) with the ```.ipa``` made with the method above. This has the advantage of being able to renew the 7-day free certificate automatically.
 * Otherwise, just open the generated xcode project and build it direcly with your Apple device as target. This way will force you to redo this through xcode after 7 days.
 
-##Android notes
+## Android notes
 * The app needs the ```Internet``` permission when exporting through godot to connect.
 * For general setup, [read here](https://developer.android.com/games/engines/godot/godot-configure).
