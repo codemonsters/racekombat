@@ -17,6 +17,7 @@ signal gamepad_disconnected(id)
 #TODO: TESTING
 signal gamepad_button_pressed(button, id)
 signal gamepad_button_released(button, id)
+signal dpad_released(id)
 
 
 func _notification(what): # DO NOT MODIFY
@@ -98,11 +99,31 @@ remote func _on_input_direction_calculated(side, direction, intensity):
 	# print("id: " + String(id) + " direction calculated: " + String(direction) + " with intensity: " + String(intensity))
 	if direction == Vector2(1,0):
 		emit_signal("gamepad_button_pressed", "right", id)
+		dpad_detect_release("right", id)
 	elif direction == Vector2(-1,0):
 		emit_signal("gamepad_button_pressed", "left", id)
+		dpad_detect_release("left", id)
 	elif direction == Vector2(0,-1):
 		emit_signal("gamepad_button_pressed", "up", id)
+		dpad_detect_release("up", id)
 	elif direction == Vector2(0,1):
 		emit_signal("gamepad_button_pressed", "down", id)
+		dpad_detect_release("down", id)
+	else:
+		emit_signal("dpad_released", id)
 #	var current_player = Server.clients[id]
 #	current_player.input_vector = direction
+
+func dpad_detect_release(button, id):
+	if button == "right":
+		yield(self, "dpad_released")
+		emit_signal("gamepad_button_released", button, id)
+	elif button == "left":
+		yield(self, "dpad_released")
+		emit_signal("gamepad_button_released", button, id)
+	elif button == "up":
+		yield(self, "dpad_released")
+		emit_signal("gamepad_button_released", button, id)
+	elif button == "down":
+		yield(self, "dpad_released")
+		emit_signal("gamepad_button_released", button, id)

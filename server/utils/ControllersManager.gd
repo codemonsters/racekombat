@@ -18,7 +18,6 @@ func input(event: InputEvent):
 				return true
 	return false
 
-
 func input_gamepad(id, button, is_pressed):
 	for controller in _controllers:
 		if controller.get_class() == ("GamePadController") and id == controller.get_id():

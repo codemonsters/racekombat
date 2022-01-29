@@ -23,12 +23,17 @@ func _handle_input(action, is_pressed):
 				_jump()
 	else:
 		match action:
+			#TODO: El Gamepad envía esto 3 veces, por lo que hay que hacer algo para que no se vaya al lado contrario
 			"left":
+				print("vinicio: ", input_direction_x)
 				input_direction_x += 1.0
+				print("vinterm: ", input_direction_x)
 			"right":
 				input_direction_x -= 1.0
 	
 	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
+	print("vfinal: ", input_direction_x)
+
 
 
 func _jump():
