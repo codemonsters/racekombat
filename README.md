@@ -78,7 +78,7 @@ You will need a computer running MacOS to do this
 
 ### How to build unsigned ```.ipa``` without developer account
 1. Open terminal, go to your project directory.
-2. Run this command: ```xcodebuild -scheme YOUR_SCHEME -archivePath archived.xcarchive CODE_SIGNING_ALLOWED=NO``` - replace YOUR_SCHEME with your scheme (target/app name, or run ```xcodebuild -list``` if unsure)
+2. Run this command: ```xcodebuild -scheme YOUR_SCHEME -archivePath archived.xcarchive CODE_SIGNING_ALLOWED=NO``` - replace YOUR_SCHEME with your scheme (target/app name, or run ```xcodebuild -list``` if unsure; ```-ArchivePath``` is optional, as it refused to export to the indicated path.)
 3. Then just go into ```archived.xcarchive/Products/Applications```. Your .app will be there. (In my case, ```~/Library/Developer/Xcode/DerivedData/appname-gibberish/Build/Products/Debug-iphoneos/gamepad.app```)
 Make a new folder called Payload, drop your .app into it. Zip it, and rename it to .ipa.
 4. Yes, really.
