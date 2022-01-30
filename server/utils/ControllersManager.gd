@@ -10,8 +10,8 @@ func _init(main_node: Node2D):
 	_main_node = main_node
 	_controllers = []
 
-# TODO: input_keyboard
-func input(event: InputEvent):
+
+func input_keyboard(event: InputEvent):
 	for controller in _controllers:
 		if controller.get_class() == ("KeyboardController"):
 			if controller.input(event):
@@ -29,6 +29,12 @@ func add_controller(controller: Controller):
 	_controllers.append(controller)
 	print_debug("New controller added: " + controller.to_string())
 
+
+func remove_controller(id: int):
+	for controller in _controllers:
+		if controller.get_class() == ("GamePadController") and id == controller.get_id():
+			_main_node.get_node("CurrentScene").get_child(0).player_disconnect(controller)
+			_controllers.erase(controller)
 
 func controller_input(controller: Controller, action: String, is_pressed: bool):
 	if _main_controller == null:

@@ -20,3 +20,10 @@ func controller_input(_controller, action, _is_main, is_pressed):
 	else:
 		var active_player = players[controller_index][_controller]
 		active_player._handle_input(action, is_pressed)
+
+func player_disconnect(_controller):
+	for player in players:
+		if player.keys()[0] == _controller:
+			print_debug("Controller disconnected, removing player from game")
+			player.values()[0].queue_free()
+			players.erase(player)

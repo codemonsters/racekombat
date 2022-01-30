@@ -21,7 +21,6 @@ func _process(_delta):
 
 	$Control.get_children()[active_button].grab_focus()
 
-
 func controller_input(_controller, action, is_main, _is_pressed):
 	if is_main:
 		match action:
@@ -32,6 +31,9 @@ func controller_input(_controller, action, is_main, _is_pressed):
 			"action":
 				$Control.get_children()[active_button].set_pressed(true)
 				$Control.get_children()[active_button].emit_signal("pressed")
+
+func player_disconnect(_controller):
+	pass
 
 func _move_text(label):
 	var t = Timer.new()

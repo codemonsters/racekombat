@@ -4,8 +4,6 @@ var _controllersManager: ControllersManager
 var _id : int
 var states : Array
 
-
-
 func _init(controllersManager: ControllersManager, id: int):
 	_controllersManager = controllersManager
 	_id = id
@@ -14,7 +12,6 @@ func _init(controllersManager: ControllersManager, id: int):
 func _to_string():
 	return (
 		   "GamePad Controller (id: " + str(_id))
-
 
 func input(event:String, is_pressed:bool):
 	if event == "A":
