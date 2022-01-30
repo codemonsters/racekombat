@@ -13,3 +13,6 @@ logs/
 
 # Vscode...
 .vscode/
+
+# Mac-related
+.DS_Store

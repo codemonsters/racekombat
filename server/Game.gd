@@ -25,7 +25,7 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	GamePad.connect("gamepad_disconnected", self, "_on_GamePad_controller_disconnected")
 
-#TODO: Not working
+
 	# warning-ignore:return_value_discarded
 	GamePad.connect("gamepad_button_pressed", self, "_on_GamePad_button_pressed")
 	# warning-ignore:return_value_discarded
@@ -62,6 +62,8 @@ func _on_GamePad_controller_connected(id):
 
 func _on_GamePad_controller_disconnected(id):
 	print("Network GamePad DISCONNECTED (id = " + str(id) + ")")
+	controller_manager.remove_controller(id)
+	
 
 	# emit_signal("player_disconnected", players.get(id))
 	# players.erase(id)
@@ -75,7 +77,7 @@ func change_to_saladeespera():
 	current_scene_container.add_child(sala_de_espera.instance())
 
 func _input(event):
-	if controller_manager.input(event):
+	if controller_manager.input_keyboard(event):
 		get_tree().set_input_as_handled()
 
 func _process(delta):
