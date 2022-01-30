@@ -12,6 +12,7 @@ func _ready():
 func controller_input(_controller, action, _is_main, is_pressed):
 	var player_found := false
 	var player_index : int # Posición del jugador en la lista
+	var controller_index : int
 	for i in players.size():
 		if _controller in players[i].keys():
 			player_found = true
@@ -26,9 +27,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 		new_player.position = Vector2(300, 300)
 		add_child(new_player)
 		players.append({_controller: new_player})
-	else:
-		var active_player = players[controller_index][_controller]
-		active_player._handle_input(action, is_pressed)
+
 
 func player_disconnect(_controller):
 	for player in players:
@@ -36,7 +35,7 @@ func player_disconnect(_controller):
 			print_debug("Controller disconnected, removing player from game")
 			player.values()[0].queue_free()
 			players.erase(player)
-    
+	
 		PlayerAppear.PlayerSpawnSound()
 
 
