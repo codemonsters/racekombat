@@ -115,15 +115,5 @@ remote func _on_input_direction_calculated(side, direction, intensity):
 #	current_player.input_vector = direction
 
 func dpad_detect_release(button, id):
-	if button == "right":
-		yield(self, "dpad_released")
-		emit_signal("gamepad_button_released", button, id)
-	elif button == "left":
-		yield(self, "dpad_released")
-		emit_signal("gamepad_button_released", button, id)
-	elif button == "up":
-		yield(self, "dpad_released")
-		emit_signal("gamepad_button_released", button, id)
-	elif button == "down":
-		yield(self, "dpad_released")
-		emit_signal("gamepad_button_released", button, id)
+	yield(self, "dpad_released")
+	emit_signal("gamepad_button_released", button, id)
