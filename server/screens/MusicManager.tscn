@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://screens/MenuMusic.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/New.wav" type="AudioStream" id=2]
+[ext_resource path="res://screens/StartButton.gd" type="Script" id=3]
+[ext_resource path="res://screens/PlayerJump.gd" type="Script" id=4]
+[ext_resource path="res://screens/PlayerAppear.gd" type="Script" id=5]
+[ext_resource path="res://screens/PlayerStart.gd" type="Script" id=6]
+[ext_resource path="res://screens/PlayerStep.gd" type="Script" id=7]
+[ext_resource path="res://screens/WaitingRoomMusic.gd" type="Script" id=8]
+
+[node name="Node" type="Node"]
+
+[node name="StartButton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+script = ExtResource( 3 )
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 1 )
+
+[node name="PlayerJump" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="PlayerSpawn" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 5 )
+
+[node name="PlayerStart" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="PlayerStep" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 7 )
+
+[node name="WaitingRoomMusic" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 8 )

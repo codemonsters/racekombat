@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Deal with those Pieces.mp3-7788c517d0316e161014c6bdcaf08ad6.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Deal with those Pieces.mp3"
+dest_files=[ "res://.import/Deal with those Pieces.mp3-7788c517d0316e161014c6bdcaf08ad6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -33,4 +33,5 @@ func _handle_input(action, is_pressed):
 
 func _jump():
 	if $"Player SM".state.name != "Air":
+		PlayerJump.PlayerJumpSound()
 		$"Player SM".transitionTo("Air", {jump = true})

@@ -80,6 +80,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
+StartButton="*res://screens/StartButton.gd"
+MenuMusic="*res://screens/MenuMusic.gd"
+PlayerJump="*res://screens/PlayerJump.gd"
+PlayerAppear="*res://screens/PlayerAppear.gd"
+PlayerStart="*res://screens/PlayerStart.gd"
+PlayerStep="*res://screens/PlayerStep.gd"
+WaitingRoomMusic="*res://screens/WaitingRoomMusic.gd"
 UdpBroadcast="*res://addons/GodotGamePad/Networking/UDP_Broadcast.gd"
 Server="*res://addons/GodotGamePad/Networking/Server.gd"
 GamePad="*res://addons/GodotGamePad/Networking/GamePad.tscn"
@@ -94,6 +101,24 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/GodotGamePad/plugin.cfg" )
+
+[importer_defaults]
+
+wav={
+"compress/mode": 0,
+"edit/loop": false,
+"edit/normalize": false,
+"edit/trim": false,
+"force/8_bit": false,
+"force/max_rate": false,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Blocks"
 
 [physics]
 
