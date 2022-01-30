@@ -11,7 +11,7 @@ func WaitingRoomMusicPlay():
 
 func _process(_delta):
 	if (waitingRoomLoaded):
-		print(self.playing)
+		#print(self.playing) #Esto daba output overflow
 		if (self.playing == false):
 			var audiostream2: AudioStream = preload("res://assets/music/entero_loop1.wav")
 			self.set_stream(audiostream2)
