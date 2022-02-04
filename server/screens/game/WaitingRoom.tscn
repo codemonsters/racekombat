@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
 [ext_resource path="res://screens/game/objects/Arrows.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/objects/Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://screens/game/Tilemap2_0.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -134,6 +135,14 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpeningArea"]
 position = Vector2( -191.716, -22.4944 )
 shape = SubResource( 10 )
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1280, 720 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 640, 360 )
+current = true
+zoom = Vector2( 2, 2 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
