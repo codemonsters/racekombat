@@ -31,5 +31,5 @@ func physicsUpdate(delta: float) -> void:
 	else:
 		frameCounter += 1
 		if frameCounter == 15:
-			PlayerStep.PlayerStepSound()
+			SfxManager.PlayerStepSound()
 			frameCounter = 0

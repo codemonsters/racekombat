@@ -7,7 +7,7 @@ var bodies_in_door = []
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 func _ready():
-	WaitingRoomMusic.WaitingRoomMusicPlay()
+	MusicManager.WaitingRoomMusicPlay()
 
 func controller_input(_controller, action, _is_main, is_pressed):
 	var player_found := false
@@ -36,12 +36,12 @@ func player_disconnect(_controller):
 			player.values()[0].queue_free()
 			players.erase(player)
 	
-		PlayerAppear.PlayerSpawnSound()
+		SfxManager.PlayerSpawnSound()
 
 
 func _on_Limite_body_entered(body):
 	print("sfsdghvbuxdf")
-	PlayerStart.PlayerStartSound()
+	SfxManager.PlayerStartSound()
 
 
 func _on_DoorOpeningArea_body_entered(body):

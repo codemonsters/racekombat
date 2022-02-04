@@ -8,13 +8,13 @@ var active_button = 0
 func _ready():
 	var lbl := $Label
 	_move_text(lbl)
-	MenuMusic.MenuMusicPlay(true)
+	MusicManager.MenuMusicPlay(true)
 
 
 func _on_StartButton_pressed():
 	emit_signal("change_to_saladeespera")
-	StartButton.StartButtonSound()
-	MenuMusic.MenuMusicPlay(false)
+	SfxManager.StartButtonSound()
+	MusicManager.MenuMusicPlay(false)
 
 
 func _process(_delta):

@@ -83,13 +83,8 @@ config/icon="res://icon.png"
 UdpBroadcast="*res://addons/GodotGamePad/Networking/UDP_Broadcast.gd"
 Server="*res://addons/GodotGamePad/Networking/Server.gd"
 GamePad="*res://addons/GodotGamePad/Networking/GamePad.tscn"
-StartButton="*res://screens/StartButton.gd"
-MenuMusic="*res://screens/MenuMusic.gd"
-PlayerJump="*res://screens/PlayerJump.gd"
-PlayerAppear="*res://screens/PlayerAppear.gd"
-PlayerStart="*res://screens/PlayerStart.gd"
-PlayerStep="*res://screens/PlayerStep.gd"
-WaitingRoomMusic="*res://screens/WaitingRoomMusic.gd"
+SfxManager="*res://screens/music/sfxManager.gd"
+MusicManager="*res://screens/music/MusicManager.gd"
 
 [display]
 
