@@ -19,14 +19,15 @@ func controller_input(_controller, action, _is_main, is_pressed):
 			player_index = i
 			break
 	#
-	if player_found: # Si el controlador tiene un jugador asignado, le pasamos su input
-		var active_player = players[player_index][_controller]
-		active_player._handle_input(action, is_pressed)
-	elif action == "action" and not is_pressed: # Si el controlador no tiene un jugador asignado y se pulsa y se suelta "acción", le asignamos el jugador
+	if player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
 		new_player.position = Vector2(300, 300)
 		add_child(new_player)
 		players.append({_controller: new_player})
+		new_player._handle_input(action, is_pressed) # Pasamos input inicial
+	else: # Como tiene jugador asignado, le pasamos el input
+		var active_player = players[player_index][_controller]
+		active_player._handle_input(action, is_pressed)
 
 
 func player_disconnect(_controller):
