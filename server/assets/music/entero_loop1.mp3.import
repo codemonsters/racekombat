@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/entero_loop1.mp3-42161b782cd94a453b5935708950243b.mp3str"
+
+[deps]
+
+source_file="res://assets/music/entero_loop1.mp3"
+dest_files=[ "res://.import/entero_loop1.mp3-42161b782cd94a453b5935708950243b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

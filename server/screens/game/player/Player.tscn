@@ -21,15 +21,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
@@ -41,7 +41,7 @@ animations = [ {
 extents = Vector2( 28.5051, 40.9764 )
 
 [node name="Player" type="KinematicBody2D"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

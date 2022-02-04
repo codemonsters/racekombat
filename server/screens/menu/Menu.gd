@@ -2,15 +2,19 @@ extends CanvasLayer
 
 signal change_to_saladeespera
 
+
 var active_button = 0
 
 func _ready():
 	var lbl := $Label
 	_move_text(lbl)
+	MusicManager.MenuMusicPlay(true)
 
 
 func _on_StartButton_pressed():
 	emit_signal("change_to_saladeespera")
+	SfxManager.StartButtonSound()
+	MusicManager.MenuMusicPlay(false)
 
 
 func _process(_delta):
@@ -20,7 +24,6 @@ func _process(_delta):
 		active_button = len($Control.get_children()) - 1
 
 	$Control.get_children()[active_button].grab_focus()
-
 
 func controller_input(_controller, action, is_main, _is_pressed):
 	if is_main:
@@ -32,6 +35,9 @@ func controller_input(_controller, action, is_main, _is_pressed):
 			"action":
 				$Control.get_children()[active_button].set_pressed(true)
 				$Control.get_children()[active_button].emit_signal("pressed")
+
+func player_disconnect(_controller):
+	pass
 
 func _move_text(label):
 	var t = Timer.new()

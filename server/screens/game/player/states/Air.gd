@@ -20,7 +20,10 @@ func physicsUpdate(delta: float) -> void:
 	#	Input.get_action_strength("ui_right")
 	#	- Input.get_action_strength("ui_left")
 	#)
-	
+	if owner.input_direction_x < 0:
+		owner.animatedSprite.flip_h = true
+	elif owner.input_direction_x > 0:
+		owner.animatedSprite.flip_h = false
 	if owner.input_direction_x * velocidadInicial < 0:
 		owner.velocity.x = velocidadInicial + (owner.speed_run * owner.input_direction_x * owner.airMult)
 	elif owner.input_direction_x * velocidadInicial == 0:
