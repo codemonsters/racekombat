@@ -19,7 +19,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 			player_index = i
 			break
 	#
-	if player_found: # Si el controlador no tiene un jugador asignado, lo creamos
+	if not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
 		new_player.position = Vector2(300, 300)
 		add_child(new_player)
