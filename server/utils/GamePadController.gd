@@ -7,6 +7,7 @@ var states : Array
 func _init(controllersManager: ControllersManager, id: int):
 	_controllersManager = controllersManager
 	_id = id
+	#List of the current pressed state of the buttons of the gamepad. This is needed because the client sends the pressed/unpressed event 4 times for redundancy.
 	states = ["left", false, "right", false, "up", false, "down", false, "action", false]
 
 func _to_string():

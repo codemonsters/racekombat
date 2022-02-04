@@ -97,6 +97,7 @@ remote func _on_button_released(side, button):
 remote func _on_input_direction_calculated(side, direction, intensity):
 	var id = get_tree().get_rpc_sender_id()
 	# print("id: " + String(id) + " direction calculated: " + String(direction) + " with intensity: " + String(intensity))
+	# This is to convert the vectors received from the dpad to button presses.
 	if direction == Vector2(1,0):
 		emit_signal("gamepad_button_pressed", "right", id)
 		dpad_detect_release("right", id)
