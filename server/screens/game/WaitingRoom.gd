@@ -33,7 +33,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 func player_disconnect(_controller):
 	for player in players:
 		if player.keys()[0] == _controller:
-			print_debug("Controller disconnected, removing player from game")
+			print("Controller disconnected, removing player from game")
 			player.values()[0].queue_free()
 			players.erase(player)
 	
@@ -41,8 +41,13 @@ func player_disconnect(_controller):
 
 
 func _on_Limite_body_entered(body):
+	$Camera2D.speed = $Camera2D.baseSpeed
 	print("sfsdghvbuxdf")
 	SfxManager.PlayerStartSound()
+	yield(get_tree().create_timer(3.0),"timeout")
+	$Camera2D/KillArea.monitoring = true
+	$Camera2D/KillArea.visible = true
+	
 
 
 func _on_DoorOpeningArea_body_entered(body):
@@ -53,3 +58,9 @@ func _on_DoorOpeningArea_body_entered(body):
 func _on_DoorOpeningArea_body_exited(body):
 	bodies_in_door.erase(body)
 	$Door.close()
+
+
+func _on_KillArea_body_entered(body):
+	for player in players:
+		if player.values()[0] == body:
+			player_disconnect(player.keys()[0])
