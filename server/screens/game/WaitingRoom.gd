@@ -41,7 +41,6 @@ func player_disconnect(_controller):
 
 
 func _on_Limite_body_entered(body):
-	print("sfsdghvbuxdf")
 	SfxManager.PlayerStartSound()
 
 
