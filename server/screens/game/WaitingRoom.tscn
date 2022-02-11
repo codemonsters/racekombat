@@ -142,7 +142,7 @@ position = Vector2( 1280, 720 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 360 )
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 4, 2 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]

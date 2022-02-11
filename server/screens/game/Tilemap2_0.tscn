@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
 [ext_resource path="res://screens/game/Gen_Tilemap2_0.gd" type="Script" id=3]
@@ -327,6 +327,8 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 0/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=31]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -342,3 +344,23 @@ tile_set = SubResource( 30 )
 cell_size = Vector2( 16, 16 )
 show_collision = true
 format = 1
+
+[node name="Meta" type="Area2D" parent="."]
+scale = Vector2( 10, 10 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meta"]
+shape = SubResource( 31 )
+
+[node name="ColorRect" type="ColorRect" parent="Meta"]
+visible = false
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="Meta" to="." method="_on_Meta_body_entered"]
