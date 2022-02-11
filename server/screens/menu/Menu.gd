@@ -26,6 +26,8 @@ func _process(_delta):
 	$Control.get_children()[active_button].grab_focus()
 
 func controller_input(_controller, action, is_main, _is_pressed):
+	if not _is_pressed:
+		return
 	if is_main:
 		match action:
 			"up":

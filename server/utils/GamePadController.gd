@@ -21,7 +21,7 @@ func input(event:String, is_pressed:bool):
 	if not bool(states[index + 1]) == is_pressed:
 		_controllersManager.controller_input(self, event, is_pressed)
 		states[index + 1] = is_pressed
-		print("Event: " + event + " is " + str(is_pressed) + " executed.")
+		# print("Event: " + event + " is " + str(is_pressed) + " executed. Controller id: " + str(_id))
 	return true
 
 func get_id():
