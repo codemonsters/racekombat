@@ -12,20 +12,20 @@ func physicsUpdate(delta: float) -> void:
 		stateMachine.transitionTo("Air")
 		return
 	owner.snap = owner.defaultSnap
-	#var inputDirectionX: float = (
-	#	Input.get_action_strength("ui_right")
-	#	- Input.get_action_strength("ui_left")
-	#)
-	# En el caso de ser inputDirectionX == 0, no se gira el sprite para
-	# que el jugador no se gire hacia la derecha al soltar la tecla.
+	
 	if owner.input_direction_x < 0:
 		owner.animatedSprite.flip_h = true
 	elif owner.input_direction_x > 0:
 		owner.animatedSprite.flip_h = false
-	owner.velocity.x = owner.speed_run * owner.input_direction_x
+
+	if owner.velocity.x < owner.speed_run * owner.input_direction_x:
+		owner.velocity.x = owner.velocity.x + owner.floorAcceleration
+	elif owner.velocity.x > owner.speed_run * owner.input_direction_x:
+		owner.velocity.x = owner.velocity.x - owner.floorAcceleration
+
 	owner.velocity.y += owner.gravity * delta
 	owner.velocity = owner.move_and_slide_with_snap(owner.velocity, owner.snap, Vector2.UP)
-	if is_equal_approx(owner.input_direction_x, 0.0):
+	if is_equal_approx(owner.velocity.x, 0.0):
 		stateMachine.transitionTo("Idle")
 		frameCounter = 0
 	else:

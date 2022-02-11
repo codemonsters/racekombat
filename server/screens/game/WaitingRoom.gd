@@ -42,7 +42,6 @@ func player_disconnect(_controller):
 
 func _on_Limite_body_entered(body):
 	$Camera2D.speed = $Camera2D.baseSpeed
-	print("sfsdghvbuxdf")
 	SfxManager.PlayerStartSound()
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.monitoring = true
