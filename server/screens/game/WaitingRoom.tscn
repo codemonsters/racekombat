@@ -165,7 +165,6 @@ color = Color( 0.980392, 0.00392157, 0.00392157, 0.470588 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-zoom = Vector2( 4, 2 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]

@@ -22,9 +22,11 @@ func physicsUpdate(delta: float) -> void:
 		owner.velocity.x = owner.velocity.x + owner.floorAcceleration
 	elif owner.velocity.x > owner.speed_run * owner.input_direction_x:
 		owner.velocity.x = owner.velocity.x - owner.floorAcceleration
+	
 
 	owner.velocity.y += owner.gravity * delta
 	owner.velocity = owner.move_and_slide_with_snap(owner.velocity, owner.snap, Vector2.UP)
+	print(owner.velocity.x)
 	if is_equal_approx(owner.velocity.x, 0.0):
 		stateMachine.transitionTo("Idle")
 		frameCounter = 0
