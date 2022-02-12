@@ -116,5 +116,9 @@ remote func _on_input_direction_calculated(side, direction, intensity):
 #	current_player.input_vector = direction
 
 func dpad_detect_release(button, id):
-	yield(self, "dpad_released")
-	emit_signal("gamepad_button_released", button, id)
+	var loop = true
+	while loop == true:
+		var calledID = yield(self, "dpad_released")
+		if calledID == id:
+			emit_signal("gamepad_button_released", button, id)
+			loop = false
