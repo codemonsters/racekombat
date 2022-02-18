@@ -28,13 +28,16 @@ func _on_ConnectButton_pressed():
 	connectingTimer.start()
 	message.display_message("Connecting...", false)
 	loading_img.start()
+	$ConnectButton.hide()
+	$CancelButton.show()
 
 
 func _on_ConnectingTimer_timeout():
-	if connection_attempts < 60:
+	if connection_attempts < 30:
 		connection_attempts += 1
 		
 		if Client.connected:
+			$CancelButton.hide()
 			connection_attempts = 0
 			connectingTimer.stop()
 			message.display_message('Connected!')
@@ -46,6 +49,8 @@ func _on_ConnectingTimer_timeout():
 		connectingTimer.stop()
 		loading_img.stop()
 		UdpBroadcast.stop_broadcast()
+		$CancelButton.hide()		
+		$ConnectButton.show()
 
 
 func change_scene():
@@ -61,3 +66,13 @@ func _on_ChangeSceneTween_tween_all_completed():
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://GamePad/GamePad.tscn")
 	faded_in = true
+
+
+func _on_CancelButton_pressed():
+	$CancelButton.hide()
+	$ConnectButton.show()
+	connection_attempts = 0
+	connectingTimer.stop()
+	loading_img.stop()
+	UdpBroadcast.stop_broadcast()
+	message.display_message("Cancelled...", true, 2, 2)

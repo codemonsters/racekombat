@@ -72,8 +72,31 @@ wait_time = 0.5
 
 [node name="Loading" parent="." instance=ExtResource( 4 )]
 
+[node name="CancelButton" type="Button" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -276.5
+margin_top = -79.5
+margin_right = 276.5
+margin_bottom = 79.5
+custom_fonts/font = SubResource( 6 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+shortcut_in_tooltip = false
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Message" parent="." instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="ConnectButton" to="." method="_on_ConnectButton_pressed"]
 [connection signal="tween_all_completed" from="ChangeSceneTween" to="." method="_on_ChangeSceneTween_tween_all_completed"]
 [connection signal="timeout" from="ConnectingTimer" to="." method="_on_ConnectingTimer_timeout"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_CancelButton_pressed"]

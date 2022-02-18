@@ -46,6 +46,7 @@ func _on_Limite_body_entered(body):
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.monitoring = true
 	$Camera2D/KillArea.visible = true
+	GamePad.stop_search_for_controllers()
 	
 
 
