@@ -100,7 +100,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 extents = Vector2( 35.2749, 32.5194 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 170.24, 145.359 )
+extents = Vector2( 243.778, 176.245 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 73, 360 )
@@ -137,7 +137,7 @@ scale = Vector2( 0.45, 0.5 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpeningArea"]
-position = Vector2( -191.716, -22.4944 )
+position = Vector2( -118.178, 8.39136 )
 shape = SubResource( 10 )
 
 [node name="Node2D" parent="." instance=ExtResource( 5 )]
