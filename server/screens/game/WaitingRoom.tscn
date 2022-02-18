@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -105,6 +105,8 @@ extents = Vector2( 170.24, 145.359 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 73, 360 )
 
+[sub_resource type="RectangleShape2D" id=12]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -166,7 +168,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Meta" type="Area2D" parent="."]
+scale = Vector2( 10, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meta"]
+shape = SubResource( 12 )
+
+[node name="ColorRect" type="ColorRect" parent="Meta"]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
 [connection signal="body_exited" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_exited"]
 [connection signal="body_entered" from="Camera2D/KillArea" to="." method="_on_KillArea_body_entered"]
+[connection signal="body_entered" from="Meta" to="." method="_on_Meta_body_entered"]
