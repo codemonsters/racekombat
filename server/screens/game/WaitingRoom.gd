@@ -42,11 +42,12 @@ func player_disconnect(_controller):
 
 
 func _on_Limite_body_entered(body):
-	$Camera2D.speed = $Camera2D.baseSpeed
+	$Camera2D.speed = $Camera2D.base_speed
 	SfxManager.PlayerStartSound()
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.monitoring = true
 	$Camera2D/KillArea.visible = true
+	GamePad.stop_search_for_controllers()
 	
 
 
