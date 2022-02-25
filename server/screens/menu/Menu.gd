@@ -18,6 +18,12 @@ func _on_StartButton_pressed():
 	SfxManager.StartButtonSound()
 	MusicManager.MenuMusicPlay(false)
 
+func _on_CourseButton_pressed():
+	pass
+
+func _on_ExitButton_pressed():
+	get_tree().quit()
+
 
 func _process(_delta):
 	if active_button > len($Control.get_children()) - 1:

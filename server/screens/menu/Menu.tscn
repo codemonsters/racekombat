@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://assets/FasterOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Ubuntu-BI.ttf" type="DynamicFontData" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://assets/screens/menu/backgroundtest1.png" type="Texture" id=31]
 [ext_resource path="res://assets/screens/menu/Play.png" type="Texture" id=32]
 [ext_resource path="res://assets/screens/menu/Title.png" type="Texture" id=33]
+[ext_resource path="res://assets/screens/menu/Exit.png" type="Texture" id=34]
 
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
@@ -189,4 +190,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ExitButton" type="Button" parent="Control"]
+margin_left = 560.0
+margin_top = 602.0
+margin_right = 710.0
+margin_bottom = 682.0
+icon = ExtResource( 34 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Control/CourseButton" to="." method="_on_CourseButton_pressed"]
+[connection signal="pressed" from="Control/ExitButton" to="." method="_on_ExitButton_pressed"]
