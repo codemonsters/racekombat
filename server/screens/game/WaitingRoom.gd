@@ -48,17 +48,19 @@ func _on_Limite_body_entered(body):
 	$Camera2D/KillArea.monitoring = true
 	$Camera2D/KillArea.visible = true
 	GamePad.stop_search_for_controllers()
-	
 
 
 func _on_DoorOpeningArea_body_entered(body):
+	print(floor(players.size() / 2) + 1)
 	bodies_in_door.append(body)
-	$Door.open()
+	if bodies_in_door.size() >= floor(players.size() / 2) + 1:
+		$Door.open()
 
 
 func _on_DoorOpeningArea_body_exited(body):
 	bodies_in_door.erase(body)
-	$Door.close()
+	if bodies_in_door.size() < floor(players.size() / 2) + 1:
+		$Door.close()
 
 
 func _on_KillArea_body_entered(body):

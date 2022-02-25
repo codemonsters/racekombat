@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://assets/FasterOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Ubuntu-BI.ttf" type="DynamicFontData" id=2]
@@ -29,10 +29,11 @@
 [ext_resource path="res://assets/particles/whitePuff11.png" type="Texture" id=27]
 [ext_resource path="res://assets/particles/whitePuff09.png" type="Texture" id=28]
 [ext_resource path="res://screens/menu/Particles2D.gd" type="Script" id=29]
-
-[sub_resource type="DynamicFont" id=1]
-size = 100
-font_data = ExtResource( 1 )
+[ext_resource path="res://assets/screens/menu/Course.png" type="Texture" id=30]
+[ext_resource path="res://assets/screens/menu/backgroundtest1.png" type="Texture" id=31]
+[ext_resource path="res://assets/screens/menu/Play.png" type="Texture" id=32]
+[ext_resource path="res://assets/screens/menu/Title.png" type="Texture" id=33]
+[ext_resource path="res://assets/screens/menu/Exit.png" type="Texture" id=34]
 
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
@@ -92,6 +93,10 @@ frame_23/delay_sec = 0.0
 frame_24/texture = ExtResource( 5 )
 frame_24/delay_sec = 0.0
 
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=4]
 size = 70
 font_data = ExtResource( 2 )
@@ -99,7 +104,37 @@ font_data = ExtResource( 2 )
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource( 3 )
 
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 640, 360 )
+scale = Vector2( 3.33333, 3.33333 )
+texture = ExtResource( 31 )
+
+[node name="Title Tween" type="Tween" parent="."]
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( -500, 150 )
+scale = Vector2( 4, 3 )
+texture = ExtResource( 33 )
+
+[node name="Particles2D" type="Particles2D" parent="Title"]
+modulate = Color( 1, 1, 1, 0.352941 )
+self_modulate = Color( 1, 1, 1, 0.352941 )
+show_behind_parent = true
+material = SubResource( 2 )
+position = Vector2( -92.3492, -3.6049 )
+rotation = 1.4247
+scale = Vector2( 0.115717, 0.0887523 )
+emitting = false
+amount = 4
+lifetime = 0.9
+one_shot = true
+visibility_rect = Rect2( 0, 0, 500, 500 )
+draw_order = 1
+texture = SubResource( 3 )
+script = ExtResource( 29 )
+
 [node name="Label" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 margin_left = -1000.0
 margin_top = 50.0
@@ -113,23 +148,6 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
-
-[node name="Particles2D" type="Particles2D" parent="Label"]
-modulate = Color( 1, 1, 1, 0.352941 )
-self_modulate = Color( 1, 1, 1, 0.352941 )
-show_behind_parent = true
-material = SubResource( 2 )
-position = Vector2( 130.603, 89.1853 )
-rotation = 1.37706
-scale = Vector2( 0.35, 0.35 )
-emitting = false
-amount = 4
-lifetime = 0.9
-one_shot = true
-visibility_rect = Rect2( 0, 0, 500, 500 )
-draw_order = 1
-texture = SubResource( 3 )
-script = ExtResource( 29 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -148,7 +166,9 @@ margin_top = 265.0
 margin_right = 770.0
 margin_bottom = 415.0
 custom_fonts/font = SubResource( 4 )
-text = "START"
+icon = ExtResource( 32 )
+flat = true
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -163,9 +183,25 @@ margin_top = 430.0
 margin_right = 770.0
 margin_bottom = 580.0
 custom_fonts/font = SubResource( 4 )
-text = "COURSE"
+icon = ExtResource( 30 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="Control"]
+margin_left = 560.0
+margin_top = 602.0
+margin_right = 710.0
+margin_bottom = 682.0
+icon = ExtResource( 34 )
+flat = true
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Control/CourseButton" to="." method="_on_CourseButton_pressed"]
+[connection signal="pressed" from="Control/ExitButton" to="." method="_on_ExitButton_pressed"]
