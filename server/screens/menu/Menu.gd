@@ -2,13 +2,15 @@ extends CanvasLayer
 
 signal change_to_saladeespera
 
-
 var active_button = 0
 
 func _ready():
-	var lbl := $Label
-	_move_text(lbl)
 	MusicManager.MenuMusicPlay(true)
+	$"Title Tween".interpolate_property($Title, "global_position:x",
+		null, 640, 1.0,
+		Tween.TRANS_LINEAR, Tween.EASE_IN, 0.03
+	)
+	$"Title Tween".start()
 
 
 func _on_StartButton_pressed():
@@ -48,7 +50,7 @@ func _move_text(label):
 	self.add_child(t)
 	var accel = Vector2(50, 0)
 	for _a in range(1, 41.88184959941402): # x = x0 + v0 * t + 1/2 * a * t^2
-		label.rect_global_position += accel
+		label.global_position += accel
 		accel -= Vector2(1.2, 0)
 		t.start()
 		yield(t, "timeout")
