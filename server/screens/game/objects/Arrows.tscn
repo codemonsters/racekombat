@@ -5,7 +5,11 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ChangeTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
 [node name="Node" type="Node2D" parent="."]
@@ -25,4 +29,5 @@ position = Vector2( 712, -24 )
 color = Color( 1, 1, 1, 0.101961 )
 polygon = PoolVector2Array( 128, 24, 576, 384, 128, 744 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ChangeTimer" to="." method="_on_ChangeTimer_timeout"]
+[connection signal="timeout" from="FlickerTimer" to="." method="_on_FlickerTimer_timeout"]
