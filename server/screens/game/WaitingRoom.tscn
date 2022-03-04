@@ -142,11 +142,12 @@ collision_layer = 0
 shape = SubResource( 10 )
 
 [node name="Node2D" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1280, 720 )
+position = Vector2( 1280, 672 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 360 )
 current = true
+zoom = Vector2( 2, 2 )
 script = ExtResource( 6 )
 
 [node name="KillArea" type="Area2D" parent="Camera2D"]
