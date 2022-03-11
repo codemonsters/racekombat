@@ -32,6 +32,24 @@ func _process(_delta):
 		active_button = len($Control.get_children()) - 1
 
 	$Control.get_children()[active_button].grab_focus()
+	
+	$Control/StartButton.set_scale(Vector2(1, 1))
+	$Control/CourseButton.set_scale(Vector2(1, 1))
+	$Control/ExitButton.set_scale(Vector2(1, 1))
+	
+	$Control/StartButton.set_position(Vector2(470, 280))
+	$Control/CourseButton.set_position(Vector2(470, 430))
+	$Control/ExitButton.set_position(Vector2(550, 580))
+	
+	if active_button == 0:
+		$Control/StartButton.set_scale(Vector2(1.2, 1.2))
+		$Control/StartButton.set_position(Vector2(440, 280))
+	elif active_button == 1:
+		$Control/CourseButton.set_scale(Vector2(1.2, 1.2))
+		$Control/CourseButton.set_position(Vector2(440, 430))
+	else:
+		$Control/ExitButton.set_scale(Vector2(1.2, 1.2))
+		$Control/ExitButton.set_position(Vector2(530, 580))
 
 
 func controller_input(_controller, action, is_main, _is_pressed):
