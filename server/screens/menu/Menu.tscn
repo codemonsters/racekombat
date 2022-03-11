@@ -198,12 +198,14 @@ margin_top = 246.0
 margin_right = 97.0
 margin_bottom = 346.0
 theme = ExtResource( 30 )
-action_mode = 0
 text = "EXIT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="mouse_entered" from="Control/StartButton" to="." method="_on_Button_mouse_entered" binds= [ 0 ]]
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="mouse_entered" from="Control/CourseButton" to="." method="_on_Button_mouse_entered" binds= [ 1 ]]
 [connection signal="pressed" from="Control/CourseButton" to="." method="_on_CourseButton_pressed"]
+[connection signal="mouse_entered" from="Control/ExitButton" to="." method="_on_Button_mouse_entered" binds= [ 2 ]]
 [connection signal="pressed" from="Control/ExitButton" to="." method="_on_ExitButton_pressed"]
