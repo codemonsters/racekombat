@@ -2,7 +2,7 @@ extends Node2D
 
 
 var controller_manager: ControllersManager
-const DISABLE_SEARCH = true # INFO: Set to false to connect controllers *while debugging*
+const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while debugging*
 # var players = {}
 
 
@@ -10,10 +10,10 @@ const DISABLE_SEARCH = true # INFO: Set to false to connect controllers *while d
 func _ready():
 	controller_manager = ControllersManager.new(self)
 	controller_manager.add_controller(KeyboardController.new(controller_manager,
-		KEY_W, KEY_S, KEY_A, KEY_D, [KEY_SPACE, KEY_SHIFT])
+		KEY_W, KEY_S, KEY_A, KEY_D, KEY_V, KEY_B)
 	)
 	controller_manager.add_controller(KeyboardController.new(controller_manager,
-		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, [KEY_ENTER, KEY_KP_ENTER])
+		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_N, KEY_M)
 	)
 	
 	# Conecta la señal con la función. La hay que asignar a una variable pq sino 

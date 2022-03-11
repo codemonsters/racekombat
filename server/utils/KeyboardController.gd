@@ -5,30 +5,29 @@ var _key_up: int
 var _key_down: int
 var _key_left: int
 var _key_right: int
-var _keys_action: Array
+var _key_action: int
+var _key_dash: int
 
 
-func _init(controllersManager: ControllersManager, key_up: int, key_down: int, key_left: int, key_right: int, keys_action: Array):
+func _init(controllersManager: ControllersManager, key_up: int, key_down: int, key_left: int, key_right: int, key_action: int, key_dash: int):
 	_controllersManager = controllersManager
 	_key_up = key_up
 	_key_down = key_down
 	_key_left = key_left
 	_key_right = key_right
-	_keys_action = keys_action
+	_key_action = key_action
+	_key_dash = key_dash
 
 
 func _to_string():
-	var action_keys_names = ""
-	for key in _keys_action:
-		action_keys_names += ", " + OS.get_scancode_string(key)
-
 	return (
 		   "Keyboard Controller (" +
 		   OS.get_scancode_string(_key_up) + ", " +
 		   OS.get_scancode_string(_key_down) + ", " +
 		   OS.get_scancode_string(_key_left) + ", " +
-		   OS.get_scancode_string(_key_right) +
-		   action_keys_names +
+		   OS.get_scancode_string(_key_right) + ", " +
+		   OS.get_scancode_string(_key_action) + ", " +
+		   OS.get_scancode_string(_key_dash) +
 		   ")"
 	)
 
@@ -43,8 +42,10 @@ func input(event: InputEvent):
 			_controllersManager.controller_input(self, "left", event.pressed)
 		elif event.scancode == _key_right:
 			_controllersManager.controller_input(self, "right", event.pressed)
-		elif event.scancode in _keys_action:
+		elif event.scancode == _key_action:
 			_controllersManager.controller_input(self, "action", event.pressed)
+		elif event.scancode == _key_dash:
+			_controllersManager.controller_input(self, "dash", event.pressed)
 		else:
 			return false
 		return true
