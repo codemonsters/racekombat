@@ -33,6 +33,7 @@ func _process(_delta):
 
 	$Control.get_children()[active_button].grab_focus()
 
+
 func controller_input(_controller, action, is_main, _is_pressed):
 	if not _is_pressed:
 		return
@@ -49,14 +50,19 @@ func controller_input(_controller, action, is_main, _is_pressed):
 func player_disconnect(_controller):
 	pass
 
-func _move_text(label):
-	var t = Timer.new()
-	t.set_wait_time(0.03)
-	t.set_one_shot(true)
-	self.add_child(t)
-	var accel = Vector2(50, 0)
-	for _a in range(1, 41.88184959941402): # x = x0 + v0 * t + 1/2 * a * t^2
-		label.global_position += accel
-		accel -= Vector2(1.2, 0)
-		t.start()
-		yield(t, "timeout")
+#func _move_text(label):
+#	var t = Timer.new()
+#	t.set_wait_time(0.03)
+#	t.set_one_shot(true)
+#	self.add_child(t)
+#	var accel = Vector2(50, 0)
+#	for _a in range(1, 41.88184959941402): # x = x0 + v0 * t + 1/2 * a * t^2
+#		label.global_position += accel
+#		accel -= Vector2(1.2, 0)
+#		t.start()
+#		yield(t, "timeout")
+
+
+# Focus is the same as hover animation :p
+func _on_Button_mouse_entered(button_number):
+	active_button = button_number
