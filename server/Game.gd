@@ -2,6 +2,7 @@ extends Node2D
 
 
 var controller_manager: ControllersManager
+const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while debugging*
 # var players = {}
 
 
@@ -9,10 +10,10 @@ var controller_manager: ControllersManager
 func _ready():
 	controller_manager = ControllersManager.new(self)
 	controller_manager.add_controller(KeyboardController.new(controller_manager,
-		KEY_W, KEY_S, KEY_A, KEY_D, [KEY_SPACE, KEY_SHIFT])
+		KEY_W, KEY_S, KEY_A, KEY_D, KEY_V, KEY_B)
 	)
 	controller_manager.add_controller(KeyboardController.new(controller_manager,
-		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, [KEY_ENTER, KEY_KP_ENTER])
+		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_N, KEY_M)
 	)
 	
 	# Conecta la señal con la función. La hay que asignar a una variable pq sino 
@@ -32,7 +33,11 @@ func _ready():
 	GamePad.connect("gamepad_button_released", self, "_on_GamePad_button_released")
 
 	# Allow controllers to get connected
-	GamePad.search_for_controllers()
+	if (not OS.has_feature("standalone")) and DISABLE_SEARCH:
+		print_debug("WARNING: Network controllers disabled while testing. Set DISABLE_SEARCH to " +
+		"False to modify this behaviour ")
+	else:
+		GamePad.search_for_controllers()
 
 func _on_GamePad_controller_connected(id):
 	print("Network GamePad connected (id = " + str(id) + ")")
