@@ -1,7 +1,14 @@
 extends Node2D
 
+#Sobre el tilemap: El origen de coordenadas (0,0) coincide con la posicion de salida de los jugadores
+#Todas las distancias y posiciones se expresan en tiles un tile mide 16x16
+#El suelo se genera con una funcion de ruido y su pos_y fluctua entre MIN_ALTURA y MAX_ALTURA 
+#En el eje x todo el escenario esta comprendido entre 0 y MAP_LENGTH
+
+
+
 const MAP_LENGTH = 500	# longitud del mapa (en tiles)
-const MAP_HEIGHT = -20 # altura del mapa (en tiles) un valor negativo hace que el mapa se genere hacia abajo y uno positivo que se genere hacia arriba tiene que tener un valor |min_altura| + 2 "valor absoluto"
+const MAP_HEIGHT = -40 # altura del mapa (en tiles) un valor negativo hace que el mapa se genere hacia abajo y uno positivo que se genere hacia arriba tiene que tener un valor |min_altura| + 2 "valor absoluto"
 const FLOOR_CELL_ID = 2	# id del tipo de loseta que se usará para el suelo
 const VACUM_CELL_ID = 1	# id del tipo de loseta que se usará para el vacío
 const POS_X_INICIAL = 0
