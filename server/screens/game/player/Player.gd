@@ -4,6 +4,7 @@ var velocity = Vector2()
 export var gravity = 1000
 export var speed_run = 300
 export var speed_jump = 600
+export var speed_dash = 1200 # TODO: Ajustarlo?
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
 export var floorAcceleration = 20
@@ -22,6 +23,8 @@ func _handle_input(action, is_pressed):
 				input_direction_x += 1.0
 			"action":
 				_jump()
+			"dash":
+				_dash()
 	else:
 		match action:
 			"left":
@@ -36,3 +39,8 @@ func _jump():
 	if $"Player SM".state.name != "Air":
 		SfxManager.PlayerJumpSound()
 		$"Player SM".transitionTo("Air", {jump = true})
+
+func _dash():
+	if $DashCountdown.is_stopped():
+		$DashCountdown.start()
+		$"Player SM".transitionTo("Dash")

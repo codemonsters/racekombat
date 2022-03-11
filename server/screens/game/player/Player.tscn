@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/crocodile/idle/frame-1.png" type="Texture" id=1]
 [ext_resource path="res://screens/game/player/states/Player SM.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/crocodile/run/frame-2.png" type="Texture" id=11]
 [ext_resource path="res://assets/crocodile/jump fall/frame.png" type="Texture" id=12]
 [ext_resource path="res://assets/crocodile/run/frame-4.png" type="Texture" id=13]
+[ext_resource path="res://screens/game/player/states/Dash.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -62,8 +63,17 @@ initialState = NodePath("Idle")
 [node name="Idle" type="Node" parent="Player SM"]
 script = ExtResource( 3 )
 
+[node name="Dash" type="Node" parent="Player SM"]
+script = ExtResource( 14 )
+
 [node name="Run" type="Node" parent="Player SM"]
 script = ExtResource( 5 )
 
 [node name="Air" type="Node" parent="Player SM"]
 script = ExtResource( 6 )
+
+[node name="DashCountdown" type="Timer" parent="."]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+autostart = true
