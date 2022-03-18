@@ -76,7 +76,7 @@ _global_script_class_icons={
 
 config/name="RaceKombat Server"
 run/main_scene="res://Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/logo.png"
 config/auto_accept_quit=false
 
 [autoload]
@@ -97,6 +97,10 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/GodotGamePad/plugin.cfg" )
+
+[global]
+
+icon=false
 
 [importer_defaults]
 
