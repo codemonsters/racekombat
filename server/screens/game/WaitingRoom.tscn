@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -105,6 +105,14 @@ extents = Vector2( 243.778, 176.245 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 73, 360 )
 
+[sub_resource type="RectangleShape2D" id=13]
+
+[sub_resource type="RectangleShape2D" id=14]
+
+[sub_resource type="RectangleShape2D" id=15]
+
+[sub_resource type="RectangleShape2D" id=16]
+
 [sub_resource type="RectangleShape2D" id=12]
 
 [node name="Node2D" type="Node2D"]
@@ -141,7 +149,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpeningArea"]
 shape = SubResource( 10 )
 
-[node name="Node2D" parent="." instance=ExtResource( 5 )]
+[node name="Tilemap 2_0" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1280, 672 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -168,8 +176,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="KillAreaFloor" type="Area2D" parent="Camera2D"]
+position = Vector2( -1280, 720 )
+scale = Vector2( 64, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaFloor"]
+position = Vector2( 20, 20 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 13 )
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaFloor"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillAreaLeft" type="Area2D" parent="Camera2D"]
+position = Vector2( -1320, -720 )
+scale = Vector2( 1, 36 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaLeft"]
+position = Vector2( 20, 20 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 14 )
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaLeft"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillAreaRight" type="Area2D" parent="Camera2D"]
+position = Vector2( 1280, -720 )
+scale = Vector2( 1, 36 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaRight"]
+position = Vector2( 20, 20 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 15 )
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaRight"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillAreaTop" type="Area2D" parent="Camera2D"]
+position = Vector2( -1280, -760 )
+scale = Vector2( 64, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaTop"]
+position = Vector2( 20, 20 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 16 )
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaTop"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Meta" type="Area2D" parent="."]
-scale = Vector2( 10, 10 )
+scale = Vector2( 10, 72 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meta"]
 shape = SubResource( 12 )
@@ -186,5 +258,10 @@ __meta__ = {
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
 [connection signal="body_exited" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_exited"]
+[connection signal="tilemap_generated" from="Tilemap 2_0" to="Camera2D" method="_on_Tilemap_2_0_tilemap_generated"]
 [connection signal="body_entered" from="Camera2D/KillArea" to="." method="_on_KillArea_body_entered"]
+[connection signal="body_entered" from="Camera2D/KillAreaFloor" to="." method="_on_KillAreaFloor_body_entered"]
+[connection signal="body_entered" from="Camera2D/KillAreaLeft" to="." method="_on_KillAreaLeft_body_entered"]
+[connection signal="body_entered" from="Camera2D/KillAreaRight" to="." method="_on_KillAreaRight_body_entered"]
+[connection signal="body_entered" from="Camera2D/KillAreaTop" to="." method="_on_KillAreaTop_body_entered"]
 [connection signal="body_entered" from="Meta" to="." method="_on_Meta_body_entered"]
