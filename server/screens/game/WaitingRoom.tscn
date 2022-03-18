@@ -141,7 +141,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpeningArea"]
 shape = SubResource( 10 )
 
-[node name="Node2D" parent="." instance=ExtResource( 5 )]
+[node name="Tilemap 2_0" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1280, 672 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -186,5 +186,6 @@ __meta__ = {
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
 [connection signal="body_exited" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_exited"]
+[connection signal="tilemap_generated" from="Tilemap 2_0" to="Camera2D" method="_on_Tilemap_2_0_tilemap_generated"]
 [connection signal="body_entered" from="Camera2D/KillArea" to="." method="_on_KillArea_body_entered"]
 [connection signal="body_entered" from="Meta" to="." method="_on_Meta_body_entered"]

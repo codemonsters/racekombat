@@ -22,12 +22,36 @@ const MAX_ALTURA = 5	#Máxima altura de las variaciones en el suelo
 
 var noise = OpenSimplexNoise.new()
 
+signal tilemap_generated
+
 func _ready():
 	randomize()
 	_anhade_suelo_plano($TileMap, 10, MAP_HEIGHT, POS_X_INICIAL, POS_Y_INICIAL)	# planicie para la salida
 	_anhade_suelo_con_monticulos($TileMap, MAP_LENGTH - 20, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, POS_X_INICIAL + 10, POS_Y_INICIAL)	# montículos creados con función de ruido
 	_anhade_suelo_plano($TileMap, 10, MAP_HEIGHT, MAP_LENGTH - 10, 0)	# planicie para la meta
 	_create_hueco($TileMap, MAP_LENGTH, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, 0, POS_Y_INICIAL)
+	emit_signal("tilemap_generated")
+
+func calcular_y_media():
+	var resultados := []
+	for x in range(MAP_LENGTH):
+		var coordenadasy_suelos := []
+		var dentro_de_solido := false
+		for y in range(-MAX_ALTURA, -MIN_ALTURA + 1):
+			var cell_id = $TileMap.get_cell(x, y)
+			if cell_id == FLOOR_CELL_ID and not dentro_de_solido:
+				dentro_de_solido = true
+				coordenadasy_suelos.append(y)
+			elif cell_id == VACUM_CELL_ID:
+				dentro_de_solido = false
+		if coordenadasy_suelos.size() == 0:
+			resultados.append(null)
+		else:
+			var sum = 0
+			for coordenaday in coordenadasy_suelos:
+				sum += coordenaday
+			resultados.append(sum / coordenadasy_suelos.size())
+	return resultados
 
 # Añade a tilemap un suelo de ancho width y de profundidad height a partir de la posición (pox_x, pos_y)
 func _anhade_suelo_con_monticulos(tilemap, length, height, min_height, max_height, pos_x, pos_y):
