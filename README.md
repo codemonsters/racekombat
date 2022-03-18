@@ -1,26 +1,77 @@
 # Laboratorio 21/22
 
-## IDEAS:
-La idea gira alrededor de hacer un videojuego (en Godot) el cual controlemos desde el móvil mientras juguemos en una pantalla grande. La temática sería relacionada con:
-- Dustforce
-- Plataformas
-- Overcooked
-- F1
-- Stick Fight
+<br/>
+<p align="center">
+  <a href="https://github.com/codemonsters/racekombat">
+    <img src="https://github.com/codemonsters/racekombat/blob/main/server/assets/logo.png?raw=true" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Codemonsters RaceKombat</h3>
+
+  <p align="center">
+    <a href="https://github.com/codemonsters/racekombat/issues">Report Bug</a>
+    .
+    <a href="https://github.com/codemonsters/racekombat/issues">Request Feature</a>
+  </p>
+</p>
+
+![Downloads](https://img.shields.io/github/downloads/codemonsters/racekombat/total) ![Contributors](https://img.shields.io/github/contributors/codemonsters/racekombat?color=dark-green) ![Stargazers](https://img.shields.io/github/stars/codemonsters/racekombat?style=social) ![Issues](https://img.shields.io/github/issues/codemonsters/racekombat) ![License](https://img.shields.io/github/license/codemonsters/racekombat) 
+
+## Table Of Contents
+
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Getting Started](#getting-started)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Acknowledgements](#acknowledgements)
+* [Other](#other)
+
+## About The Project
+
+![Screen Shot](https://github.com/codemonsters/racekombat/blob/main/showcase.png?raw=true)
+
+Lorem Ipsum :grimacing:
+
+## Built With
+
+Godot Engine
+
+## Getting Started
+
+Download the pre-built executables from releases, and you are ready to go! You can also download the repo and run it from Godot Engine
+
+## Roadmap
+
+See the [open issues](https://github.com/codemonsters/racekombat/issues) for a list of proposed features (and known issues).
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+- If you have suggestions for adding or removing projects, feel free to open an issue to discuss it, or directly create a pull request after you edit the README.md file with necessary changes.
+- Create individual PR for each suggestion.
+
+## License
+
+Lorem Ipsum 
 
 
+## Acknowledgements
+
+* [ShaanCoding](https://github.com/ShaanCoding/)
+* [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
+* [ImgShields](https://shields.io/)
+* [ACB-prgm](https://github.com/ACB-prgm) - *Gamepad client*
+* [Shaan Khan](https://github.com/ShaanCoding/) - *Built ReadME Template*
 
 
-## Cosas varias:
+## Other:
 
-## Links varios
-
-* [Awesome Godot](https://github.com/godotengine/awesome-godot) (lista con recursos para Godot como documentación, plugins, herramientas, etc).
 * [Invitación al servidor de Discord para la actividad de Laboratorio.](https://discord.gg/ZQaNtRF)
 
----
 
-## Chuleta configuración VS Code y Godot
+## HOW-TO Configure vscode with godot-engine
   
 Para abrir los scripts con VS Code, y no con godot, hay que hacer esto:
 * En Godot ir a ```Editor>Configuración del editor```
@@ -34,16 +85,15 @@ Finalmente, instalar el plugin godot tools en VS Code.
 
 ¡Y ya está! ¡Puedes considerarte un genio!</p>
 
-### Método 2 (Mejor)
+### 2nd method (Mejor)
 1. Abre el directorio del projecto en vscode.
 2. Instala godot-tools.
 3. Averigua el path a tu ejecutable godot.
 4. En las preferencias de godot-tools, añade el path.
 5. Reinicia vscode, y al abrir un directorio godot, en el popup que sale, dále a ```Open Godot Editor```
  
----
 
-## ¿Problemas con la cuenta de Git?
+## Removing git commit username
 
 * Para actualizar el url de origin con un nuevo nombre de usuario:
   
@@ -65,7 +115,6 @@ Finalmente, instalar el plugin godot tools en VS Code.
   
    ```git config --global --unset-all```
 
-  ---
 
 ## iOS notes
 
