@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Game Pad Client"
+config/name="RaceKombat Client"
 run/main_scene="res://JoinServer/JoinServerControl.tscn"
 boot_splash/image="res://Images/Background.png"
 boot_splash/bg_color=Color( 0.101961, 0.101961, 0.12549, 1 )

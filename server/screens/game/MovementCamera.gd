@@ -20,12 +20,14 @@ var _alturas_medias_tilemap := []
 # Lista que contiene las posiciones_y medias que debe recorrer la cámara en cada tile
 var alturas_medias_camara := []
 
+
 func _ready():
 	# La cámara se acelerará si la coordenada x media de los jugadores es mayor que
 	# acceleration_threshold_position_x el cual ahora mismo es un tercio del ancho
 	# de la pantalla.
 	acceleration_threshold_position_x = get_viewport_rect().size.x / 3
 	speed = 0
+	scale = zoom
 
 func _process(delta):
 	position.x += speed * delta * get_camera_speed_multiplier()

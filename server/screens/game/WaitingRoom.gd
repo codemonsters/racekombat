@@ -69,9 +69,35 @@ func _on_KillArea_body_entered(body):
 			player_disconnect(player.keys()[0])
 
 func _create_meta(area): #Crea la meta con su posición x e y
-	area.position.x = 200*16+1280 #Modificar solo el primer parámetro
+	area.position.x = get_node("Node2D").MAP_LENGTH*16+1280 #Modificar solo el primer parámetro
 	area.position.y = -10*16+720
 
 
 func _on_Meta_body_entered(body):
 	print("Llegaste a la meta")
+
+
+func _on_KillAreaFloor_body_entered(body):
+	for player in players:
+		if player.values()[0] == body:
+			player_disconnect(player.keys()[0])
+
+
+
+func _on_KillAreaLeft_body_entered(body):
+	for player in players:
+		if player.values()[0] == body:
+			player_disconnect(player.keys()[0])
+
+
+func _on_KillAreaRight_body_entered(body):
+	for player in players:
+		if player.values()[0] == body:
+			player_disconnect(player.keys()[0])
+
+
+func _on_KillAreaTop_body_entered(body):
+	for player in players:
+		if player.values()[0] == body:
+			player_disconnect(player.keys()[0])
+
