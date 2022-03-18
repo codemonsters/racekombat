@@ -14,12 +14,14 @@ var max_camera_speed_multiplier := 4
 # Valor definido más adelante.
 var acceleration_threshold_position_x 
 
+
 func _ready():
 	# La cámara se acelerará si la coordenada x media de los jugadores es mayor que
 	# acceleration_threshold_position_x el cual ahora mismo es un tercio del ancho
 	# de la pantalla.
 	acceleration_threshold_position_x = get_viewport_rect().size.x / 3
 	speed = 0
+	scale = zoom
 
 func _process(delta):
 	position.x += speed * delta * get_camera_speed_multiplier()
