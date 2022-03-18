@@ -69,7 +69,7 @@ func _on_KillArea_body_entered(body):
 			player_disconnect(player.keys()[0])
 
 func _create_meta(area): #Crea la meta con su posición x e y
-	area.position.x = get_node("Node2D").MAP_LENGTH*16+1280 #Modificar solo el primer parámetro
+	area.position.x = get_parent().get_node("Node2D/Tilemap 2_0").MAP_LENGTH*16+1280 #Modificar solo el primer parámetro
 	area.position.y = -10*16+720
 
 
