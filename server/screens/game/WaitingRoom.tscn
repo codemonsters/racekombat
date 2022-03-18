@@ -241,7 +241,7 @@ __meta__ = {
 }
 
 [node name="Meta" type="Area2D" parent="."]
-scale = Vector2( 10, 10 )
+scale = Vector2( 10, 72 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meta"]
 shape = SubResource( 12 )
