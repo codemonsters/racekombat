@@ -12,11 +12,17 @@ export var airAcceleration = 10
 var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
+var input_direction_y := 0.0
+
 
 
 func _handle_input(action, is_pressed):
 	if is_pressed:
 		match action:
+			"up":
+				input_direction_y += 1.0
+			"down":
+				input_direction_y -= 1.0
 			"left":
 				input_direction_x -= 1.0
 			"right":
@@ -31,8 +37,14 @@ func _handle_input(action, is_pressed):
 				input_direction_x += 1.0
 			"right":
 				input_direction_x -= 1.0
+			"up":
+				input_direction_y -= 1.0
+			"down":
+				input_direction_y += 1.0
 	
 	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
+	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
+	print(input_direction_y)
 
 
 func _jump():
