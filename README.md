@@ -117,7 +117,7 @@ Finalmente, instalar el plugin godot tools en VS Code.
 
 
 ## iOS notes
-
+NOTE: Godot Engine v3.4.3 breaks iOS multitouch, use earlier versions or v3.4.4 RC1 onwards.
 ### Godot iOS export
 You will need a computer running MacOS to do this
 1. Choose any Team ID. (Ex. ```1234```)
