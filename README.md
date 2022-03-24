@@ -134,6 +134,8 @@ Make a new folder called Payload, drop your .app into it. Zip it, and rename it 
 
 [Source](https://www.reddit.com/r/jailbreakdevelopers/comments/gj93vc/question_exporting_app_in_xcode_without_a/)
 
+[Rudimentary script for building unsigned .ipa for this project](https://gist.github.com/Autotren/6c6311dccea3e7d4dba6d7d52f242e59)
+
 ### How to install app
 * Without developer account, I recommend using [AltStore](https://altstore.io) with the ```.ipa``` made with the method above. This has the advantage of being able to renew the 7-day free certificate automatically.
 * Otherwise, just open the generated xcode project and build it directly with your Apple device as target. This way will force you to redo this through xcode after 7 days.
