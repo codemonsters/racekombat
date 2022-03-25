@@ -7,7 +7,7 @@ const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while 
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+	func _ready():
 	controller_manager = ControllersManager.new(self)
 	controller_manager.add_controller(KeyboardController.new(controller_manager,
 		KEY_W, KEY_S, KEY_A, KEY_D, KEY_V, KEY_B)

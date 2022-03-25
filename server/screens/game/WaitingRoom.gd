@@ -4,7 +4,7 @@ var players : Array
 var player_id := 0
 var bodies_in_door = []
 
-const PlayerResource = preload("res://screens/game/player/Player.tscn")
+const PlayerResource = preload("res://screens/game/player_new/Player.tscn")
 
 func _ready():
 	MusicManager.WaitingRoomMusicPlay()

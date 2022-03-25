@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/crocodile/idle/frame-1.png" type="Texture" id=1]
-[ext_resource path="res://screens/game/player/states/Player SM.gd" type="Script" id=2]
-[ext_resource path="res://screens/game/player/states/Idle.gd" type="Script" id=3]
-[ext_resource path="res://screens/game/player/Player.gd" type="Script" id=4]
-[ext_resource path="res://screens/game/player/states/Run.gd" type="Script" id=5]
-[ext_resource path="res://screens/game/player/states/Air.gd" type="Script" id=6]
+[ext_resource path="res://screens/game/player_new/states/Idle.gd" type="Script" id=2]
+[ext_resource path="res://screens/game/player_new/states/Player SM.gd" type="Script" id=3]
+[ext_resource path="res://screens/game/player_new/Player.gd" type="Script" id=4]
+[ext_resource path="res://screens/game/player_new/states/Air.gd" type="Script" id=5]
 [ext_resource path="res://assets/crocodile/idle/frame-2.png" type="Texture" id=7]
 [ext_resource path="res://assets/crocodile/run/frame-3.png" type="Texture" id=8]
 [ext_resource path="res://assets/crocodile/run/frame-1.png" type="Texture" id=9]
@@ -13,7 +12,6 @@
 [ext_resource path="res://assets/crocodile/run/frame-2.png" type="Texture" id=11]
 [ext_resource path="res://assets/crocodile/jump fall/frame.png" type="Texture" id=12]
 [ext_resource path="res://assets/crocodile/run/frame-4.png" type="Texture" id=13]
-[ext_resource path="res://screens/game/player/states/Dash.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -41,14 +39,16 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 28.5051, 40.9764 )
 
-[node name="Player" type="KinematicBody2D"]
-scale = Vector2( 0.8, 0.8 )
+[node name="PlayerNew" type="RigidBody2D"]
+contacts_reported = 5
+contact_monitor = true
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,23 +56,26 @@ position = Vector2( 0.494907, 0 )
 shape = SubResource( 2 )
 
 [node name="Player SM" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 initialState = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="Player SM"]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Dash" type="Node" parent="Player SM"]
-script = ExtResource( 14 )
+script = ExtResource( 2 )
 
 [node name="Run" type="Node" parent="Player SM"]
-script = ExtResource( 5 )
+script = ExtResource( 2 )
 
 [node name="Air" type="Node" parent="Player SM"]
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 
 [node name="DashCountdown" type="Timer" parent="."]
 process_mode = 0
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Player_body_exited"]
