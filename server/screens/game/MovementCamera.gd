@@ -94,7 +94,7 @@ func get_camera_average_y_values():
 
 
 func _on_Tilemap_2_0_tilemap_generated():
-	_tilemap = get_node("/root/Main/CurrentScene/Node2D/Tilemap 2_0")
+	_tilemap = get_node("/root/Main/CurrentScene/Waiting Room/Tilemap 2_0")
 	_alturas_medias_tilemap = _tilemap.calcular_y_media()
 	yield(self, "ready")
 	alturas_medias_camara = get_camera_average_y_values()

@@ -5,6 +5,9 @@ var controller_manager: ControllersManager
 const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while debugging*
 # var players = {}
 
+onready var current_scene_container = get_node("CurrentScene")
+onready var WaitingRoomResource = preload("res://screens/game/WaitingRoom.tscn")
+onready var MenuResource = preload("res://screens/menu/Menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,10 +53,15 @@ func _on_GamePad_controller_disconnected(id):
 	controller_manager.remove_controller(id)
 
 func change_to_saladeespera():
-	get_node("CurrentScene/Menu").queue_free()
-	var current_scene_container = get_node("CurrentScene")
-	var sala_de_espera = preload("res://screens/game/WaitingRoom.tscn") 
-	current_scene_container.add_child(sala_de_espera.instance())
+	_change_screen(WaitingRoomResource)
+#	get_node("CurrentScene/Menu").queue_free()
+#	var current_scene_container = get_node("CurrentScene")
+#	var sala_de_espera = preload("res://screens/game/WaitingRoom.tscn") 
+#	current_scene_container.add_child(sala_de_espera.instance())
+
+func _change_screen(target_screen_resource):
+	current_scene_container.get_child(0).queue_free()
+	current_scene_container.add_child(target_screen_resource.instance())
 
 func _input(event):
 	if controller_manager.input_keyboard(event):
