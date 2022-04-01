@@ -19,6 +19,19 @@ var acceleration_threshold_position_x
 var _alturas_medias_tilemap := []
 # Lista que contiene las posiciones_y medias que debe recorrer la cámara en cada tile
 var alturas_medias_camara := []
+# Altura que se le resta a la posicion_y media para que no se vea demasiado suelo
+var altura_offset := 200
+# Posicion_y hacia la que la cámara tenderá a moverse, sale de alturas_medias_camara
+var target_y : int
+# Velocidad máxima vertical a la que se desplaza la cámara para moverse hacia target_y suavemente
+var y_max_speed := 50
+# Variable en la que se almacena el Tilemap
+var _tilemap
+# Tamaño de los tiles
+onready var tile_side : int = _tilemap.get_node("TileMap").cell_size.x
+# Tamaño de la cámara medido en tiles
+onready var camera_width := get_viewport().size.x
+
 
 
 func _ready():
@@ -29,10 +42,18 @@ func _ready():
 	speed = 0
 	scale = zoom
 
+
 func _process(delta):
-	position.x += speed * delta * get_camera_speed_multiplier()
-	#if position.x >= 1280:
-	#	position.y = 672 + alturas_medias_camara[floor(position.x/1280)] * 16
+	# Comprueba que la cámara no se siga desplazándose hacia la derecha si no quedan más tiles
+	if position.x - camera_width < alturas_medias_camara.size() * tile_side - tile_side:
+		position.x += speed * delta * get_camera_speed_multiplier()
+		if position.x >= camera_width: # Cuando atraviese la puerta de Waiting Room
+			target_y = _tilemap.global_position.y - altura_offset + alturas_medias_camara[(position.x - camera_width) / tile_side] * tile_side
+			if position.y < target_y:
+				position.y += min(y_max_speed * delta, target_y - position.y)
+			elif position.y > target_y:
+				position.y -= min(y_max_speed * delta, position.y - target_y)
+
 
 # Devuelve un valor entre 1 y max_camera_speed_multiplier en función de la posición
 # media de los jugadores.
@@ -51,24 +72,29 @@ func get_camera_speed_multiplier():
 		var camera_speed_multiplier = (max_camera_speed_multiplier - 1) * ((screen_players_average_x - acceleration_threshold_position_x)/(get_viewport_rect().size.x - acceleration_threshold_position_x))
 		return 1 + camera_speed_multiplier
 
+
 # Devuelve una lista con la altura y que debe tener la cámara en cada punto.
 # Esta altura es la media de las posiciones y del tilemap que ve la cámara en cada punto.
 # Unidades expresadas en celdas
 func get_camera_average_y_values():
-	var camera_width_in_cells := 1280 / 16 # TODO: Resolver este cálculo en tiempo de ejecución
+	print(get_viewport().size.x)
+	var camera_width_in_cells := camera_width / tile_side # TODO: Resolver este cálculo en tiempo de ejecución
 	var resultados := []
-	for pos_x in range(_alturas_medias_tilemap.size() / 16):
+	for camera_x in range(_alturas_medias_tilemap.size()):
 		var coordenadasy_medias := []
-		for x in range(-camera_width_in_cells/2, camera_width_in_cells/2 + 1):
-			var y = _alturas_medias_tilemap[pos_x + x]
-			if y != null and pos_x + x >= 0:
-				# FIXME: La función nunca pasa de este if
-				coordenadasy_medias.append(_alturas_medias_tilemap[pos_x + x])
+		for x in range(max(camera_x - camera_width_in_cells / 2, 0), min(camera_x + camera_width_in_cells / 2, _alturas_medias_tilemap.size() - 1)):
+			var y = _alturas_medias_tilemap[x]
+			if y != null:
+				coordenadasy_medias.append(_alturas_medias_tilemap[x])
 		var sum : int
 		for y in coordenadasy_medias:
 			sum += y
 		resultados.append(sum / coordenadasy_medias.size())
 	return resultados
 
+
 func _on_Tilemap_2_0_tilemap_generated():
-	_alturas_medias_tilemap = get_node("/root/Main/CurrentScene/Node2D/Tilemap 2_0").calcular_y_media()
+	_tilemap = get_node("/root/Main/CurrentScene/Waiting Room/Tilemap 2_0")
+	_alturas_medias_tilemap = _tilemap.calcular_y_media()
+	yield(self, "ready")
+	alturas_medias_camara = get_camera_average_y_values()
