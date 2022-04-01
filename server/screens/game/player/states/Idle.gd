@@ -8,11 +8,11 @@ func enter(_msg := {}) -> void:
 
 func update(_delta: float) -> void:
 	if owner.input_direction_x != 0.0:
-		stateMachine.transitionTo("Run")
+		state_machine.transition_to("Run")
 	if owner.is_on_floor():
 		owner.snap = owner.defaultSnap
 		owner.velocity = owner.move_and_slide_with_snap(owner.velocity, owner.snap, Vector2.UP)
 	else:
 		owner.snap = Vector2.ZERO
-		stateMachine.transitionTo("Air")
+		state_machine.transition_to("Air")
 		return

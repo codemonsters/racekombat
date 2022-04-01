@@ -1,4 +1,4 @@
-class_name StateMachine
+class_name state_machine
 extends Node
 
 # Se emite al pasar a otro estado
@@ -14,7 +14,7 @@ func _ready() -> void:
 	yield(owner, "ready")
 	# Se autoasigna los estados
 	for child in get_children():
-		child.stateMachine = self
+		child.state_machine = self
 	state.enter()
 
 
@@ -31,8 +31,12 @@ func _physics_process(delta: float) -> void:
 	state.physicsUpdate(delta)
 
 
+func _integrate_forces(_state):
+	state.integrate_forces(_state)
+
+
 # Llama al exit() del estado actual, cambia de estado y llama a su enter()
-func transitionTo(targetStateName: String, msg: Dictionary = {}) -> void:
+func transition_to(targetStateName: String, msg: Dictionary = {}) -> void:
 	if not has_node(targetStateName):
 		return
 

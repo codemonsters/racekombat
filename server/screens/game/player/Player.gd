@@ -50,9 +50,9 @@ func _handle_input(action, is_pressed):
 func _jump():
 	if $"Player SM".state.name != "Air":
 		SfxManager.PlayerJumpSound()
-		$"Player SM".transitionTo("Air", {jump = true})
+		$"Player SM".transition_to("Air", {jump = true})
 
 func _dash():
 	if $DashCountdown.is_stopped():
 		$DashCountdown.start()
-		$"Player SM".transitionTo("Dash")
+		$"Player SM".transition_to("Dash")

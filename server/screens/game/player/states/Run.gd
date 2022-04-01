@@ -9,7 +9,7 @@ func enter(_msg := {}) -> void:
 func physicsUpdate(delta: float) -> void:
 	if not owner.is_on_floor():
 		owner.snap = Vector2.ZERO
-		stateMachine.transitionTo("Air")
+		state_machine.transition_to("Air")
 		return
 	owner.snap = owner.defaultSnap
 	
@@ -27,7 +27,7 @@ func physicsUpdate(delta: float) -> void:
 	owner.velocity.y += owner.gravity * delta
 	owner.velocity = owner.move_and_slide_with_snap(owner.velocity, owner.snap, Vector2.UP)
 	if is_equal_approx(owner.velocity.x, 0.0):
-		stateMachine.transitionTo("Idle")
+		state_machine.transition_to("Idle")
 		frameCounter = 0
 	else:
 		frameCounter += 1

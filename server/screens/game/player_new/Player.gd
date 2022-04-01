@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var velocity = Vector2()
-export var gravity = 1000
+# export var gravity = 1000
 export var speed_run = 300
 export var speed_jump = 600
 export var speed_dash = 1200 # TODO: Ajustarlo?
@@ -13,7 +13,7 @@ var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
 var input_direction_y := 0.0
-var is_on_floor = false
+var on_floor = false
 
 
 func _ready():
@@ -48,32 +48,38 @@ func _handle_input(action, is_pressed):
 	
 	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
 	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
-	print(input_direction_y)
+
+
+func _physics_process(delta):
+	if input_direction_x < 0.0:
+		self.add_central_force(Vector2(-speed_run, 0))	
+		print("left")
+
 
 
 func _jump():
 	if $"Player SM".state.name != "Air":
 		SfxManager.PlayerJumpSound()
-		$"Player SM".transitionTo("Air", {jump = true})
+		$"Player SM".transition_to("Air", {jump = true})
 
 func _dash():
 	if $DashCountdown.is_stopped():
 		$DashCountdown.start()
-		$"Player SM".transitionTo("Dash")
+		$"Player SM".transition_to("Dash")
 
 
 func _on_Player_body_entered(body):
 	if body.name == "TileMap":
-		is_on_floor = true
+		on_floor = true
 
 
 func _on_Player_body_exited(body):
 	if body.name == "TileMap":
-		is_on_floor = false
+		on_floor = false
 
 func is_on_floor():
-	return is_on_floor
+	return on_floor
 
 
 func _integrate_forces(state):
-	print("yepa")
+	$"Player SM"._integrate_forces(state)

@@ -2,7 +2,7 @@ class_name State
 extends Node
 
 # Guarda el padre
-var stateMachine = null
+var state_machine = null
 
 
 # Corresponde a _unhandled_input
@@ -27,4 +27,9 @@ func enter(_msg := {}) -> void:
 
 # Se llama cuando sale
 func exit() -> void:
+	pass
+
+
+# Se llama para calcular posiciones de forma fiable
+func _integrate_forces(state) -> void:
 	pass
