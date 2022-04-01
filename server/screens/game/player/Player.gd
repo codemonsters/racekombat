@@ -4,11 +4,12 @@ var velocity = Vector2()
 export var gravity = 1000
 export var speed_run = 300
 export var speed_jump = 600
-export var speed_dash = 1200 # TODO: Ajustarlo?
+export var speed_dash = 800 # TODO: Ajustarlo?
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
 export var floorAcceleration = 20
 export var airAcceleration = 10
+var facingDirection = 1 # 0 = Izquierda | 1 = Derecha
 var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
@@ -28,8 +29,10 @@ func _handle_input(action, is_pressed):
 				input_direction_y -= 1.0
 			"left":
 				input_direction_x -= 1.0
+				facingDirection = 0
 			"right":
 				input_direction_x += 1.0
+				facingDirection = 1
 			"action":
 				_jump()
 			"dash":
@@ -38,8 +41,10 @@ func _handle_input(action, is_pressed):
 		match action:
 			"left":
 				input_direction_x += 1.0
+				facingDirection = 0
 			"right":
 				input_direction_x -= 1.0
+				facingDirection = 1
 			"up":
 				input_direction_y -= 1.0
 			"down":
@@ -75,3 +80,4 @@ func _on_Dash_Tween_tween_completed(object, key):
 	$"Dash Bar".color = Color("ffffff")
 	yield(get_tree().create_timer(0.5), "timeout")
 	$"Dash Bar".color = Color("ab9f9f")
+		
