@@ -54,14 +54,12 @@ func _on_GamePad_controller_disconnected(id):
 
 func change_to_saladeespera():
 	_change_screen(WaitingRoomResource)
-#	get_node("CurrentScene/Menu").queue_free()
-#	var current_scene_container = get_node("CurrentScene")
-#	var sala_de_espera = preload("res://screens/game/WaitingRoom.tscn") 
-#	current_scene_container.add_child(sala_de_espera.instance())
+
 
 func _change_screen(target_screen_resource):
 	current_scene_container.get_child(0).queue_free()
 	current_scene_container.add_child(target_screen_resource.instance())
+
 
 func _input(event):
 	if controller_manager.input_keyboard(event):

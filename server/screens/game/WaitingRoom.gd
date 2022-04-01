@@ -4,6 +4,8 @@ var players : Array
 var player_id := 0
 var bodies_in_door = []
 
+# Lista que utilizaremos para dar un tinte distinto a cada jugador
+const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color("634191")]
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 func _ready():
@@ -23,6 +25,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 	if not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
 		new_player.position = Vector2(300, 300)
+		new_player.modulate = player_colors[players.size() % player_colors.size()]
 		add_child(new_player)
 		players.append({_controller: new_player})
 		new_player._handle_input(action, is_pressed) # Pasamos input inicial
