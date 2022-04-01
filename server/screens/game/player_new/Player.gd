@@ -53,7 +53,13 @@ func _handle_input(action, is_pressed):
 func _physics_process(delta):
 	if input_direction_x < 0.0:
 		self.add_central_force(Vector2(-speed_run, 0))	
-		print("left")
+		print(test_motion(Vector2(-speed_run, 0)))
+	elif input_direction_x == 0.0:
+		self.set_axis_velocity(Vector2(0, 0))
+		print(test_motion(Vector2(-speed_run, 0)))
+	elif input_direction_x > 0.0:
+		self.add_central_force(Vector2(speed_run, 0))
+		print(test_motion(Vector2(speed_run, 0)))
 
 
 
@@ -82,4 +88,4 @@ func is_on_floor():
 
 
 func _integrate_forces(state):
-	$"Player SM"._integrate_forces(state)
+	$"Player SM".integrate_forces(state)

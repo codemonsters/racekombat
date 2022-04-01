@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	state.physicsUpdate(delta)
 
 
-func _integrate_forces(_state):
+func integrate_forces(_state):
 	state.integrate_forces(_state)
 
 
