@@ -40,3 +40,10 @@ func PlayerDeathSound():
 	var audiostream: AudioStream = preload("res://assets/sounds/playerDead.mp3")
 	self.set_stream(audiostream)
 	self.play()
+
+
+func PlayerDashSound():
+	var audiostream: AudioStream = preload("res://assets/sounds/Dash.mp3")
+	self.set_stream(audiostream)
+	self.set_pitch_scale(1)
+	self.play()
