@@ -14,6 +14,7 @@ func _ready() -> void:
 	yield(owner, "ready")
 	# Se autoasigna los estados
 	for child in get_children():
+		print(child)
 		child.stateMachine = self
 	state.enter()
 
