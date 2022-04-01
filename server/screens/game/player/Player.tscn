@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/crocodile/jump fall/frame.png" type="Texture" id=12]
 [ext_resource path="res://assets/crocodile/run/frame-4.png" type="Texture" id=13]
 [ext_resource path="res://screens/game/player/states/Dash.gd" type="Script" id=14]
-[ext_resource path="res://screens/game/player/Dead.gd" type="Script" id=15]
+[ext_resource path="res://screens/game/player/states/Dead.gd" type="Script" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -81,3 +81,17 @@ process_mode = 0
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="Dash Tween" type="Tween" parent="."]
+
+[node name="Dash Bar" type="ColorRect" parent="."]
+margin_left = -24.0
+margin_top = -50.0
+margin_right = 24.0
+margin_bottom = -45.0
+color = Color( 0.670588, 0.623529, 0.623529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="tween_completed" from="Dash Tween" to="." method="_on_Dash_Tween_tween_completed"]

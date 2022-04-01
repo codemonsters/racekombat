@@ -15,6 +15,9 @@ var input_direction_x := 0.0
 var input_direction_y := 0.0
 
 
+func _ready():
+	_start_dash_tween()
+
 
 func _handle_input(action, is_pressed):
 	if is_pressed:
@@ -55,4 +58,20 @@ func _jump():
 func _dash():
 	if $DashCountdown.is_stopped():
 		$DashCountdown.start()
+		_start_dash_tween()
+		$"Dash Bar".color = Color("ab9f9f")
 		$"Player SM".transitionTo("Dash")
+
+
+func _start_dash_tween():
+	$"Dash Tween".interpolate_property($"Dash Bar", "rect_size:x",
+		0, 48, $DashCountdown.wait_time,
+		Tween.TRANS_LINEAR, Tween.EASE_IN
+	)
+	$"Dash Tween".start()
+
+
+func _on_Dash_Tween_tween_completed(object, key):
+	$"Dash Bar".color = Color("ffffff")
+	yield(get_tree().create_timer(0.5), "timeout")
+	$"Dash Bar".color = Color("ab9f9f")
