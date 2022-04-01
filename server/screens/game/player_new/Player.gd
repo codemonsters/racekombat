@@ -3,6 +3,7 @@ extends RigidBody2D
 var velocity = Vector2()
 # export var gravity = 1000
 export var speed_run = 300
+export var force_run = 1000
 export var speed_jump = 600
 export var speed_dash = 1200 # TODO: Ajustarlo?
 onready var animatedSprite = $AnimatedSprite
@@ -50,16 +51,18 @@ func _handle_input(action, is_pressed):
 	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
 
 
-func _physics_process(delta):
-	if input_direction_x < 0.0:
-		self.add_central_force(Vector2(-speed_run, 0))	
-		print(test_motion(Vector2(-speed_run, 0)))
-	elif input_direction_x == 0.0:
-		self.set_axis_velocity(Vector2(0, 0))
-		print(test_motion(Vector2(-speed_run, 0)))
-	elif input_direction_x > 0.0:
-		self.add_central_force(Vector2(speed_run, 0))
-		print(test_motion(Vector2(speed_run, 0)))
+# func _physics_process(delta):
+# 	if input_direction_x < 0.0:
+# 		self.add_central_force(Vector2(-speed_run, 0))	
+# 		# print(test_motion(Vector2(-speed_run, 0)))
+# 	elif input_direction_x == 0.0:
+# 		# self.set_inertia(2000)
+# 		print(self.get_linear_velocity())
+# 		# print(test_motion(Vector2(-speed_run, 0)))
+# 		pass
+# 	elif input_direction_x > 0.0:
+# 		self.add_central_force(Vector2(speed_run, 0))
+# 		# print(test_motion(Vector2(speed_run, 0)))
 
 
 
@@ -89,3 +92,16 @@ func is_on_floor():
 
 func _integrate_forces(state):
 	$"Player SM".integrate_forces(state)
+	
+	if input_direction_x < 0.0 && abs(linear_velocity.x) < speed_run:
+		friction = 0
+		applied_force = Vector2(-force_run, 0)
+	# elif input_direction_x == 0.0:
+	# 	applied_force = Vector2(0, 0)
+	elif input_direction_x > 0.0 && abs(linear_velocity.x) < speed_run:
+		friction = 0
+		applied_force = Vector2(force_run, 0)
+	else:
+		applied_force = Vector2(0, 0)
+		friction = 0.4
+

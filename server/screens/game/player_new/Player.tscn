@@ -38,11 +38,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 28, 40 )
-
 [sub_resource type="RayShape2D" id=6]
-length = 22.0
+length = 2.0
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 29, 40.9 )
 
 [node name="PlayerNew" type="RigidBody2D"]
 mode = 2
@@ -58,10 +58,6 @@ animation = "idle"
 frame = 1
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 2 )
-shape = SubResource( 5 )
-
 [node name="Player SM" type="Node" parent="."]
 script = ExtResource( 3 )
 initialState = NodePath("Idle")
@@ -76,8 +72,11 @@ one_shot = true
 autostart = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 21 )
+position = Vector2( 0, 40 )
 shape = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Player_body_exited"]
