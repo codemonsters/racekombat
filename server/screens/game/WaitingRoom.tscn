@@ -103,7 +103,7 @@ extents = Vector2( 35.2749, 32.5194 )
 extents = Vector2( 243.778, 176.245 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 73, 360 )
+extents = Vector2( 73, 956 )
 
 [sub_resource type="RectangleShape2D" id=13]
 
@@ -164,12 +164,13 @@ collision_layer = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillArea"]
-position = Vector2( 73, 360 )
+position = Vector2( 73, 156 )
 shape = SubResource( 11 )
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/KillArea"]
+margin_top = -800.0
 margin_right = 146.0
-margin_bottom = 720.0
+margin_bottom = 1080.0
 color = Color( 0.980392, 0.00392157, 0.00392157, 0.470588 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -192,8 +193,8 @@ __meta__ = {
 }
 
 [node name="KillAreaLeft" type="Area2D" parent="Camera2D"]
-position = Vector2( -1320, -720 )
-scale = Vector2( 1, 36 )
+position = Vector2( -1320, -1160 )
+scale = Vector2( 1, 47 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaLeft"]
 position = Vector2( 20, 20 )
@@ -208,8 +209,8 @@ __meta__ = {
 }
 
 [node name="KillAreaRight" type="Area2D" parent="Camera2D"]
-position = Vector2( 1280, -720 )
-scale = Vector2( 1, 36 )
+position = Vector2( 1280, -1160 )
+scale = Vector2( 1, 47 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaRight"]
 position = Vector2( 20, 20 )
@@ -224,7 +225,7 @@ __meta__ = {
 }
 
 [node name="KillAreaTop" type="Area2D" parent="Camera2D"]
-position = Vector2( -1280, -760 )
+position = Vector2( -1280, -1200 )
 scale = Vector2( 64, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillAreaTop"]
@@ -250,6 +251,9 @@ margin_left = -10.0
 margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
