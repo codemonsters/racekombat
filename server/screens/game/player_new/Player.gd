@@ -5,6 +5,7 @@ var velocity = Vector2()
 export var speed_run = 300
 export var force_run = 1000
 export var speed_jump = 600
+export var force_jump = 600
 export var speed_dash = 1200 # TODO: Ajustarlo?
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
@@ -67,6 +68,10 @@ func _handle_input(action, is_pressed):
 
 
 func _jump():
+	# TODO: CHAPUZA
+	if on_floor:
+		self.set_axis_velocity(Vector2(0, -speed_jump))
+
 	if $"Player SM".state.name != "Air":
 		SfxManager.PlayerJumpSound()
 		$"Player SM".transition_to("Air", {jump = true})
@@ -92,7 +97,7 @@ func is_on_floor():
 
 func _integrate_forces(state):
 	$"Player SM".integrate_forces(state)
-	
+
 	if input_direction_x < 0.0 && abs(linear_velocity.x) < speed_run:
 		friction = 0
 		applied_force = Vector2(-force_run, 0)
