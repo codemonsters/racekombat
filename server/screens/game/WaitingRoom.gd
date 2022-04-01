@@ -66,11 +66,6 @@ func _on_DoorOpeningArea_body_exited(body):
 		$Door.close()
 
 
-func _on_KillArea_body_entered(body):
-	for player in players:
-		if player.values()[0] == body:
-			player_disconnect(player.keys()[0])
-
 func _create_meta(area): #Crea la meta con su posición x e y
 	area.position.x = get_parent().get_node("Waiting Room/Tilemap 2_0").MAP_LENGTH*16+1280 #Modificar solo el primer parámetro
 	area.position.y = -10*16+720
@@ -80,26 +75,35 @@ func _on_Meta_body_entered(body):
 	print("Llegaste a la meta")
 
 
+func _on_KillArea_body_entered(body):
+	_kill_player(search_player_from_body(body))
+
 func _on_KillAreaFloor_body_entered(body):
-	for player in players:
-		if player.values()[0] == body:
-			player_disconnect(player.keys()[0])
-
-
+	_kill_player(search_player_from_body(body))
 
 func _on_KillAreaLeft_body_entered(body):
-	for player in players:
-		if player.values()[0] == body:
-			player_disconnect(player.keys()[0])
-
+	_kill_player(search_player_from_body(body))
 
 func _on_KillAreaRight_body_entered(body):
-	for player in players:
-		if player.values()[0] == body:
-			player_disconnect(player.keys()[0])
-
+	_kill_player(search_player_from_body(body))
 
 func _on_KillAreaTop_body_entered(body):
+	_kill_player(search_player_from_body(body))
+
+
+# Para evitar repetición en las KillAreas
+func _kill_player(player):
+	if player != null:
+		_respawn_player(player)
+
+func search_player_from_body(body):
 	for player in players:
 		if player.values()[0] == body:
-			player_disconnect(player.keys()[0])
+			return player.values()[0]
+
+func _respawn_player(player):
+	player.get_node("Player SM").transitionTo("Dead")
+	yield(get_tree().create_timer(1.0), "timeout")
+	player.get_node("Player SM").transitionTo("Idle")
+	player.global_position = $"Camera2D".global_position - Vector2(350, 100)
+
