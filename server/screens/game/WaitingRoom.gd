@@ -85,6 +85,7 @@ func _teleport_to_waiting_room():
 	$Camera2D.speed = 0
 	$Camera2D/KillArea.monitoring = false
 	$Camera2D/KillArea.visible = false
+	$"Tilemap 2_0"._create_tilemap()
 	for player in players:
 		_kill_player(player.values()[0])
 		yield(get_tree().create_timer(0.5), "timeout")

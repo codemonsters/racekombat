@@ -25,6 +25,10 @@ var noise = OpenSimplexNoise.new()
 signal tilemap_generated
 
 func _ready():
+	_create_tilemap()
+
+func _create_tilemap():
+	_clear_tilemap()
 	randomize()
 	_anhade_suelo_plano($TileMap, 10, MAP_HEIGHT, POS_X_INICIAL, POS_Y_INICIAL)	# planicie para la salida
 	_anhade_suelo_con_monticulos($TileMap, MAP_LENGTH - 20, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, POS_X_INICIAL + 10, POS_Y_INICIAL)	# montículos creados con función de ruido
@@ -139,3 +143,8 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 		y_max.clear()
 		altura_anadida_hueco = 0
 	tilemap.update_bitmask_region()
+
+
+func _clear_tilemap():
+	for pos in $TileMap.get_used_cells_by_id(FLOOR_CELL_ID):
+		$TileMap.set_cellv(pos, VACUM_CELL_ID)
