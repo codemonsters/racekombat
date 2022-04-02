@@ -76,8 +76,5 @@ func _start_dash_tween():
 	$"Dash Tween".start()
 
 
-func _on_Dash_Tween_tween_completed(object, key):
+func _on_Dash_Tween_tween_completed(_object, _key):
 	$"Dash Bar".color = Color("ffffff")
-	yield(get_tree().create_timer(0.5), "timeout")
-	$"Dash Bar".color = Color("ab9f9f")
-		
