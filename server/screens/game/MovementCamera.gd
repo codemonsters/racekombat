@@ -58,12 +58,18 @@ func _process(delta):
 # Devuelve un valor entre 1 y max_camera_speed_multiplier en función de la posición
 # media de los jugadores.
 func get_camera_speed_multiplier():
-	if get_parent().players.size() == 0:
+	var valid_players = [] # Es decir, jugadores que no están muertos
+	for player_dict in get_parent().players:
+		var player = player_dict.values()[0]
+		if not player.get_node("Player SM").state.name == "Dead":
+			valid_players.append(player)
+	if valid_players.size() == 0:
 		return 1 # Multiplicador base.
 	var players_average_x = 0
-	for player in get_parent().players:
-		players_average_x += player.values()[0].global_position.x # Sumatorio de las posiciones globales.
-	players_average_x /= get_parent().players.size() # Media de las posiciones globales.
+	var player_number = 0
+	for valid_player in valid_players:
+		players_average_x += valid_player.global_position.x # Sumatorio de las posiciones globales.
+	players_average_x /= valid_players.size() # Media de las posiciones globales.
 	# Media de las posiciones globales tomando el origen de coordenadas definido arriba.
 	var screen_players_average_x = players_average_x - self.position.x + get_viewport_rect().size.x / 2
 	if screen_players_average_x <= acceleration_threshold_position_x:
