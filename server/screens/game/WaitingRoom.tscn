@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://screens/game/objects/Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://screens/game/Tilemap2_0.tscn" type="PackedScene" id=5]
 [ext_resource path="res://screens/game/MovementCamera.gd" type="Script" id=6]
+[ext_resource path="res://assets/screens/game/backgrounds/blue_L4.png" type="Texture" id=7]
+[ext_resource path="res://assets/screens/game/backgrounds/blue_L2.png" type="Texture" id=8]
+[ext_resource path="res://assets/screens/game/backgrounds/blue_L1.png" type="Texture" id=9]
+[ext_resource path="res://assets/screens/game/backgrounds/blue_L3.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -117,6 +121,43 @@ extents = Vector2( 73, 956 )
 
 [node name="Waiting Room" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2( 2, 3 )
+transform = Transform2D( 2, 0, 0, 3, 0, 0 )
+scroll_base_scale = Vector2( 0.5, 0.1 )
+
+[node name="Layer 1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 640, 250 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 1"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 640, 250 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 2"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 640, 250 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 3"]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Layer 4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 640, 250 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 4"]
+texture = ExtResource( 7 )
+centered = false
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1219.48, 578 )
