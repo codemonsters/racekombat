@@ -2,7 +2,6 @@ extends State
 
 
 func enter(msg := {}) -> void:
-	print("XFCN")
 	owner.animatedSprite.play("jump")
 
 

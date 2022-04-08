@@ -104,7 +104,6 @@ func _integrate_forces(state):
 
 
 func _on_FeetSensor_body_entered(body):
-	print("enter", body.name)
 	if body == self:
 		return
 	on_floor = true
@@ -114,5 +113,4 @@ func _on_FeetSensor_body_entered(body):
 func _on_FeetSensor_body_exited(body):
 	collision_number -= 1
 	if collision_number == 0:
-		print("bye ", body.name)
 		on_floor = false

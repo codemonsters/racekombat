@@ -44,7 +44,7 @@ func _handle_input(action, is_pressed):
 	
 	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
 	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
-	print(input_direction_y)
+
 
 
 func _jump():

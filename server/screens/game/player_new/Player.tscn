@@ -88,8 +88,8 @@ position = Vector2( 0, 40 )
 shape = SubResource( 6 )
 
 [node name="RayLeft" type="CollisionShape2D" parent="."]
-position = Vector2( -29, 40 )
-rotation = 0.523599
+position = Vector2( -29, 0 )
+rotation = 2.0944
 shape = SubResource( 6 )
 
 [node name="RayRight" type="CollisionShape2D" parent="."]
