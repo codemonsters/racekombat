@@ -1,4 +1,4 @@
-class_name state_machine
+class_name StateMachine
 extends Node
 
 # Se emite al pasar a otro estado
@@ -14,7 +14,7 @@ func _ready() -> void:
 	yield(owner, "ready")
 	# Se autoasigna los estados
 	for child in get_children():
-		child.stateMachine = self
+		child.state_machine = self
 	state.enter()
 
 

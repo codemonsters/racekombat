@@ -50,14 +50,14 @@ _global_script_classes=[ {
 "path": "res://utils/State.gd"
 }, {
 "base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://utils/StateMachine.gd"
+}, {
+"base": "Node",
 "class": "UI_Builder",
 "language": "GDScript",
 "path": "res://addons/GodotGamePad/UI_builder_functions.gd"
-}, {
-"base": "Node",
-"class": "state_machine",
-"language": "GDScript",
-"path": "res://utils/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
@@ -68,8 +68,8 @@ _global_script_class_icons={
 "GamePadLayout": "res://addons/GodotGamePad/LayoutConfiguration/AddOn_Images/GodotGamepadIcon.svg",
 "KeyboardController": "",
 "State": "",
-"UI_Builder": "",
-"state_machine": ""
+"StateMachine": "",
+"UI_Builder": ""
 }
 
 [application]

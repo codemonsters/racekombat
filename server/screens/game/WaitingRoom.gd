@@ -8,7 +8,7 @@ var bodies_in_door = []
 const PlayerResource = preload("res://screens/game/player_new/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
 const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color("634191")]
-const PlayerResource = preload("res://screens/game/player/Player.tscn")
+#const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 
 func _ready():
@@ -122,8 +122,8 @@ func search_player_from_body(body):
 			return player.values()[0]
 
 func _respawn_player(player):
-	player.get_node("Player SM").transitionTo("Dead")
+	player.get_node("Player SM").transition_to("Dead")
 	yield(get_tree().create_timer(1.0), "timeout")
-	player.get_node("Player SM").transitionTo("Idle")
+	player.get_node("Player SM").transition_to("Idle")
 	player.global_position = $"Camera2D".global_position - Vector2(350, 100)
 

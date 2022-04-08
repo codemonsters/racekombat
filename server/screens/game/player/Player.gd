@@ -67,7 +67,7 @@ func _dash():
 		_start_dash_tween()
 #		$"Dash Bar".color = Color("ab9f9f")
 		$"Dash Bar".visible = true
-		$"Player SM".transitionTo("Dash")
+		$"Player SM".transition_to("Dash")
 
 
 func _start_dash_tween():
