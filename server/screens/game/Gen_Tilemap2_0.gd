@@ -25,11 +25,16 @@ var noise = OpenSimplexNoise.new()
 signal tilemap_generated
 
 func _ready():
+	_create_tilemap()
+
+func _create_tilemap():
+	_clear_tilemap()
 	randomize()
 	_anhade_suelo_plano($TileMap, 10, MAP_HEIGHT, POS_X_INICIAL, POS_Y_INICIAL)	# planicie para la salida
 	_anhade_suelo_con_monticulos($TileMap, MAP_LENGTH - 20, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, POS_X_INICIAL + 10, POS_Y_INICIAL)	# montículos creados con función de ruido
 	_anhade_suelo_plano($TileMap, 10, MAP_HEIGHT, MAP_LENGTH - 10, 0)	# planicie para la meta
 	_create_hueco($TileMap, MAP_LENGTH, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, 0, POS_Y_INICIAL)
+	_create_plataforma($TileMap, MAP_LENGTH, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, 0, POS_Y_INICIAL)
 	emit_signal("tilemap_generated")
 
 func calcular_y_media():
@@ -58,7 +63,7 @@ func _anhade_suelo_con_monticulos(tilemap, length, height, min_height, max_heigh
 	var noise = OpenSimplexNoise.new()
 	noise.seed = randi()
 	noise.lacunarity = 2.0 # ¿? Valor default 2.0
-	noise.octaves = 9	#Fluidez de los cambios cuanto mas alto mas fluido (0 min ,9 max)
+	noise.octaves = 9.0	#Fluidez de los cambios cuanto mas alto mas fluido (0 min ,9 max)
 	noise.period = 1.0	# frecuencia con la que se produce un cambio de altura
 	noise.persistence = 1	# ¿cuánto afectan los cambios anteriores a los futuros (1 max, 0 min)?
 	
@@ -100,6 +105,46 @@ func _create_hueco(tilemap, lenght, height, min_height,max_height, pos_x, pos_y)
 							#Se reinician los valores
 							distance_entre_huecos = randi()%(lenght/10) + 20 
 							width_huecos = randi()%12+10 
-					tilemap.set_cellv(Vector2(pos_x+x, pos_y-y), 1)
+					tilemap.set_cellv(Vector2(pos_x+x, pos_y-y), VACUM_CELL_ID)
 	tilemap.update_bitmask_region()
 	
+func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, pos_y):#Crea plataforma en el aire
+	var distance_entre_plataforma = 10 #Distancia entre los plataforma
+	var width_plataforma = 10 #Ancho de los plataforma
+	var final_pos_plataforma = 20 #Pos_x del bloque final de cada plataforma
+	var distance = 0
+	var y_max_floor := []
+	var y_max := []
+	var platform_avaliable = false
+	var altura_anadida_hueco = 0
+	while((final_pos_plataforma + distance_entre_plataforma) < lenght ):
+		distance = final_pos_plataforma + distance_entre_plataforma
+		for x in range(distance, distance + width_plataforma):
+			for y in range(min_height, max_height + 1):
+				if tilemap.get_cellv(Vector2(pos_x + x, pos_y - y)) == FLOOR_CELL_ID:
+					y_max_floor.append(y)
+				else:
+					y_max_floor.append(0)
+				y_max.append(y_max_floor.max())
+				y_max_floor.clear()
+		if y_max.max() == y_max.min():
+			altura_anadida_hueco = 10
+			platform_avaliable = true
+		elif y_max.max() - y_max.min() < 10:
+			platform_avaliable = true
+		else:
+			platform_avaliable = false
+			final_pos_plataforma += 20
+		if platform_avaliable == true:
+			for x in range(distance, distance + width_plataforma):
+				for y in range( y_max.max() + 7 + altura_anadida_hueco, y_max.max() + 10 + altura_anadida_hueco):
+					tilemap.set_cellv(Vector2(pos_x + x, pos_y - y), FLOOR_CELL_ID)
+					final_pos_plataforma = pos_x + x
+		y_max.clear()
+		altura_anadida_hueco = 0
+	tilemap.update_bitmask_region()
+
+
+func _clear_tilemap():
+	for pos in $TileMap.get_used_cells_by_id(FLOOR_CELL_ID):
+		$TileMap.set_cellv(pos, VACUM_CELL_ID)
