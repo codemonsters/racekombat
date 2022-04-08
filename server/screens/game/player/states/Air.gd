@@ -31,8 +31,8 @@ func physicsUpdate(delta: float) -> void:
 	
 	if owner.is_on_floor():
 		if is_equal_approx(owner.velocity.x, 0.0):
-			stateMachine.transitionTo("Idle")
+			state_machine.transition_to("Idle")
 		else:
 			if int(abs(owner.velocity.x)) % owner.floorAcceleration == owner.airAcceleration:
 				owner.velocity.x -= owner.airAcceleration
-			stateMachine.transitionTo("Run")
+			state_machine.transition_to("Run")

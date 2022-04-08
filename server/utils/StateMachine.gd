@@ -14,8 +14,7 @@ func _ready() -> void:
 	yield(owner, "ready")
 	# Se autoasigna los estados
 	for child in get_children():
-		print(child)
-		child.stateMachine = self
+		child.state_machine = self
 	state.enter()
 
 
@@ -32,8 +31,12 @@ func _physics_process(delta: float) -> void:
 	state.physicsUpdate(delta)
 
 
+func integrate_forces(_state):
+	state.integrate_forces(_state)
+
+
 # Llama al exit() del estado actual, cambia de estado y llama a su enter()
-func transitionTo(targetStateName: String, msg: Dictionary = {}) -> void:
+func transition_to(targetStateName: String, msg: Dictionary = {}) -> void:
 	if not has_node(targetStateName):
 		return
 

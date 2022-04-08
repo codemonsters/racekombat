@@ -1,1 +1,1 @@
-extends StateMachine
+extends state_machine

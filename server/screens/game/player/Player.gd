@@ -52,21 +52,22 @@ func _handle_input(action, is_pressed):
 	
 	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
 	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
-	print(input_direction_y)
+
 
 
 func _jump():
 	if $"Player SM".state.name != "Air":
 		SfxManager.PlayerJumpSound()
-		$"Player SM".transitionTo("Air", {jump = true})
+		$"Player SM".transition_to("Air", {jump = true})
 
 func _dash():
 	if $DashCountdown.is_stopped():
 		$DashCountdown.start()
+
 		_start_dash_tween()
 #		$"Dash Bar".color = Color("ab9f9f")
 		$"Dash Bar".visible = true
-		$"Player SM".transitionTo("Dash")
+		$"Player SM".transition_to("Dash")
 
 
 func _start_dash_tween():
