@@ -9,7 +9,7 @@ func open():
 	if moving != 0:
 		do_asap = 1
 	else:
-		$Tween.interpolate_property(self, "position:y", null, 510, 1.5, Tween.TRANS_QUINT)
+		$Tween.interpolate_property(self, "position:y", null, 490, 1.5, Tween.TRANS_QUINT)
 		$Tween.start()
 		moving = 1
 

@@ -16,6 +16,7 @@ var snap = defaultSnap
 var input_direction_x := 0.0
 var input_direction_y := 0.0
 var on_floor = false
+var collision_number = 0
 
 
 func _ready():
@@ -82,22 +83,11 @@ func _dash():
 		$"Player SM".transition_to("Dash")
 
 
-func _on_Player_body_entered(body):
-	if body.name == "TileMap":
-		on_floor = true
-
-
-func _on_Player_body_exited(body):
-	if body.name == "TileMap":
-		on_floor = false
-
 func is_on_floor():
 	return on_floor
 
 
 func _integrate_forces(state):
-	$"Player SM".integrate_forces(state)
-
 	if input_direction_x < 0.0 && abs(linear_velocity.x) < speed_run:
 		friction = 0
 		applied_force = Vector2(-force_run, 0)
@@ -109,4 +99,20 @@ func _integrate_forces(state):
 	else:
 		applied_force = Vector2(0, 0)
 		friction = 0.4
+	$"Player SM".integrate_forces(state)
 
+
+
+func _on_FeetSensor_body_entered(body):
+	print("enter", body.name)
+	if body == self:
+		return
+	on_floor = true
+	collision_number += 1
+
+
+func _on_FeetSensor_body_exited(body):
+	collision_number -= 1
+	if collision_number == 0:
+		print("bye ", body.name)
+		on_floor = false

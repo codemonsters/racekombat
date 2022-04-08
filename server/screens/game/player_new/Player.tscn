@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/crocodile/idle/frame-1.png" type="Texture" id=1]
 [ext_resource path="res://screens/game/player_new/states/Idle.gd" type="Script" id=2]
@@ -19,9 +19,9 @@ friction = 0.0
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "fall",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
@@ -34,9 +34,9 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "idle",
+"name": "fall",
 "speed": 5.0
 } ]
 
@@ -46,13 +46,15 @@ length = 2.0
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 29, 40.9 )
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 20, 4 )
+
 [node name="PlayerNew" type="RigidBody2D"]
 mode = 2
 physics_material_override = SubResource( 4 )
 contacts_reported = 5
 contact_monitor = true
 script = ExtResource( 4 )
-
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -79,12 +81,31 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="Node" type="Node" parent="."]
+
+[node name="RayDown" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 40 )
+shape = SubResource( 6 )
+
+[node name="RayLeft" type="CollisionShape2D" parent="."]
+position = Vector2( -29, 40 )
+rotation = 0.523599
+shape = SubResource( 6 )
+
+[node name="RayRight" type="CollisionShape2D" parent="."]
+position = Vector2( 29, 0 )
+rotation = -2.0944
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
 
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_Player_body_exited"]
+[node name="FeetSensor" type="Area2D" parent="."]
+position = Vector2( 0, 40 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetSensor"]
+position = Vector2( 4, 5 )
+shape = SubResource( 8 )
+
+[connection signal="body_entered" from="FeetSensor" to="." method="_on_FeetSensor_body_entered"]
+[connection signal="body_exited" from="FeetSensor" to="." method="_on_FeetSensor_body_exited"]
