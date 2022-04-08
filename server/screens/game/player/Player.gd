@@ -64,7 +64,8 @@ func _dash():
 	if $DashCountdown.is_stopped():
 		$DashCountdown.start()
 		_start_dash_tween()
-		$"Dash Bar".color = Color("ab9f9f")
+#		$"Dash Bar".color = Color("ab9f9f")
+		$"Dash Bar".visible = true
 		$"Player SM".transitionTo("Dash")
 
 
@@ -78,3 +79,5 @@ func _start_dash_tween():
 
 func _on_Dash_Tween_tween_completed(_object, _key):
 	$"Dash Bar".color = Color("ffffff")
+	$"Dash Bar".visible = false
+	SfxManager.PlayerDashBarSound()

@@ -47,3 +47,8 @@ func PlayerDashSound():
 	self.set_stream(audiostream)
 	self.set_pitch_scale(1)
 	self.play()
+
+func PlayerDashBarSound():
+	var audiostream: AudioStream = preload("res://assets/sounds/DashBar.mp3")
+	self.set_stream(audiostream)
+	self.play()

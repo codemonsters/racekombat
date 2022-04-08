@@ -93,7 +93,6 @@ script = ExtResource( 4 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -144,7 +143,6 @@ margin_left = -24.0
 margin_top = -50.0
 margin_right = 24.0
 margin_bottom = -45.0
-color = Color( 0.670588, 0.623529, 0.623529, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

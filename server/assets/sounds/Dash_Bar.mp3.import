@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Dash_Bar.mp3-5d7f6f90d2dbf3b374683a5cecc41f5e.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Dash_Bar.mp3"
+dest_files=[ "res://.import/Dash_Bar.mp3-5d7f6f90d2dbf3b374683a5cecc41f5e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
