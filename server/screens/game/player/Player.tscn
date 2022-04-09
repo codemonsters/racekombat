@@ -28,16 +28,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "fall",
@@ -46,6 +36,16 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -143,8 +143,5 @@ margin_left = -24.0
 margin_top = -50.0
 margin_right = 24.0
 margin_bottom = -45.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="tween_completed" from="Dash Tween" to="." method="_on_Dash_Tween_tween_completed"]

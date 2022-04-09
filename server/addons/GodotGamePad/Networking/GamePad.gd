@@ -14,7 +14,6 @@ extends Node
 signal gamepad_connected(id)
 signal gamepad_disconnected(id)
 
-#TODO: TESTING
 signal gamepad_button_pressed(button, id)
 signal gamepad_button_released(button, id)
 signal dpad_released(id)

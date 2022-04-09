@@ -6,7 +6,8 @@ export var speed_run = 300
 export var force_run = 1000
 export var speed_jump = 600
 export var force_jump = 600
-export var speed_dash = 1200 # TODO: Ajustarlo?
+export var speed_dash = 1200
+export var force_dash = 800
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
 export var floorAcceleration = 20
@@ -15,12 +16,13 @@ var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
 var input_direction_y := 0.0
+var facingDirection = 1 # 0 = Izquierda | 1 = Derecha
 var on_floor = false
 var collision_number = 0
 
 
 func _ready():
-	pass
+	_start_dash_tween()
 	# TODO: deberíamos asignar el número de colisiones reportadas (contacts reported) a el número de personajes + 1
 
 func _handle_input(action, is_pressed):
@@ -32,8 +34,10 @@ func _handle_input(action, is_pressed):
 				input_direction_y -= 1.0
 			"left":
 				input_direction_x -= 1.0
+				facingDirection = 0
 			"right":
 				input_direction_x += 1.0
+				facingDirection = 1
 			"action":
 				_jump()
 			"dash":
@@ -42,8 +46,10 @@ func _handle_input(action, is_pressed):
 		match action:
 			"left":
 				input_direction_x += 1.0
+				facingDirection = 0
 			"right":
 				input_direction_x -= 1.0
+				facingDirection = 1
 			"up":
 				input_direction_y -= 1.0
 			"down":
@@ -80,6 +86,11 @@ func _jump():
 func _dash():
 	if $DashCountdown.is_stopped():
 		$DashCountdown.start()
+		# $"Player SM/Dash/SmokeParticles".position = self.position
+		# $"Player SM/Dash/SmokeParticles".emitting = true
+		_start_dash_tween()
+#		$"Dash Bar".color = Color("ab9f9f")
+		$"Dash Bar".visible = true
 		$"Player SM".transition_to("Dash")
 
 
@@ -102,7 +113,6 @@ func _integrate_forces(state):
 	$"Player SM".integrate_forces(state)
 
 
-
 func _on_FeetSensor_body_entered(body):
 	if body == self:
 		return
@@ -114,3 +124,15 @@ func _on_FeetSensor_body_exited(body):
 	collision_number -= 1
 	if collision_number == 0:
 		on_floor = false
+
+func _start_dash_tween():
+	$"Dash Tween".interpolate_property($"Dash Bar", "rect_size:x",
+		0, 48, $DashCountdown.wait_time,
+		Tween.TRANS_LINEAR, Tween.EASE_IN
+	)
+	$"Dash Tween".start()
+
+func _on_Dash_Tween_tween_completed(_object, _key):
+	$"Dash Bar".color = Color("ffffff")
+	$"Dash Bar".visible = false
+	SfxManager.PlayerDashBarSound()
