@@ -111,16 +111,19 @@ func _integrate_forces(state):
 		applied_force = Vector2(0, 0)
 		friction = 0.4
 	$"Player SM".integrate_forces(state)
-
+	
+#	print(collision_number)
 
 func _on_FeetSensor_body_entered(body):
-	if body == self:
+	if body == self or body.name == "PlayerNew":
 		return
 	on_floor = true
 	collision_number += 1
 
 
 func _on_FeetSensor_body_exited(body):
+	if body.name == "PlayerNew":
+		return
 	collision_number -= 1
 	if collision_number == 0:
 		on_floor = false
