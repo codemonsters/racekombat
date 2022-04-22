@@ -489,7 +489,7 @@ format = 1
 tile_data = PoolIntArray( 589900, 2, 65540, 852045, 2, 6, 917581, 2, 65542, 983117, 2, 65542, 1048653, 2, 65542, 1114189, 2, 65542, 1179724, 2, 65540, 1179725, 2, 65540, 1310798, 3, 0, 1376334, 3, 0, 1441870, 3, 0, 1507406, 3, 0, 1572937, 3, 0, 1572942, 3, 0, 1638478, 3, 0, 1704014, 3, 0 )
 
 [node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 1 )
+motion_scale = Vector2( 0.2, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 2"]
@@ -497,7 +497,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 1 )
+motion_scale = Vector2( 0.3, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 3"]
@@ -505,7 +505,7 @@ texture = ExtResource( 10 )
 centered = false
 
 [node name="Layer 4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 1 )
+motion_scale = Vector2( 0.5, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 4"]
