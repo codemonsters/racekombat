@@ -31,6 +31,16 @@ friction = 0.0
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "fall",
@@ -39,16 +49,6 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "idle",
 "speed": 5.0
 } ]
 
@@ -88,11 +88,12 @@ frame_9/delay_sec = 0.0
 [sub_resource type="RayShape2D" id=6]
 length = 2.0
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 29, 40.9 )
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 30.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 20, 4 )
+extents = Vector2( 29, 4 )
 
 [node name="PlayerNew" type="RigidBody2D"]
 mode = 2
@@ -105,7 +106,6 @@ script = ExtResource( 4 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Player SM" type="Node" parent="."]
@@ -153,22 +153,23 @@ shape = SubResource( 6 )
 
 [node name="RayLeft" type="CollisionShape2D" parent="."]
 position = Vector2( -29, 0 )
-rotation = 2.0944
+rotation = 1.5708
+scale = Vector2( 1, 2 )
 shape = SubResource( 6 )
 
 [node name="RayRight" type="CollisionShape2D" parent="."]
 position = Vector2( 29, 0 )
-rotation = -2.0944
+rotation = -1.5708
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 7 )
+shape = SubResource( 12 )
 
 [node name="FeetSensor" type="Area2D" parent="."]
 position = Vector2( 0, 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetSensor"]
-position = Vector2( 4, 5 )
+position = Vector2( 0, 5 )
 shape = SubResource( 8 )
 
 [node name="Dash Tween" type="Tween" parent="."]

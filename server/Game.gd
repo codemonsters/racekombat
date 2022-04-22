@@ -41,6 +41,8 @@ func _ready():
 		"False to modify this behaviour ")
 	else:
 		GamePad.search_for_controllers()
+		print_debug("WARNING: Network controllers are enabled manually. Set DISABLE_SEARCH to " +
+		"True when comitting")
 
 func _on_GamePad_controller_connected(id):
 	print("Network GamePad connected (id = " + str(id) + ")")
