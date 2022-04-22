@@ -10,8 +10,8 @@
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L2.png" type="Texture" id=8]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L1.png" type="Texture" id=9]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L3.png" type="Texture" id=10]
-[ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/tileset.png" type="Texture" id=11]
+[ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
@@ -489,7 +489,7 @@ format = 1
 tile_data = PoolIntArray( 589900, 2, 65540, 852045, 2, 6, 917581, 2, 65542, 983117, 2, 65542, 1048653, 2, 65542, 1114189, 2, 65542, 1179724, 2, 65540, 1179725, 2, 65540, 1310798, 3, 0, 1376334, 3, 0, 1441870, 3, 0, 1507406, 3, 0, 1572937, 3, 0, 1572942, 3, 0, 1638478, 3, 0, 1704014, 3, 0 )
 
 [node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 1 )
+motion_scale = Vector2( 0.5, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 2"]
@@ -497,7 +497,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.3, 1 )
+motion_scale = Vector2( 0.2, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 3"]
@@ -505,7 +505,7 @@ texture = ExtResource( 10 )
 centered = false
 
 [node name="Layer 4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 1 )
+motion_scale = Vector2( 0.1, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 4"]
@@ -627,6 +627,9 @@ shape = SubResource( 16 )
 [node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaTop"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Meta" type="Area2D" parent="."]
 scale = Vector2( 10, 72 )
@@ -643,7 +646,7 @@ color = Color( 1, 1, 1, 0.392157 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Score Manager" parent="CanvasLayer" instance=ExtResource( 11 )]
+[node name="Score Manager" parent="CanvasLayer" instance=ExtResource( 12 )]
 position = Vector2( 1160, 0 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
