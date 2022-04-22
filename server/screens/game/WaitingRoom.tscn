@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L2.png" type="Texture" id=8]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L1.png" type="Texture" id=9]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L3.png" type="Texture" id=10]
+[ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
@@ -331,7 +332,7 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 1 )
+motion_scale = Vector2( 0.2, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 2"]
@@ -339,7 +340,7 @@ texture = ExtResource( 8 )
 centered = false
 
 [node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 1 )
+motion_scale = Vector2( 0.3, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 3"]
@@ -347,7 +348,7 @@ texture = ExtResource( 10 )
 centered = false
 
 [node name="Layer 4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 1 )
+motion_scale = Vector2( 0.5, 1 )
 motion_mirroring = Vector2( 640, 250 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer 4"]
@@ -470,9 +471,6 @@ shape = SubResource( 16 )
 [node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaTop"]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Meta" type="Area2D" parent="."]
 scale = Vector2( 10, 72 )
@@ -486,6 +484,11 @@ margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
 color = Color( 1, 1, 1, 0.392157 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score Manager" parent="CanvasLayer" instance=ExtResource( 11 )]
+position = Vector2( 1160, 0 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]

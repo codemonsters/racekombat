@@ -19,6 +19,7 @@ var input_direction_y := 0.0
 var facingDirection = 1 # 0 = Izquierda | 1 = Derecha
 var on_floor = false
 var collision_number = 0
+var score : int
 
 
 func _ready():

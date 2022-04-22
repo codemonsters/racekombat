@@ -10,6 +10,9 @@ const PlayerResource = preload("res://screens/game/player_new/Player.tscn")
 const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color("634191")]
 #const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
+signal player_added
+signal run_started
+
 
 func _ready():
 	MusicManager.WaitingRoomMusicPlay()
@@ -32,6 +35,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 		new_player.modulate = player_colors[players.size() % player_colors.size()]
 		add_child(new_player)
 		players.append({_controller: new_player})
+		emit_signal("player_added")
 		new_player._handle_input(action, is_pressed) # Pasamos input inicial
 	else: # Como tiene jugador asignado, le pasamos el input
 		var active_player = players[player_index][_controller]
@@ -56,6 +60,7 @@ func _on_Limite_body_entered(body):
 	$Camera2D/KillArea.monitoring = true
 	$Camera2D/KillArea.visible = true
 	GamePad.stop_search_for_controllers()
+	emit_signal("run_started")
 
 
 func _on_DoorOpeningArea_body_entered(body):
