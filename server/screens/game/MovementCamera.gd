@@ -10,7 +10,7 @@ extends Camera2D
 # TODO: Fijar zoom de la cámara en (1, 1).
 
 var speed : int
-var base_speed := 150
+var base_speed := 150 # DEBUG, era 150
 # Factor máximo por el que se multiplicará la velocidad de la cámara.
 var max_camera_speed_multiplier := 4
 # Valor definido más adelante.

@@ -130,5 +130,5 @@ func _respawn_player(player):
 	player.get_node("Player SM").transition_to("Dead")
 	yield(get_tree().create_timer(1.0), "timeout")
 	player.get_node("Player SM").transition_to("Idle")
-	player.global_position = $"Camera2D".global_position - Vector2(350, 100)
+	player.global_position = $"Camera2D".global_position - Vector2(100, 100)
 

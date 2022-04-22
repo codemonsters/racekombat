@@ -116,9 +116,13 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 	var y_max_floor := []
 	var y_max := []
 	var platform_avaliable = false
-	var altura_anadida_hueco = 0
+	var altura_plataformas = 0 #Altura en la que se construye la plataforma contando desde la altura del tile mas alto
+	var grosor_plataformas = 3
+	var altura_anadida_hueco = 10 #Altura en la que se construye la plataforma cuando hay un hueco
 	while((final_pos_plataforma + distance_entre_plataforma) < lenght ):
 		distance = final_pos_plataforma + distance_entre_plataforma
+		altura_plataformas = 10 #Seteamos la altura dentro del while 
+		altura_plataformas = altura_plataformas + randi()%6
 		for x in range(distance, distance + width_plataforma):
 			for y in range(min_height, max_height + 1):
 				if tilemap.get_cellv(Vector2(pos_x + x, pos_y - y)) == FLOOR_CELL_ID:
@@ -130,18 +134,18 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 		if y_max.max() == y_max.min():
 			altura_anadida_hueco = 10
 			platform_avaliable = true
-		elif y_max.max() - y_max.min() < 10:
+		elif y_max.max() - y_max.min() < 7:
+			altura_anadida_hueco = 0
 			platform_avaliable = true
 		else:
 			platform_avaliable = false
 			final_pos_plataforma += 20
 		if platform_avaliable == true:
 			for x in range(distance, distance + width_plataforma):
-				for y in range( y_max.max() + 7 + altura_anadida_hueco, y_max.max() + 10 + altura_anadida_hueco):
+				for y in range( y_max.max() + altura_plataformas + altura_anadida_hueco, y_max.max() + altura_plataformas + grosor_plataformas + altura_anadida_hueco):
 					tilemap.set_cellv(Vector2(pos_x + x, pos_y - y), FLOOR_CELL_ID)
 					final_pos_plataforma = pos_x + x
 		y_max.clear()
-		altura_anadida_hueco = 0
 	tilemap.update_bitmask_region()
 
 

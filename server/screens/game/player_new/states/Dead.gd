@@ -2,7 +2,6 @@ extends State
 
 
 func enter(_msg := {}) -> void:
-	owner.set_linear_velocity(Vector2.ZERO)
 	owner.global_position = Vector2(-50, -50)
 	owner.visible = false
 
@@ -15,4 +14,5 @@ func integrate_forces(state):
 	
 
 func exit():
+	owner.set_linear_velocity(Vector2.ZERO)
 	owner.visible = true
