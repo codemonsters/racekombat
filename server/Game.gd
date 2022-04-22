@@ -2,7 +2,7 @@ extends Node2D
 
 
 var controller_manager: ControllersManager
-const DISABLE_SEARCH = true # INFO: Set to false to connect controllers *while debugging*
+const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while debugging*
 # var players = {}
 
 onready var current_scene_container = get_node("CurrentScene")
