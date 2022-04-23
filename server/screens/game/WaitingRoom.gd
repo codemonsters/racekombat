@@ -37,7 +37,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 		new_player.modulate = player_colors[players.size() % player_colors.size()]
 		add_child(new_player)
 		players.append({_controller: new_player})
-		emit_signal("player_added")
+		emit_signal("player_added", new_player)
 		new_player._handle_input(action, is_pressed) # Pasamos input inicial
 	else: # Como tiene jugador asignado, le pasamos el input
 		var active_player = players[player_index][_controller]
