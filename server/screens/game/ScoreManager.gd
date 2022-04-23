@@ -80,14 +80,19 @@ func _update_scoreboard():
 		total_score += player_dict.score
 	print(total_score)
 	for i in range(min(player_list.size(), MAX_VISIBLE_PLAYERS)):
-		rect_list[i].modulate = player_list[i].body.modulate
-		rect_list[i].get_node("Filler").color.a = .8
-		rect_list[i].get_node("Border").border_color.a = 1
-		rect_list[i].get_node("Background").color.a = .3
+		var colored = rect_list[i].get_node("Colored")
+		var other = rect_list[i].get_node("Other")
+		other.visible = true
+		colored.modulate = player_list[i].body.modulate
+		colored.get_node("Bar").color.a = .8
+		colored.get_node("Border").border_color.a = 1
+		colored.get_node("Background").color.a = .3
+		colored.get_node("Label BG").color = Color.darkgray
 		if total_score != 0:
-			rect_list[i].get_node("Filler").rect_size.x = $VBoxContainer.rect_size.x * player_list[i].score / total_score
+			colored.get_node("Bar").rect_size.x = $VBoxContainer.rect_size.x * player_list[i].score / total_score
 		else:
-			rect_list[i].get_node("Filler").rect_size.x = $VBoxContainer.rect_size.x
+			colored.get_node("Bar").rect_size.x = $VBoxContainer.rect_size.x
+		other.get_node("Deaths").text = str(player_list[i].deaths)
 
 func _timer_ticked():
 	var fastest_player_dict = player_list[0]
