@@ -31,8 +31,9 @@ func _ready():
 	waiting_room.connect("player_added", self, "_add_player")
 	waiting_room.connect("player_removed", self, "_remove_player")
 	waiting_room.connect("player_killed", self, "_on_player_killed")
-	waiting_room.connect("run_started", self, "_start_timer")
-	waiting_room.connect("run_ended", self, "_stop_timer")
+	waiting_room.connect("run_started", self, "_on_run_started")
+	waiting_room.connect("run_ended", self, "_on_run_ended")
+	waiting_room.connect("flag_taken", self, "_on_flag_taken")
 	$Timer.wait_time = TICK_TIME
 	$Timer.connect("timeout", self, "_timer_ticked")
 
@@ -64,11 +65,23 @@ func _on_player_killed(body):
 			_update_scoreboard()
 			return
 
-func _start_timer():
+func _on_run_started():
 	$Timer.start()
 
-func _stop_timer():
+func _on_run_ended():
 	$Timer.stop()
+	for player_dict in player_list:
+		player_dict.score = 0
+		player_dict.deaths = 0
+		player_dict.ticks_alive = 0
+	_update_scoreboard()
+
+func _on_flag_taken(body):
+	for player_dict in player_list:
+		if player_dict.body == body:
+			player_dict.wins += 1
+			_update_scoreboard()
+			return
 
 func _sort_scores(a, b):
 	return not a.score <= b.score
@@ -87,12 +100,14 @@ func _update_scoreboard():
 		colored.get_node("Bar").color.a = .8
 		colored.get_node("Border").border_color.a = 1
 		colored.get_node("Background").color.a = .3
-		colored.get_node("Label BG").color = Color.darkgray
+		colored.get_node("Deaths BG").color = Color.darkgray
+		colored.get_node("Wins BG").color = Color.darkgray
 		if total_score != 0:
 			colored.get_node("Bar").rect_size.x = $VBoxContainer.rect_size.x * player_list[i].score / total_score
 		else:
 			colored.get_node("Bar").rect_size.x = $VBoxContainer.rect_size.x
 		other.get_node("Deaths").text = str(player_list[i].deaths)
+		other.get_node("Wins").text = str(player_list[i].wins)
 
 func _timer_ticked():
 	var fastest_player_dict = player_list[0]

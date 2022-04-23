@@ -15,12 +15,13 @@ signal player_removed
 signal player_killed
 signal run_started
 signal run_ended
+signal flag_taken
 
 
 func _ready():
 	MusicManager.WaitingRoomMusicPlay()
 	_create_meta($Meta)
-	$Meta.monitoring = false
+	$Meta.set_deferred("monitoring", false)
 
 func controller_input(_controller, action, _is_main, is_pressed):
 	var player_found := false
@@ -57,11 +58,11 @@ func player_disconnect(_controller):
 
 
 func _on_Limite_body_entered(body):
-	$Meta.monitoring = true
+	$Meta.set_deferred("monitoring", true)
 	$Camera2D.speed = $Camera2D.base_speed
 	SfxManager.PlayerStartSound()
 	yield(get_tree().create_timer(3.0),"timeout")
-	$Camera2D/KillArea.monitoring = true
+	$Camera2D/KillArea.set_deferred("monitoring", true)
 	$Camera2D/KillArea.visible = true
 	GamePad.stop_search_for_controllers()
 	emit_signal("run_started")
@@ -87,22 +88,23 @@ func _create_meta(area): #Crea la meta con su posición x e y
 func _on_Meta_body_entered(body):
 	for player in players:
 		if player.values()[0] == body:
-			$Meta.monitoring = false
+			$Meta.set_deferred("monitoring", false)
 			print("Llegaste a la meta")
-			emit_signal("run_ended")
+			emit_signal("flag_taken", player.values()[0]) # Envía al ganador
 			yield(get_tree().create_timer(3.0), "timeout")
 			_teleport_to_waiting_room()
 
 func _teleport_to_waiting_room():
 	$Camera2D.position = Vector2(640, 360)
 	$Camera2D.speed = 0
-	$Camera2D/KillArea.monitoring = false
+	$Camera2D/KillArea.set_deferred("monitoring", false)
 	$Camera2D/KillArea.visible = false
 	$"Tilemap 2_0"._create_tilemap()
 	for player in players:
 		_kill_player(player.values()[0])
 		yield(get_tree().create_timer(0.5), "timeout")
 	GamePad.search_for_controllers()
+	emit_signal("run_ended")
 
 
 func _on_KillArea_body_entered(body):
