@@ -12,6 +12,7 @@ const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color(
 
 signal player_added
 signal player_removed
+signal player_killed
 signal run_started
 signal run_ended
 
@@ -132,6 +133,7 @@ func search_player_from_body(body):
 
 func _respawn_player(player):
 	player.get_node("Player SM").transition_to("Dead")
+	emit_signal("player_killed", player)
 	yield(get_tree().create_timer(1.0), "timeout")
 	player.get_node("Player SM").transition_to("Idle")
 	player.global_position = $"Camera2D".global_position - Vector2(100, 100)
