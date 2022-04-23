@@ -14,7 +14,6 @@ var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
 var input_direction_y := 0.0
-var score : int
 
 
 func _ready():
