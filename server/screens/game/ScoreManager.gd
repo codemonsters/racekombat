@@ -18,22 +18,40 @@ extends Node2D
 const MAX_VISIBLE_PLAYERS = 3
 const TICK_TIME = .5
 const FAST_SCORE_BONUS = 5
+const DICT_TEMPLATE = {
+	body = null, # Player
+	score = 0
+}
 
 var player_list : Array
 onready var rect_list = $VBoxContainer.get_children()
-onready var waiting_room = get_parent().get_parent()
+onready var waiting_room = owner
 
 func _ready():
 	waiting_room.connect("player_added", self, "_add_player")
+	waiting_room.connect("player_removed", self, "_remove_player", ["body"])
 	waiting_room.connect("run_started", self, "_start_timer")
+	waiting_room.connect("run_ended", self, "_stop_timer")
 	$Timer.wait_time = TICK_TIME
 	$Timer.connect("timeout", self, "_timer_ticked")
 
 func _add_player():
-	player_list.append(waiting_room.players[-1].values()[0])
+	var player_dict = DICT_TEMPLATE
+	player_dict.body = waiting_room.players[-1].values()[0]
+	player_list.append(player_dict)
+
+func _remove_player(body):
+	for player_dict in player_list:
+		if player_dict.body == body:
+			player_list.erase(player_dict)
+			return
 
 func _start_timer():
-	$Timer.start() #TODO: revisar y añadir pausa al terminar la carrera
+	$Timer.start() #TODO: revisar
+	print("inshallah")
+
+func _stop_timer():
+	$Timer.stop()
 
 func _sort_scores(a, b):
 	if a.score <= b.score:
@@ -45,12 +63,12 @@ func _process(_delta):
 	player_list.sort_custom(self, "_sort_scores")
 	if player_list.size() > 0:
 		for i in range(min(player_list.size(), MAX_VISIBLE_PLAYERS)):
-			rect_list[i].color = player_list[i].modulate
+			rect_list[i].color = player_list[i].body.modulate
 			rect_list[i].color.a = .5
 
 func _timer_ticked():
-	var fastest_player = player_list[0]
-	for player in player_list:
-		if player.global_position.x > fastest_player.global_position.x:
-			fastest_player = player
-	fastest_player.score += FAST_SCORE_BONUS
+	var fastest_player_dict = player_list[0]
+	for player_dict in player_list:
+		if player_dict.body.global_position.x > fastest_player_dict.body.global_position.x:
+			fastest_player_dict = player_dict
+	fastest_player_dict.score += FAST_SCORE_BONUS

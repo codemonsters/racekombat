@@ -11,7 +11,9 @@ const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color(
 #const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 signal player_added
+signal player_removed
 signal run_started
+signal run_ended
 
 
 func _ready():
@@ -46,6 +48,7 @@ func player_disconnect(_controller):
 	for player in players:
 		if player.keys()[0] == _controller:
 			print("Controller disconnected, removing player from game")
+			emit_signal("player_removed", player.values()[0])
 			player.values()[0].queue_free()
 			players.erase(player)
 	
@@ -85,6 +88,7 @@ func _on_Meta_body_entered(body):
 		if player.values()[0] == body:
 			$Meta.monitoring = false
 			print("Llegaste a la meta")
+			emit_signal("run_ended")
 			yield(get_tree().create_timer(3.0), "timeout")
 			_teleport_to_waiting_room()
 
