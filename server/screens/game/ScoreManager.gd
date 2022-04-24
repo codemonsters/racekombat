@@ -46,20 +46,24 @@ func _add_player(body):
 		score = 0,
 		wins = 0, # Veces que ha llegado primero a la meta
 		deaths = 0,
-		ticks_alive = 0
+		ticks_alive = 0,
+		score_bar = null
 	}
 	new_player_dict.body = body
+	var new_score_bar = ScoreBarResource.instance()
+	new_score_bar.manager = self
+	new_score_bar.get_node("Colored").modulate = new_player_dict.body.modulate
+	$VBoxContainer.add_child(new_score_bar)
+	new_player_dict.score_bar = new_score_bar
 	player_list.append(new_player_dict)
-	if $VBoxContainer.get_child_count() < MAX_VISIBLE_PLAYERS:
-		var new_score_bar = ScoreBarResource.instance()
-		new_score_bar._change_assigned_player(new_player_dict)
-		new_score_bar.manager = self
-		$VBoxContainer.add_child(new_score_bar)
 	_update_scores()
 
 func _remove_player(body):
 	for player_dict in player_list:
 		if player_dict.body == body:
+			for score_bar in $VBoxContainer.get_children():
+				if score_bar == player_dict.score_bar:
+					$VBoxContainer.remove_child(score_bar)
 			player_list.erase(player_dict)
 			_update_scores()
 			return
@@ -70,6 +74,7 @@ func _on_player_killed(body):
 			player_dict.score = int(player_dict.score * (1 - SCORE_LOST_ON_DEATH))
 			player_dict.ticks_alive = 0
 			player_dict.deaths += 1
+			player_dict.score_bar._update_other(player_dict.deaths, null)
 			_update_scores()
 			return
 
@@ -88,7 +93,7 @@ func _on_flag_taken(body):
 	for player_dict in player_list:
 		if player_dict.body == body:
 			player_dict.wins += 1
-			_update_scores()
+			player_dict.score_bar._update_other(null, player_dict.wins)
 			return
 
 func _sort_scores(a, b):
@@ -96,18 +101,13 @@ func _sort_scores(a, b):
 
 func _update_scores():
 	player_list.sort_custom(self, "_sort_scores")
+	for i in range(player_list.size()):
+		$VBoxContainer.move_child(player_list[i].score_bar, i)
 	total_score = 0
 	for player_dict in player_list:
 		total_score += player_dict.score
-	_update_scoreboard()
-
-func _update_scoreboard():
-	var top_players = player_list.slice(0, min(player_list.size(), MAX_VISIBLE_PLAYERS))
-	if $VBoxContainer.get_children() != top_players:
-		for i in range($VBoxContainer.get_child_count()):
-			$VBoxContainer.get_child(i)._change_assigned_player(top_players[i])
-	for score_bar in $VBoxContainer.get_children():
-		score_bar._update(total_score == 0)
+	for player_dict in player_list: # No se me ocurre cómo hacerlo sin dos loops
+		player_dict.score_bar._update_score(player_dict.score, total_score)
 
 func _timer_ticked():
 	var fastest_player_dict = player_list[0]
