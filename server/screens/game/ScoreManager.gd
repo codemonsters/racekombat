@@ -15,6 +15,8 @@ extends Node2D
 # más adelantada gana puntos. Cada varios ticks los jugadores que no hayan muerto en un tiempo considerable
 # ganan puntos; los puntos ganados también aumentan con el tiempo, similar a una exponencial menos inclinada.
 
+const ScoreBarResource = preload("res://screens/game/Score Bar.tscn")
+
 const MAX_VISIBLE_PLAYERS = 3
 const TICK_TIME = .5 # En segundos
 const FAST_SCORE_BONUS = 5
@@ -24,6 +26,7 @@ const ALIVE_BASE_BONUS = 5
 const SCORE_LOST_ON_DEATH = .2 # En fracción
 
 var player_list : Array
+var total_score : int
 onready var rect_list = $VBoxContainer.get_children()
 onready var waiting_room = owner
 
@@ -38,22 +41,27 @@ func _ready():
 	$Timer.connect("timeout", self, "_timer_ticked")
 
 func _add_player(body):
-	var temp_player_dict = {
+	var new_player_dict = {
 		body = null, # Player
 		score = 0,
 		wins = 0, # Veces que ha llegado primero a la meta
 		deaths = 0,
 		ticks_alive = 0
 	}
-	temp_player_dict.body = body
-	player_list.append(temp_player_dict)
-	_update_scoreboard()
+	new_player_dict.body = body
+	player_list.append(new_player_dict)
+	if $VBoxContainer.get_child_count() < MAX_VISIBLE_PLAYERS:
+		var new_score_bar = ScoreBarResource.instance()
+		new_score_bar._change_assigned_player(new_player_dict)
+		new_score_bar.manager = self
+		$VBoxContainer.add_child(new_score_bar)
+	_update_scores()
 
 func _remove_player(body):
 	for player_dict in player_list:
 		if player_dict.body == body:
 			player_list.erase(player_dict)
-			_update_scoreboard()
+			_update_scores()
 			return
 
 func _on_player_killed(body):
@@ -62,7 +70,7 @@ func _on_player_killed(body):
 			player_dict.score = int(player_dict.score * (1 - SCORE_LOST_ON_DEATH))
 			player_dict.ticks_alive = 0
 			player_dict.deaths += 1
-			_update_scoreboard()
+			_update_scores()
 			return
 
 func _on_run_started():
@@ -74,40 +82,32 @@ func _on_run_ended():
 		player_dict.score = 0
 		player_dict.deaths = 0
 		player_dict.ticks_alive = 0
-	_update_scoreboard()
+	_update_scores()
 
 func _on_flag_taken(body):
 	for player_dict in player_list:
 		if player_dict.body == body:
 			player_dict.wins += 1
-			_update_scoreboard()
+			_update_scores()
 			return
 
 func _sort_scores(a, b):
 	return not a.score <= b.score
 
-func _update_scoreboard():
+func _update_scores():
 	player_list.sort_custom(self, "_sort_scores")
-	var total_score : int
+	total_score = 0
 	for player_dict in player_list:
 		total_score += player_dict.score
-	print(total_score)
-	for i in range(min(player_list.size(), MAX_VISIBLE_PLAYERS)):
-		var colored = rect_list[i].get_node("Colored")
-		var other = rect_list[i].get_node("Other")
-		other.visible = true
-		colored.modulate = player_list[i].body.modulate
-		colored.get_node("Bar").color.a = .8
-		colored.get_node("Border").border_color.a = 1
-		colored.get_node("Background").color.a = .3
-		colored.get_node("Deaths BG").color = Color.darkgray
-		colored.get_node("Wins BG").color = Color.darkgray
-		if total_score != 0:
-			colored.get_node("Bar").rect_size.x = $VBoxContainer.rect_size.x * player_list[i].score / total_score
-		else:
-			colored.get_node("Bar").rect_size.x = $VBoxContainer.rect_size.x
-		other.get_node("Deaths").text = str(player_list[i].deaths)
-		other.get_node("Wins").text = str(player_list[i].wins)
+	_update_scoreboard()
+
+func _update_scoreboard():
+	var top_players = player_list.slice(0, min(player_list.size(), MAX_VISIBLE_PLAYERS))
+	if $VBoxContainer.get_children() != top_players:
+		for i in range($VBoxContainer.get_child_count()):
+			$VBoxContainer.get_child(i)._change_assigned_player(top_players[i])
+	for score_bar in $VBoxContainer.get_children():
+		score_bar._update(total_score == 0)
 
 func _timer_ticked():
 	var fastest_player_dict = player_list[0]
@@ -120,4 +120,4 @@ func _timer_ticked():
 			player_dict.score += int(ALIVE_BASE_BONUS + pow(ALIVE_BASE_BONUS, 3) * log(player_dict.ticks_alive / TICKS_ALIVE_FOR_BONUS))
 	
 	fastest_player_dict.score += FAST_SCORE_BONUS
-	_update_scoreboard()
+	_update_scores()

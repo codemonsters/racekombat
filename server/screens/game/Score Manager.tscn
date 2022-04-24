@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://screens/game/ScoreManager.gd" type="Script" id=1]
-[ext_resource path="res://screens/game/Score Bar.tscn" type="PackedScene" id=2]
 
 [node name="Score Manager" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,25 +9,5 @@ script = ExtResource( 1 )
 margin_right = 120.0
 margin_bottom = 120.0
 size_flags_stretch_ratio = 0.0
-
-[node name="Score Bar" parent="VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 120.0
-margin_bottom = 40.0
-
-[node name="Score Bar2" parent="VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 44.0
-margin_right = 120.0
-margin_bottom = 84.0
-
-[node name="Score Bar3" parent="VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 88.0
-margin_right = 120.0
-margin_bottom = 128.0
 
 [node name="Timer" type="Timer" parent="."]

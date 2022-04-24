@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/screens/game/skull_temp.png" type="Texture" id=1]
 [ext_resource path="res://assets/screens/game/flag_temp.png" type="Texture" id=2]
+[ext_resource path="res://screens/game/ScoreBar.gd" type="Script" id=3]
 
 [node name="Score Bar" type="Control"]
 anchor_right = 1.0
@@ -9,6 +10,7 @@ anchor_bottom = 1.0
 margin_right = -1280.0
 margin_bottom = -680.0
 rect_min_size = Vector2( 0, 40 )
+script = ExtResource( 3 )
 
 [node name="Colored" type="Control" parent="."]
 margin_bottom = 40.0
@@ -48,7 +50,6 @@ rect_min_size = Vector2( 42, 22 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="Other" type="Control" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
