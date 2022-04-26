@@ -15,9 +15,9 @@ func _update_score(score, total_score):
 	else:
 		$Colored/Bar.rect_size.x = get_parent().rect_size.x
 
-func _update_other(deaths, wins):
-	# Si deaths o wins son null, no se actualizarán
-	if deaths != null:
-		$Other/Deaths.text = str(deaths)
-	if wins != null:
-		$Other/Wins.text = str(wins)
+func _update_other(stat, new_amount):
+	match stat:
+		"deaths":
+			$Other/Deaths.text = str(new_amount)
+		"wins":
+			$Other/Wins.text = str(new_amount)

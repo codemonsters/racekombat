@@ -74,7 +74,7 @@ func _on_player_killed(body):
 			player_dict.score = int(player_dict.score * (1 - SCORE_LOST_ON_DEATH))
 			player_dict.ticks_alive = 0
 			player_dict.deaths += 1
-			player_dict.score_bar._update_other(player_dict.deaths, null)
+			player_dict.score_bar._update_other("deaths", player_dict.deaths)
 			_update_scores()
 			return
 
@@ -86,6 +86,7 @@ func _on_run_ended():
 	for player_dict in player_list:
 		player_dict.score = 0
 		player_dict.deaths = 0
+		player_dict.score_bar._update_other("deaths", player_dict.deaths)
 		player_dict.ticks_alive = 0
 	_update_scores()
 
@@ -93,7 +94,7 @@ func _on_flag_taken(body):
 	for player_dict in player_list:
 		if player_dict.body == body:
 			player_dict.wins += 1
-			player_dict.score_bar._update_other(null, player_dict.wins)
+			player_dict.score_bar._update_other("wins", player_dict.wins)
 			return
 
 func _sort_scores(a, b):
