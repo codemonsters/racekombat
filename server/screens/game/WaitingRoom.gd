@@ -125,7 +125,7 @@ func _on_KillAreaTop_body_entered(body):
 
 # Para evitar repetición en las KillAreas
 func _kill_player(player):
-	if player != null and player.get_node("Player SM").state.name == "Dead":
+	if player != null and player.get_node("Player SM").state.name != "Dead":
 		_respawn_player(player)
 
 func search_player_from_body(body):
