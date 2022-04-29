@@ -1,5 +1,6 @@
 extends State
 
+# var reset_vertical_vel = false
 
 func enter(_msg := {}) -> void:
 	# Check what kind of dash we tried: horizontal, vertical or both
@@ -28,8 +29,10 @@ func enter(_msg := {}) -> void:
 
 	if owner.input_direction_x != 0 and owner.input_direction_y == 0:
 		owner.apply_central_impulse(Vector2(owner.force_dash * owner.input_direction_x, 0))
-	elif owner.input_direction_x == 0 and owner.input_direction_y != 0:
-		owner.apply_central_impulse(Vector2(0, -owner.force_dash))
+	elif owner.input_direction_x == 0 and owner.input_direction_y > 0:
+		owner.upwards_dash = true #Flag that triggers upwards dash in Player.gd
+	elif owner.input_direction_x == 0 and owner.input_direction_y < 0:
+		owner.downwards_dash = true #Flag that triggers downwards dash in Player.gd
 	elif owner.input_direction_x == 0 and owner.input_direction_y == 0:
 		if owner.facingDirection == 1:
 			owner.apply_central_impulse(Vector2(owner.force_dash, 0))
@@ -43,5 +46,8 @@ func enter(_msg := {}) -> void:
 	$SmokeParticles.emitting = true
 	SfxManager.PlayerDashSound()
 
-func integrate_forces(state):
+func _integrate_forces(state):
+	# if reset_vertical_vel == true:
+	# 	state.linear_velocity.y = 0
+	# 	reset_vertical_vel = false
 	pass

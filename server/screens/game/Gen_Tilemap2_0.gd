@@ -8,16 +8,16 @@ extends Node2D
 
 
 const MAP_LENGTH = 500	# longitud del mapa (en tiles)
-const MAP_HEIGHT = -40 # altura del mapa (en tiles) un valor negativo hace que el mapa se genere hacia abajo y uno positivo que se genere hacia arriba tiene que tener un valor |min_altura| + 2 "valor absoluto"
-const FLOOR_CELL_ID = 2	# id del tipo de loseta que se usará para el suelo
+const MAP_HEIGHT = -20 # altura del mapa (en tiles) un valor negativo hace que el mapa se genere hacia abajo y uno positivo que se genere hacia arriba tiene que tener un valor |min_altura| + 2 "valor absoluto"
+const FLOOR_CELL_ID = 4	# id del tipo de loseta que se usará para el suelo
 const VACUM_CELL_ID = 1	# id del tipo de loseta que se usará para el vacío
 const POS_X_INICIAL = 0
 const POS_Y_INICIAL = 0 #Y esta invertida - es una pos_y mas alta y + una mas baja
 
 
-const FACTOR_ALTO_MONTICULOS = 50
-const MIN_ALTURA = -5	#Mínima altura de la variaciones en el suelo
-const MAX_ALTURA = 5	#Máxima altura de las variaciones en el suelo
+const FACTOR_ALTO_MONTICULOS = 25
+const MIN_ALTURA = -4	#Mínima altura de la variaciones en el suelo
+const MAX_ALTURA = 4	#Máxima altura de las variaciones en el suelo
 
 
 var noise = OpenSimplexNoise.new()
@@ -95,22 +95,22 @@ func _create_hueco(tilemap, lenght, height, min_height,max_height, pos_x, pos_y)
 	var width_huecos = 0 #Ancho de los huecos
 	var final_pos_huecos = 0
 	var bloques_en_final = 30 #Bloques que hay en la plataforma final
-	distance_entre_huecos = randi()%(lenght/10)+20 #Distance huecos coge valores entre 10 y 30
-	width_huecos = randi()%12+10 #Width huecos coge valores entre 10 y 22
+	distance_entre_huecos = randi()%(lenght/10) + 10 #Distance huecos coge valores entre 10 y 30
+	width_huecos = randi()%6 + 8 #Width huecos coge valores entre 10 y 22
 	while((final_pos_huecos+distance_entre_huecos) < lenght - bloques_en_final):
 		for x in range(final_pos_huecos + distance_entre_huecos, final_pos_huecos + distance_entre_huecos + width_huecos):
 			for y in range(height + 1, max_height + 1):
 					if x == final_pos_huecos + distance_entre_huecos + width_huecos - 1:
 							final_pos_huecos = pos_x + x
 							#Se reinician los valores
-							distance_entre_huecos = randi()%(lenght/10) + 20 
-							width_huecos = randi()%12+10 
+							distance_entre_huecos = randi()%(lenght/10) + 10
+							width_huecos = randi()%6 + 8
 					tilemap.set_cellv(Vector2(pos_x+x, pos_y-y), VACUM_CELL_ID)
 	tilemap.update_bitmask_region()
 	
 func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, pos_y):#Crea plataforma en el aire
-	var distance_entre_plataforma = 10 #Distancia entre los plataforma
-	var width_plataforma = 10 #Ancho de los plataforma
+	var distance_entre_plataforma = 20 #Distancia entre los plataforma
+	var width_plataforma = 7 #Ancho de los plataforma
 	var final_pos_plataforma = 20 #Pos_x del bloque final de cada plataforma
 	var distance = 0
 	var y_max_floor := []
@@ -121,7 +121,7 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 	var altura_anadida_hueco = 10 #Altura en la que se construye la plataforma cuando hay un hueco
 	while((final_pos_plataforma + distance_entre_plataforma) < lenght ):
 		distance = final_pos_plataforma + distance_entre_plataforma
-		altura_plataformas = 10 #Seteamos la altura dentro del while 
+		altura_plataformas = 5 #Seteamos la altura dentro del while 
 		altura_plataformas = altura_plataformas + randi()%6
 		for x in range(distance, distance + width_plataforma):
 			for y in range(min_height, max_height + 1):
@@ -132,9 +132,9 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 				y_max.append(y_max_floor.max())
 				y_max_floor.clear()
 		if y_max.max() == y_max.min():
-			altura_anadida_hueco = 10
+			altura_anadida_hueco = 1
 			platform_avaliable = true
-		elif y_max.max() - y_max.min() < 7:
+		elif y_max.max() - y_max.min() < 4:
 			altura_anadida_hueco = 0
 			platform_avaliable = true
 		else:
