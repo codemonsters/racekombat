@@ -16,32 +16,36 @@ script = ExtResource( 3 )
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 
-[node name="Border" type="ReferenceRect" parent="Colored"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 120, 40 )
-border_color = Color( 1, 1, 1, 0 )
-editor_only = false
-
 [node name="Bar" type="ColorRect" parent="Colored"]
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Background" type="ColorRect" parent="Colored"]
+[node name="UI" type="Control" parent="Colored"]
 margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Border" type="ReferenceRect" parent="Colored/UI"]
+margin_right = 120.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+border_color = Color( 1, 1, 1, 0 )
+editor_only = false
+
+[node name="Background" type="ColorRect" parent="Colored/UI"]
+margin_right = 120.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Deaths BG" type="ColorRect" parent="Colored"]
+[node name="Deaths BG" type="ColorRect" parent="Colored/UI"]
 margin_top = 9.0
 margin_right = 42.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 42, 22 )
 color = Color( 1, 1, 1, 0 )
 
-[node name="Wins BG" type="ColorRect" parent="Colored"]
+[node name="Wins BG" type="ColorRect" parent="Colored/UI"]
 margin_left = 47.0
 margin_top = 9.0
 margin_right = 89.0
