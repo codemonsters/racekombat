@@ -81,8 +81,8 @@ func _on_DoorOpeningArea_body_exited(body):
 
 
 func _create_meta(area): #Crea la meta con su posición x e y
-	area.position.x = get_parent().get_node("Waiting Room/Tilemap 2_0").MAP_LENGTH*16+1280 #Modificar solo el primer parámetro
-	area.position.y = -10*16+720
+	area.position.x = get_parent().get_node("Waiting Room/Tilemap 2_0").MAP_LENGTH*32+1280 #Modificar solo el primer parámetro
+	area.position.y = -10*32+720
 
 
 func _on_Meta_body_entered(body):
