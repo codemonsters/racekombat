@@ -108,6 +108,10 @@ func _teleport_to_waiting_room():
 	GamePad.search_for_controllers()
 	emit_signal("run_ended")
 
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		_teleport_to_waiting_room()
+
 
 func _on_KillArea_body_entered(body):
 	_kill_player(search_player_from_body(body))

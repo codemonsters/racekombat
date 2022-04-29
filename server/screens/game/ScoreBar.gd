@@ -1,6 +1,9 @@
 extends Control
 
+const SPEED = 50
+
 var manager
+var target_position := 0
 
 func _ready():
 	$Colored/Bar.color.a = .8
@@ -9,15 +12,23 @@ func _ready():
 	$"Colored/UI/Deaths BG".color = Color.darkgray
 	$"Colored/UI/Wins BG".color = Color.darkgray
 	
+	$Colored/Bar.rect_size.x = get_parent().rect_size.x
+	
 	manager.waiting_room.connect("run_started", self, "_change_other_visibility")
 	manager.waiting_room.connect("run_ended", self, "_change_other_visibility")
 
+func _process(delta):
+	if $Colored/Bar.rect_position.x < target_position:
+		$Colored/Bar.rect_position.x += SPEED * delta
+	elif $Colored/Bar.rect_position.x > target_position:
+		$Colored/Bar.rect_position.x -= SPEED * delta
+	$Colored/Bar.rect_position.x = round($Colored/Bar.rect_position.x)
+
 func _update_score(score, total_score):
 	if total_score != 0:
-		$Colored/Bar.rect_size.x = get_parent().rect_size.x * score / manager.total_score
-		$Colored/Bar.rect_position.x = get_parent().rect_size.x - $Colored/Bar.rect_size.x
+		target_position = get_parent().rect_size.x - get_parent().rect_size.x * score / manager.total_score
 	else:
-		$Colored/Bar.rect_size.x = get_parent().rect_size.x
+		target_position = 0
 
 func _update_other(stat, new_amount):
 	match stat:
