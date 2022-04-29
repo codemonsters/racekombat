@@ -1,17 +1,12 @@
 extends RigidBody2D
 
 var velocity = Vector2()
-# export var gravity = 1000
 export var speed_run = 300
 export var force_run = 1500
 export var speed_jump = 600
-# export var force_jump = 600
-# export var speed_dash = 1200
-export var force_dash = 500
+export var force_dash = 700
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
-# export var floorAcceleration = 20
-# export var airAcceleration = 10
 var defaultSnap = Vector2.DOWN * 15
 var snap = defaultSnap
 var input_direction_x := 0.0
@@ -19,6 +14,9 @@ var input_direction_y := 0.0
 var facingDirection = 1 # 0 = Izquierda | 1 = Derecha
 var on_floor = false
 var collision_number = 0
+
+var upwards_dash = false #Flag that triggers upward dash
+var downwards_dash = false #Flag that triggers downwards dash
 
 
 func _ready():
@@ -58,22 +56,6 @@ func _handle_input(action, is_pressed):
 	input_direction_x = clamp(input_direction_x, -1.0, 1.0)
 	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
 
-
-# func _physics_process(delta):
-# 	if input_direction_x < 0.0:
-# 		self.add_central_force(Vector2(-speed_run, 0))	
-# 		# print(test_motion(Vector2(-speed_run, 0)))
-# 	elif input_direction_x == 0.0:
-# 		# self.set_inertia(2000)
-# 		print(self.get_linear_velocity())
-# 		# print(test_motion(Vector2(-speed_run, 0)))
-# 		pass
-# 	elif input_direction_x > 0.0:
-# 		self.add_central_force(Vector2(speed_run, 0))
-# 		# print(test_motion(Vector2(speed_run, 0)))
-
-
-
 func _jump():
 	# TODO: CHAPUZA
 	if on_floor:
@@ -97,8 +79,16 @@ func _dash():
 func is_on_floor():
 	return on_floor
 
-
 func _integrate_forces(state):
+	if upwards_dash == true:
+		linear_velocity.y = 0
+		apply_impulse(Vector2.ZERO, Vector2(0,-force_dash))
+		upwards_dash = false
+	if downwards_dash == true:
+		linear_velocity.y = 0
+		apply_impulse(Vector2.ZERO, Vector2(0,force_dash))
+		downwards_dash = false
+
 	if input_direction_x < 0.0 && linear_velocity.x > -speed_run:
 		applied_force = Vector2(-force_run, 0)
 	elif input_direction_x > 0.0 && linear_velocity.x < speed_run:

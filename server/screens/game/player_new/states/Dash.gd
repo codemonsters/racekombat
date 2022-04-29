@@ -29,9 +29,10 @@ func enter(_msg := {}) -> void:
 
 	if owner.input_direction_x != 0 and owner.input_direction_y == 0:
 		owner.apply_central_impulse(Vector2(owner.force_dash * owner.input_direction_x, 0))
-	elif owner.input_direction_x == 0 and owner.input_direction_y != 0:
-		# reset_vertical_vel = true
-		owner.apply_central_impulse(Vector2(0, -owner.force_dash))
+	elif owner.input_direction_x == 0 and owner.input_direction_y > 0:
+		owner.upwards_dash = true #Flag that triggers upwards dash in Player.gd
+	elif owner.input_direction_x == 0 and owner.input_direction_y < 0:
+		owner.downwards_dash = true #Flag that triggers downwards dash in Player.gd
 	elif owner.input_direction_x == 0 and owner.input_direction_y == 0:
 		if owner.facingDirection == 1:
 			owner.apply_central_impulse(Vector2(owner.force_dash, 0))
