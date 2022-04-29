@@ -3,11 +3,11 @@ extends RigidBody2D
 var velocity = Vector2()
 # export var gravity = 1000
 export var speed_run = 300
-export var force_run = 1000
+export var force_run = 1500
 export var speed_jump = 600
 # export var force_jump = 600
 # export var speed_dash = 1200
-export var force_dash = 800
+export var force_dash = 500
 onready var animatedSprite = $AnimatedSprite
 export var inicialMult := 1.0
 # export var floorAcceleration = 20
@@ -99,17 +99,12 @@ func is_on_floor():
 
 
 func _integrate_forces(state):
-	if input_direction_x < 0.0 && abs(linear_velocity.x) < speed_run:
-		friction = 0
+	if input_direction_x < 0.0 && linear_velocity.x > -speed_run:
 		applied_force = Vector2(-force_run, 0)
-	# elif input_direction_x == 0.0:
-	# 	applied_force = Vector2(0, 0)
-	elif input_direction_x > 0.0 && abs(linear_velocity.x) < speed_run:
-		friction = 0
+	elif input_direction_x > 0.0 && linear_velocity.x < speed_run:
 		applied_force = Vector2(force_run, 0)
 	else:
 		applied_force = Vector2(0, 0)
-		friction = 0.4
 	$"Player SM".integrate_forces(state)
 
 	# For debugging collisions

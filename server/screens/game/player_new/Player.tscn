@@ -27,7 +27,7 @@
 [ext_resource path="res://screens/game/player_new/states/Dead.gd" type="Script" id=25]
 
 [sub_resource type="PhysicsMaterial" id=4]
-friction = 0.0
+friction = 0.8
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
