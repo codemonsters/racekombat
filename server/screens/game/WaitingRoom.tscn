@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L3.png" type="Texture" id=10]
 [ext_resource path="res://assets/tileset.png" type="Texture" id=11]
 [ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
@@ -648,6 +649,9 @@ color = Color( 1, 1, 1, 0.392157 )
 
 [node name="Score Manager" parent="CanvasLayer" instance=ExtResource( 12 )]
 position = Vector2( 1160, 0 )
+
+[node name="trampoline" parent="." instance=ExtResource( 13 )]
+position = Vector2( 793, 593 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
