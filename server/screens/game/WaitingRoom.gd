@@ -58,14 +58,15 @@ func player_disconnect(_controller):
 
 
 func _on_Limite_body_entered(body):
+	$Limite.set_deferred("monitoring", false)
 	$Meta.set_deferred("monitoring", true)
 	$Camera2D.speed = $Camera2D.base_speed
 	SfxManager.PlayerStartSound()
+	GamePad.stop_search_for_controllers()
+	emit_signal("run_started")
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.set_deferred("monitoring", true)
 	$Camera2D/KillArea.visible = true
-	GamePad.stop_search_for_controllers()
-	emit_signal("run_started")
 
 
 func _on_DoorOpeningArea_body_entered(body):
@@ -95,6 +96,7 @@ func _on_Meta_body_entered(body):
 			_teleport_to_waiting_room()
 
 func _teleport_to_waiting_room():
+	$Limite.set_deferred("monitoring", true)
 	$Camera2D.position = Vector2(640, 360)
 	$Camera2D.speed = 0
 	$Camera2D/KillArea.set_deferred("monitoring", false)
