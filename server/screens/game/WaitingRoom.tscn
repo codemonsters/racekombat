@@ -14,6 +14,7 @@
 [ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
 [ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
 
+
 [sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
