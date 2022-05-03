@@ -28,7 +28,7 @@ var y_max_speed := 50
 # Variable en la que se almacena el Tilemap
 var _tilemap
 # Tamaño de los tiles
-onready var tile_side : int = _tilemap.get_node("TileMap").cell_size.x
+onready var tile_side : int 
 # Tamaño de la cámara medido en tiles
 onready var camera_width := get_viewport().size.x
 
@@ -101,6 +101,8 @@ func get_camera_average_y_values():
 
 func _on_Tilemap_2_0_tilemap_generated():
 	_tilemap = get_node("/root/Main/CurrentScene/Waiting Room/Tilemap 2_0")
+	tile_side = _tilemap.get_node("TileMap").cell_size.x
 	_alturas_medias_tilemap = _tilemap.calcular_y_media()
-	yield(self, "ready")
+	print("W")
+#	yield(self, "ready")
 	alturas_medias_camara = get_camera_average_y_values()

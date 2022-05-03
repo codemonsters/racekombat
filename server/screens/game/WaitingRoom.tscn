@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L3.png" type="Texture" id=10]
 [ext_resource path="res://assets/tileset.png" type="Texture" id=11]
 [ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -426,6 +428,7 @@ extents = Vector2( 73, 956 )
 
 [node name="Waiting Room" type="Node2D"]
 script = ExtResource( 1 )
+CourseResource = ExtResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2( 2, 3 )
@@ -494,9 +497,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpeningArea"]
 shape = SubResource( 42 )
-
-[node name="Tilemap 2_0" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1216, 609 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 360 )
@@ -601,10 +601,12 @@ color = Color( 1, 1, 1, 0.392157 )
 [node name="Score Manager" parent="CanvasLayer" instance=ExtResource( 12 )]
 position = Vector2( 1160, 0 )
 
+[node name="trampoline" parent="." instance=ExtResource( 13 )]
+position = Vector2( 793, 593 )
+
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]
 [connection signal="body_exited" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_exited"]
-[connection signal="tilemap_generated" from="Tilemap 2_0" to="Camera2D" method="_on_Tilemap_2_0_tilemap_generated"]
 [connection signal="body_entered" from="Camera2D/KillArea" to="." method="_on_KillArea_body_entered"]
 [connection signal="body_entered" from="Camera2D/KillAreaFloor" to="." method="_on_KillAreaFloor_body_entered"]
 [connection signal="body_entered" from="Camera2D/KillAreaLeft" to="." method="_on_KillAreaLeft_body_entered"]

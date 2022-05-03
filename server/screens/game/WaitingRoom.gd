@@ -4,6 +4,7 @@ var players : Array
 var player_id := 0
 var bodies_in_door = []
 
+export(PackedScene) var CourseResource
 
 const PlayerResource = preload("res://screens/game/player_new/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
@@ -20,8 +21,13 @@ signal flag_taken
 
 func _ready():
 	MusicManager.WaitingRoomMusicPlay()
+	var course = CourseResource.instance()
+	course.position = Vector2(1216, 609)
+	add_child(course)
+	$Camera2D._on_Tilemap_2_0_tilemap_generated()
 	_create_meta($Meta)
 	$Meta.set_deferred("monitoring", false)
+	
 
 func controller_input(_controller, action, _is_main, is_pressed):
 	var player_found := false
