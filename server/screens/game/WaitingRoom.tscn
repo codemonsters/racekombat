@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/tileset.png" type="Texture" id=11]
 [ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
 [ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
-
 
 [sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )

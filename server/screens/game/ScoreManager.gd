@@ -54,6 +54,8 @@ func _add_player(body):
 	new_score_bar.manager = self
 	new_score_bar.get_node("Colored").modulate = new_player_dict.body.modulate
 	$VBoxContainer.add_child(new_score_bar)
+	new_score_bar._update_other("deaths", 0)
+	new_score_bar._update_other("wins", 0)
 	new_player_dict.score_bar = new_score_bar
 	player_list.append(new_player_dict)
 	_update_scores()
