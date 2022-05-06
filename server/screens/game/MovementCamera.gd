@@ -83,7 +83,6 @@ func get_camera_speed_multiplier():
 # Esta altura es la media de las posiciones y del tilemap que ve la cámara en cada punto.
 # Unidades expresadas en celdas
 func get_camera_average_y_values():
-	print(get_viewport().size.x)
 	var camera_width_in_cells := camera_width / tile_side # TODO: Resolver este cálculo en tiempo de ejecución
 	var resultados := []
 	for camera_x in range(_alturas_medias_tilemap.size()):
@@ -103,6 +102,5 @@ func _on_Tilemap_2_0_tilemap_generated():
 	_tilemap = get_node("/root/Main/CurrentScene/Waiting Room/Tilemap 2_0")
 	tile_side = _tilemap.get_node("TileMap").cell_size.x
 	_alturas_medias_tilemap = _tilemap.calcular_y_media()
-	print("W")
 #	yield(self, "ready")
 	alturas_medias_camara = get_camera_average_y_values()

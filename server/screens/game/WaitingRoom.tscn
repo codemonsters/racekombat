@@ -1,10 +1,10 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
 [ext_resource path="res://screens/game/objects/Arrows.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/objects/Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://screens/game/Tilemap2_0.tscn" type="PackedScene" id=5]
+[ext_resource path="res://screens/game/courses/world1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://screens/game/MovementCamera.gd" type="Script" id=6]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L4.png" type="Texture" id=7]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L2.png" type="Texture" id=8]
@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/tileset.png" type="Texture" id=11]
 [ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
 [ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
-
 
 [sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )

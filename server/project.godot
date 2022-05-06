@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "UI_Builder",
 "language": "GDScript",
 "path": "res://addons/GodotGamePad/UI_builder_functions.gd"
+}, {
+"base": "Node2D",
+"class": "Worlds",
+"language": "GDScript",
+"path": "res://screens/game/courses/Worlds.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
@@ -69,7 +74,8 @@ _global_script_class_icons={
 "KeyboardController": "",
 "State": "",
 "StateMachine": "",
-"UI_Builder": ""
+"UI_Builder": "",
+"Worlds": ""
 }
 
 [application]
