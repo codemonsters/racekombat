@@ -56,6 +56,7 @@ func _add_player(body):
 	$VBoxContainer.add_child(new_score_bar)
 	new_score_bar._update_other("deaths", 0)
 	new_score_bar._update_other("wins", 0)
+	new_score_bar._change_visibility("deaths")
 	new_player_dict.score_bar = new_score_bar
 	player_list.append(new_player_dict)
 	_update_scores()
@@ -81,6 +82,10 @@ func _on_player_killed(body):
 			return
 
 func _on_run_started():
+	for player_dict in player_list:
+		player_dict.score_bar._change_visibility("ui")
+		player_dict.score_bar._change_visibility("wins")
+		player_dict.score_bar._change_visibility("deaths")
 	$Timer.start()
 
 func _on_run_ended():
@@ -89,6 +94,9 @@ func _on_run_ended():
 		player_dict.score = 0
 		player_dict.deaths = 0
 		player_dict.score_bar._update_other("deaths", player_dict.deaths)
+		player_dict.score_bar._change_visibility("ui")
+		player_dict.score_bar._change_visibility("wins")
+		player_dict.score_bar._change_visibility("deaths")
 		player_dict.ticks_alive = 0
 	_update_scores()
 

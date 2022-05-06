@@ -9,7 +9,6 @@ func _ready():
 	$Colored/Bar.color.a = .8
 	$Colored/UI/Border.border_color.a = 1
 	$Colored/UI/Background.color.a = .3
-	$"Colored/UI/Deaths BG".color = Color.darkgray
 	$"Colored/UI/Wins BG".color = Color.darkgray
 	
 	$Colored/Bar.rect_size.x = get_parent().rect_size.x
@@ -33,10 +32,15 @@ func _update_score(score, total_score):
 func _update_other(stat, new_amount):
 	match stat:
 		"deaths":
-			$Other/Deaths.text = str(new_amount)
+			$Other/Deaths/Label.text = str(new_amount)
 		"wins":
-			$Other/Wins.text = str(new_amount)
+			$Other/Wins/Label.text = str(new_amount)
 
-func _change_other_visibility():
-	$Colored/UI.visible = not $Colored/UI.visible
-	$Other.visible = not $Other.visible
+func _change_visibility(target):
+	match target:
+		"ui":
+			$Colored/UI.visible = not $Colored/UI.visible
+		"deaths":
+			$Other/Deaths.visible = not $Other/Deaths.visible
+		"wins":
+			$Other/Wins.visible = not $Other/Wins.visible
