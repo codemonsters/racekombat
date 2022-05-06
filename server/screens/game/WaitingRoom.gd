@@ -67,6 +67,7 @@ func _on_Limite_body_entered(body):
 	$Limite.set_deferred("monitoring", false)
 	$Meta.set_deferred("monitoring", true)
 	$Camera2D.speed = $Camera2D.base_speed
+	$"CanvasLayer/Progress Bar".visible = true
 	SfxManager.PlayerStartSound()
 	GamePad.stop_search_for_controllers()
 	emit_signal("run_started")
@@ -107,6 +108,7 @@ func _teleport_to_waiting_room():
 	$Camera2D.speed = 0
 	$Camera2D/KillArea.set_deferred("monitoring", false)
 	$Camera2D/KillArea.visible = false
+	$"CanvasLayer/Progress Bar".visible = false
 	$"Tilemap 2_0"._create_tilemap()
 	for player in players:
 		_kill_player(player.values()[0])
