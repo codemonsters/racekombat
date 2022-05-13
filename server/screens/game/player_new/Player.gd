@@ -18,6 +18,7 @@ var collision_number = 0
 var upwards_dash = false #Flag that triggers upward dash
 var downwards_dash = false #Flag that triggers downwards dash
 
+var enabled = true
 
 func _ready():
 	_start_dash_tween()
@@ -80,26 +81,29 @@ func is_on_floor():
 	return on_floor
 
 func _integrate_forces(state):
-	if upwards_dash == true:
-		linear_velocity.y = 0
-		apply_impulse(Vector2.ZERO, Vector2(0,-force_dash))
-		upwards_dash = false
-	if downwards_dash == true:
-		linear_velocity.y = 0
-		apply_impulse(Vector2.ZERO, Vector2(0,force_dash))
-		downwards_dash = false
+	if enabled:
+		if upwards_dash == true:
+			linear_velocity.y = 0
+			apply_impulse(Vector2.ZERO, Vector2(0,-force_dash))
+			upwards_dash = false
+		if downwards_dash == true:
+			linear_velocity.y = 0
+			apply_impulse(Vector2.ZERO, Vector2(0,force_dash))
+			downwards_dash = false
 
-	if input_direction_x < 0.0 && linear_velocity.x > -speed_run:
-		applied_force = Vector2(-force_run, 0)
-	elif input_direction_x > 0.0 && linear_velocity.x < speed_run:
-		applied_force = Vector2(force_run, 0)
+		if input_direction_x < 0.0 && linear_velocity.x > -speed_run:
+			applied_force = Vector2(-force_run, 0)
+		elif input_direction_x > 0.0 && linear_velocity.x < speed_run:
+			applied_force = Vector2(force_run, 0)
+		else:
+			applied_force = Vector2(0, 0)
+		$"Player SM".integrate_forces(state)
+
+		# For debugging collisions
+		# if collision_number < 0:
+		# 	print(self.name + ":" + str(collision_number))
 	else:
-		applied_force = Vector2(0, 0)
-	$"Player SM".integrate_forces(state)
-
-	# For debugging collisions
-	# if collision_number < 0:
-	# 	print(self.name + ":" + str(collision_number))
+		sleeping = true
 
 func _on_FeetSensor_body_entered(body):
 	if "PlayerNew" in body.name:

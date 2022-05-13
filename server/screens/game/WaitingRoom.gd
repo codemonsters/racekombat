@@ -99,8 +99,13 @@ func _on_Meta_body_entered(body):
 			$Meta.set_deferred("monitoring", false)
 			print("Llegaste a la meta")
 			emit_signal("flag_taken", player.values()[0]) # Envía al ganador
-			yield(get_tree().create_timer(3.0), "timeout")
+			_disable_players()
+			yield(get_tree().create_timer(1.0), "timeout")
 			_teleport_to_waiting_room()
+
+func _disable_players():
+	for player in players:
+		player.values()[0].enabled = false
 
 func _teleport_to_waiting_room():
 	$Limite.set_deferred("monitoring", true)
@@ -113,6 +118,7 @@ func _teleport_to_waiting_room():
 	for player in players:
 		_kill_player(player.values()[0])
 		yield(get_tree().create_timer(0.5), "timeout")
+		player.values()[0].enabled = true
 	GamePad.search_for_controllers()
 	emit_signal("run_ended")
 

@@ -14,5 +14,6 @@ func integrate_forces(state):
 	
 
 func exit():
-	owner.set_linear_velocity(Vector2.ZERO)
+	owner.set_mode(RigidBody2D.MODE_STATIC)
+	owner.set_mode(RigidBody2D.MODE_CHARACTER)
 	owner.visible = true
