@@ -6,7 +6,7 @@ var bodies_in_door = []
 
 export(PackedScene) var CourseResource
 
-const PlayerResource = preload("res://screens/game/player_new/Player.tscn")
+const PlayerResource = preload("res://screens/game/player/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
 const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color("634191")]
 #const PlayerResource = preload("res://screens/game/player/Player.tscn")

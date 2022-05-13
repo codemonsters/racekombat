@@ -1,30 +1,26 @@
-extends Node2D
+extends Worlds
+
 
 #Sobre el tilemap: El origen de coordenadas (0,0) coincide con la posicion de salida de los jugadores
 #Todas las distancias y posiciones se expresan en tiles un tile mide 16x16
 #El suelo se genera con una funcion de ruido y su pos_y fluctua entre MIN_ALTURA y MAX_ALTURA 
 #En el eje x todo el escenario esta comprendido entre 0 y MAP_LENGTH
 
-
-
-const MAP_LENGTH = 500	# longitud del mapa (en tiles)
-const MAP_HEIGHT = -20 # altura del mapa (en tiles) un valor negativo hace que el mapa se genere hacia abajo y uno positivo que se genere hacia arriba tiene que tener un valor |min_altura| + 2 "valor absoluto"
-const FLOOR_CELL_ID = 4	# id del tipo de loseta que se usará para el suelo
-const VACUM_CELL_ID = 1	# id del tipo de loseta que se usará para el vacío
-const POS_X_INICIAL = 0
-const POS_Y_INICIAL = 0 #Y esta invertida - es una pos_y mas alta y + una mas baja
-
-
-const FACTOR_ALTO_MONTICULOS = 25
-const MIN_ALTURA = -4	#Mínima altura de la variaciones en el suelo
-const MAX_ALTURA = 4	#Máxima altura de las variaciones en el suelo
-
+var FACTOR_ALTO_MONTICULOS = 25
+var POS_X_INICIAL = 0
+var POS_Y_INICIAL = 0 #Y esta invertida - es una pos_y mas alta y + una mas baja
 
 var noise = OpenSimplexNoise.new()
 
 signal tilemap_generated
 
 func _ready():
+	MAP_LENGTH = 500	# longitud del mapa (en tiles)
+	MAP_HEIGHT = -20 # altura del mapa (en tiles) un valor negativo hace que el mapa se genere hacia abajo y uno positivo que se genere hacia arriba tiene que tener un valor |min_altura| + 2 "valor absoluto"
+	FLOOR_CELL_ID = 4	# id del tipo de loseta que se usará para el suelo
+	VACUM_CELL_ID = 1	# id del tipo de loseta que se usará para el vacío
+	MIN_ALTURA = -4	#Mínima altura de la iaciones en el suelo
+	MAX_ALTURA = 4	#Máxima altura de las iaciones en el suelo
 	_create_tilemap()
 
 func _create_tilemap():
@@ -37,26 +33,7 @@ func _create_tilemap():
 	_create_plataforma($TileMap, MAP_LENGTH, MAP_HEIGHT, MIN_ALTURA, MAX_ALTURA, 0, POS_Y_INICIAL)
 	emit_signal("tilemap_generated")
 
-func calcular_y_media():
-	var resultados := []
-	for x in range(MAP_LENGTH):
-		var coordenadasy_suelos := []
-		var dentro_de_solido := false
-		for y in range(-MAX_ALTURA, -MIN_ALTURA + 1):
-			var cell_id = $TileMap.get_cell(x, y)
-			if cell_id == FLOOR_CELL_ID and not dentro_de_solido:
-				dentro_de_solido = true
-				coordenadasy_suelos.append(y)
-			elif cell_id == VACUM_CELL_ID:
-				dentro_de_solido = false
-		if coordenadasy_suelos.size() == 0:
-			resultados.append(null)
-		else:
-			var sum = 0
-			for coordenaday in coordenadasy_suelos:
-				sum += coordenaday
-			resultados.append(sum / coordenadasy_suelos.size())
-	return resultados
+
 
 # Añade a tilemap un suelo de ancho width y de profundidad height a partir de la posición (pox_x, pos_y)
 func _anhade_suelo_con_monticulos(tilemap, length, height, min_height, max_height, pos_x, pos_y):
@@ -117,7 +94,7 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 	var y_max := []
 	var platform_avaliable = false
 	var altura_plataformas = 0 #Altura en la que se construye la plataforma contando desde la altura del tile mas alto
-	var grosor_plataformas = 3
+	var grosor_plataformas = 2
 	var altura_anadida_hueco = 10 #Altura en la que se construye la plataforma cuando hay un hueco
 	while((final_pos_plataforma + distance_entre_plataforma) < lenght ):
 		distance = final_pos_plataforma + distance_entre_plataforma
@@ -134,7 +111,7 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 		if y_max.max() == y_max.min():
 			altura_anadida_hueco = 1
 			platform_avaliable = true
-		elif y_max.max() - y_max.min() < 4:
+		elif y_max.max() - y_max.min() < 5:
 			altura_anadida_hueco = 0
 			platform_avaliable = true
 		else:
