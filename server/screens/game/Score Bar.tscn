@@ -45,6 +45,11 @@ margin_bottom = 31.0
 rect_min_size = Vector2( 42, 22 )
 color = Color( 1, 1, 1, 0 )
 
+[node name="Reduced Bar" type="ColorRect" parent="Colored"]
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+color = Color( 1, 1, 1, 0 )
+
 [node name="Other" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0

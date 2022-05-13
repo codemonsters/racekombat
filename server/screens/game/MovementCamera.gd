@@ -103,6 +103,5 @@ func _on_Tilemap_2_0_tilemap_generated():
 	_tilemap = get_node("/root/Main/CurrentScene/Waiting Room/Tilemap 2_0")
 	tile_side = _tilemap.get_node("TileMap").cell_size.x
 	_alturas_medias_tilemap = _tilemap.calcular_y_media()
-	print("W")
 #	yield(self, "ready")
 	alturas_medias_camara = get_camera_average_y_values()

@@ -19,6 +19,14 @@ func _ready():
 		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_N, KEY_M)
 	)
 	
+	# Añadidos solo para hacer pruebas en las que se necesitan muchos jugadores
+#	controller_manager.add_controller(KeyboardController.new(controller_manager,
+#		KEY_T, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P)
+#	)
+#	controller_manager.add_controller(KeyboardController.new(controller_manager,
+#		KEY_F, KEY_G, KEY_H, KEY_J, KEY_K, KEY_L)
+#	)
+	
 	# Conecta la señal con la función. La hay que asignar a una variable pq sino 
 	# lanza un warning :S
 	var _im_just_trash = $CurrentScene/Menu.connect("change_to_saladeespera", self,

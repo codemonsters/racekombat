@@ -56,7 +56,7 @@ func _add_player(body):
 	$VBoxContainer.add_child(new_score_bar)
 	new_score_bar._update_other("deaths", 0)
 	new_score_bar._update_other("wins", 0)
-	new_score_bar._change_visibility("deaths")
+	new_score_bar._change_visibility("deaths", false)
 	new_player_dict.score_bar = new_score_bar
 	player_list.append(new_player_dict)
 	_update_scores()
@@ -83,9 +83,9 @@ func _on_player_killed(body):
 
 func _on_run_started():
 	for player_dict in player_list:
-		player_dict.score_bar._change_visibility("ui")
-		player_dict.score_bar._change_visibility("wins")
-		player_dict.score_bar._change_visibility("deaths")
+		player_dict.score_bar._change_visibility("ui", false)
+		player_dict.score_bar._change_visibility("wins", false)
+		player_dict.score_bar._change_visibility("deaths", true)
 	$Timer.start()
 
 func _on_run_ended():
@@ -93,10 +93,11 @@ func _on_run_ended():
 	for player_dict in player_list:
 		player_dict.score = 0
 		player_dict.deaths = 0
+		player_dict.score_bar._change_to_reduced_mode(false)
 		player_dict.score_bar._update_other("deaths", player_dict.deaths)
-		player_dict.score_bar._change_visibility("ui")
-		player_dict.score_bar._change_visibility("wins")
-		player_dict.score_bar._change_visibility("deaths")
+		player_dict.score_bar._change_visibility("ui", true)
+		player_dict.score_bar._change_visibility("wins", true)
+		player_dict.score_bar._change_visibility("deaths", false)
 		player_dict.ticks_alive = 0
 	_update_scores()
 
@@ -118,7 +119,12 @@ func _update_scores():
 	for player_dict in player_list:
 		total_score += player_dict.score
 	for player_dict in player_list: # No se me ocurre cómo hacerlo sin dos loops
-		player_dict.score_bar._update_score(player_dict.score, total_score)
+		if not player_list.find(player_dict, 0) > MAX_VISIBLE_PLAYERS - 1:
+			player_dict.score_bar._change_to_reduced_mode(false)
+			player_dict.score_bar._update_score(player_dict.score, total_score)
+		elif not $Timer.is_stopped():
+			player_dict.score_bar._change_to_reduced_mode(true)
+			player_dict.score_bar.target_position = player_list[MAX_VISIBLE_PLAYERS - 1].score_bar.get_node("Colored/Bar").rect_position.x
 
 func _timer_ticked():
 	var fastest_player_dict = player_list[0]
