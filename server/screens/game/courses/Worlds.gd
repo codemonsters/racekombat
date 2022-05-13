@@ -1,12 +1,12 @@
 class_name Worlds extends Node2D
 
 
-var MAP_LENGTH
-var MAP_HEIGHT
-var MAX_ALTURA
-var MIN_ALTURA
-var FLOOR_CELL_ID
-var VACUM_CELL_ID
+export var MAP_LENGTH: int
+export var MAP_HEIGHT: int
+export var MAX_ALTURA: int
+export var MIN_ALTURA: int
+export var FLOOR_CELL_ID: int
+export var VACUM_CELL_ID: int
 
 
 # Called when the node enters the scene tree for the first time.
