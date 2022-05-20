@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal change_to_saladeespera
+signal change_to_courses
 
 var active_button = 0
 
@@ -19,7 +20,8 @@ func _on_StartButton_pressed():
 	MusicManager.MenuMusicPlay(false)
 
 func _on_CourseButton_pressed():
-	pass
+	emit_signal("change_to_courses")
+	
 
 func _on_ExitButton_pressed():
 	get_tree().quit()
@@ -64,6 +66,7 @@ func controller_input(_controller, action, is_main, _is_pressed):
 			"action":
 				$Control.get_children()[active_button].set_pressed(true)
 				$Control.get_children()[active_button].emit_signal("pressed")
+
 
 func player_disconnect(_controller):
 	pass

@@ -167,9 +167,6 @@ theme = ExtResource( 30 )
 action_mode = 0
 text = "PLAY"
 expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CourseButton" type="Button" parent="Control"]
 anchor_left = 0.5
