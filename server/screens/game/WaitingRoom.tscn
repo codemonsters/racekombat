@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://screens/game/Score Manager.tscn" type="PackedScene" id=12]
 [ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
 [ext_resource path="res://screens/game/Progress Bar.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/fire_cannon.png" type="Texture" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=33]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -416,6 +417,44 @@ extents = Vector2( 243.778, 176.245 )
 [sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 73, 956 )
 
+[sub_resource type="AtlasTexture" id=79]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 460, 0, 230, 720 )
+
+[sub_resource type="AtlasTexture" id=80]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 690, 0, 230, 720 )
+
+[sub_resource type="AtlasTexture" id=81]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 920, 0, 230, 720 )
+
+[sub_resource type="AtlasTexture" id=82]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 230, 720 )
+
+[sub_resource type="AtlasTexture" id=83]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 230, 0, 230, 720 )
+
+[sub_resource type="SpriteFrames" id=84]
+animations = [ {
+"frames": [ SubResource( 79 ), SubResource( 80 ), SubResource( 81 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 82 ), SubResource( 83 ) ],
+"loop": true,
+"name": "start",
+"speed": 10.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=44]
 
 [sub_resource type="RectangleShape2D" id=45]
@@ -504,16 +543,16 @@ current = true
 script = ExtResource( 6 )
 
 [node name="KillArea" type="Area2D" parent="Camera2D"]
-visible = false
 position = Vector2( -640, -360 )
 collision_layer = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillArea"]
-position = Vector2( 73, 156 )
+position = Vector2( 77, 156 )
 shape = SubResource( 43 )
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/KillArea"]
+visible = false
 margin_top = -800.0
 margin_right = 146.0
 margin_bottom = 1080.0
@@ -521,6 +560,13 @@ color = Color( 0.980392, 0.00392157, 0.00392157, 0.470588 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Camera2D/KillArea"]
+position = Vector2( 93, 360 )
+frames = SubResource( 84 )
+animation = "start"
+frame = 1
+playing = true
 
 [node name="KillAreaFloor" type="Area2D" parent="Camera2D"]
 position = Vector2( -1280, 720 )
@@ -579,9 +625,6 @@ shape = SubResource( 16 )
 [node name="ColorRect" type="ColorRect" parent="Camera2D/KillAreaTop"]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Meta" type="Area2D" parent="."]
 scale = Vector2( 10, 72 )
@@ -590,9 +633,9 @@ scale = Vector2( 10, 72 )
 shape = SubResource( 47 )
 
 [node name="ColorRect" type="ColorRect" parent="Meta"]
-margin_left = -10.0
+margin_left = -10.1
 margin_top = -10.0
-margin_right = 10.0
+margin_right = 9.9
 margin_bottom = 10.0
 color = Color( 1, 1, 1, 0.392157 )
 

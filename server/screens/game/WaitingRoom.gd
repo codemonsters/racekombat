@@ -74,6 +74,7 @@ func _on_Limite_body_entered(body):
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.set_deferred("monitoring", true)
 	$Camera2D/KillArea.visible = true
+	$Camera2D/KillArea/AnimatedSprite.set_animation("default")
 
 
 func _on_DoorOpeningArea_body_entered(body):
@@ -112,7 +113,7 @@ func _teleport_to_waiting_room():
 	$Camera2D.position = Vector2(640, 360)
 	$Camera2D.speed = 0
 	$Camera2D/KillArea.set_deferred("monitoring", false)
-	$Camera2D/KillArea.visible = false
+	$Camera2D/KillArea/AnimatedSprite.set_animation("start")
 	$"CanvasLayer/Progress Bar".visible = false
 	$"Tilemap 2_0"._create_tilemap()
 	for player in players:
