@@ -58,23 +58,24 @@ func _handle_input(action, is_pressed):
 	input_direction_y = clamp(input_direction_y, -1.0, 1.0)
 
 func _jump():
-	# TODO: CHAPUZA
-	if on_floor:
-		self.set_axis_velocity(Vector2(0, -speed_jump))
+	if enabled:
+		if on_floor:
+			self.set_axis_velocity(Vector2(0, -speed_jump))
 
-	if $"Player SM".state.name != "Air":
-		SfxManager.PlayerJumpSound()
-		$"Player SM".transition_to("Air", {jump = true})
+		if $"Player SM".state.name != "Air":
+			SfxManager.PlayerJumpSound()
+			$"Player SM".transition_to("Air", {jump = true})
 
 func _dash():
-	if $DashCountdown.is_stopped():
-		$DashCountdown.start()
-		# $"Player SM/Dash/SmokeParticles".position = self.position
-		# $"Player SM/Dash/SmokeParticles".emitting = true
-		_start_dash_tween()
-#		$"Dash Bar".color = Color("ab9f9f")
-		$"Dash Bar".visible = true
-		$"Player SM".transition_to("Dash")
+	if enabled:
+		if $DashCountdown.is_stopped():
+			$DashCountdown.start()
+			# $"Player SM/Dash/SmokeParticles".position = self.position
+			# $"Player SM/Dash/SmokeParticles".emitting = true
+			_start_dash_tween()
+	#		$"Dash Bar".color = Color("ab9f9f")
+			$"Dash Bar".visible = true
+			$"Player SM".transition_to("Dash")
 
 
 func is_on_floor():
