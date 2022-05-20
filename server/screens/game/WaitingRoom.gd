@@ -154,9 +154,11 @@ func search_player_from_body(body):
 			return player.values()[0]
 
 func _respawn_player(player):
+	player.enabled = false
 	player.get_node("Player SM").transition_to("Dead")
 	emit_signal("player_killed", player)
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
+	player.enabled = true
 	player.get_node("Player SM").transition_to("Idle")
 	player.global_position = $"Camera2D".global_position - Vector2(100, 100)
 
