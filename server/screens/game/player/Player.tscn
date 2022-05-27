@@ -26,10 +26,10 @@
 [ext_resource path="res://assets/particles/smoke_06.png" type="Texture" id=24]
 [ext_resource path="res://assets/particles/smoke_02.png" type="Texture" id=25]
 
-[sub_resource type="PhysicsMaterial" id=4]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.8
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 19 ) ],
 "loop": true,
@@ -52,16 +52,16 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CanvasItemMaterial" id=9]
+[sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
-[sub_resource type="AnimatedTexture" id=11]
+[sub_resource type="AnimatedTexture" id=5]
 flags = 4
 frames = 10
 fps = 15.0
@@ -88,7 +88,7 @@ frame_9/delay_sec = 0.0
 [sub_resource type="RayShape2D" id=6]
 length = 2.0
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 30.0
 height = 26.0
 
@@ -97,14 +97,14 @@ extents = Vector2( 29, 4 )
 
 [node name="PlayerNew" type="RigidBody2D"]
 mode = 2
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 1 )
 contacts_reported = 5
 contact_monitor = true
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "idle"
 frame = 1
 playing = true
@@ -126,7 +126,7 @@ script = ExtResource( 15 )
 script = ExtResource( 2 )
 
 [node name="SmokeParticles" type="Particles2D" parent="Player SM/Dash"]
-material = SubResource( 9 )
+material = SubResource( 3 )
 position = Vector2( 0.588821, 0.314983 )
 scale = Vector2( 0.2, 0.2 )
 emitting = false
@@ -134,8 +134,8 @@ lifetime = 0.5
 one_shot = true
 randomness = 1.0
 visibility_rect = Rect2( -50.086, -50, 100, 100 )
-process_material = SubResource( 10 )
-texture = SubResource( 11 )
+process_material = SubResource( 4 )
+texture = SubResource( 5 )
 
 [node name="Dead" type="Node" parent="Player SM"]
 script = ExtResource( 1 )
@@ -164,7 +164,7 @@ rotation = -1.5708
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 12 )
+shape = SubResource( 7 )
 
 [node name="FeetSensor" type="Area2D" parent="."]
 position = Vector2( 0, 40 )
@@ -181,6 +181,8 @@ margin_top = -50.0
 margin_right = 24.0
 margin_bottom = -45.0
 
+[connection signal="body_shape_entered" from="." to="." method="_on_PlayerNew_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_PlayerNew_body_shape_exited"]
 [connection signal="body_entered" from="FeetSensor" to="." method="_on_FeetSensor_body_entered"]
 [connection signal="body_exited" from="FeetSensor" to="." method="_on_FeetSensor_body_exited"]
 [connection signal="tween_completed" from="Dash Tween" to="." method="_on_Dash_Tween_tween_completed"]
