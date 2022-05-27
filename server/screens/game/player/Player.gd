@@ -149,17 +149,12 @@ func _on_Dash_Tween_tween_completed(_object, _key):
 func _on_PlayerNew_body_shape_entered(body_id, body, body_shape, local_shape):
 	if body.name == "TileMap" and local_shape == 2:
 		touching_tilemap_right = true
-		print("Touching right")
 	elif body.name == "TileMap" and local_shape == 1:
 		touching_tilemap_left = true
-		print("Touching left")
 
 
 func _on_PlayerNew_body_shape_exited(body_id, body, body_shape, local_shape):
 	if body.name == "TileMap" and local_shape == 2:
 		touching_tilemap_right = false
-		print("Not touching right")
-
 	elif body.name == "TileMap" and local_shape == 1:
 		touching_tilemap_left = false
-		print("Not touching left")
