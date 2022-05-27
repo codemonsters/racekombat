@@ -26,7 +26,7 @@
 [ext_resource path="res://assets/particles/smoke_06.png" type="Texture" id=24]
 [ext_resource path="res://assets/particles/smoke_02.png" type="Texture" id=25]
 
-[sub_resource type="PhysicsMaterial" id=1]
+[sub_resource type="PhysicsMaterial" id=9]
 friction = 0.8
 
 [sub_resource type="SpriteFrames" id=2]
@@ -97,7 +97,7 @@ extents = Vector2( 29, 4 )
 
 [node name="PlayerNew" type="RigidBody2D"]
 mode = 2
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource( 9 )
 contacts_reported = 5
 contact_monitor = true
 script = ExtResource( 4 )
