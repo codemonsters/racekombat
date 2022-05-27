@@ -6,7 +6,7 @@
 size = 100
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0.2 )
 border_width_left = 10
 border_width_top = 10
@@ -24,11 +24,11 @@ expand_margin_top = 10.0
 expand_margin_bottom = 10.0
 shadow_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 0.2 )
 border_width_left = 10
 border_width_top = 10
@@ -48,7 +48,7 @@ shadow_color = Color( 1, 1, 1, 0 )
 
 [resource]
 Button/fonts/font = SubResource( 1 )
-Button/styles/focus = SubResource( 3 )
-Button/styles/hover = SubResource( 5 )
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 3 )
 Button/styles/normal = SubResource( 4 )
-Button/styles/pressed = SubResource( 6 )
+Button/styles/pressed = SubResource( 5 )

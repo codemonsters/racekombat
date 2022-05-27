@@ -73,7 +73,6 @@ func change_to_saladeespera():
 
 
 func change_to_courses():
-	print_debug("sdjhudfsj")
 	_change_screen(CourseScreenResource)
 
 

@@ -6,12 +6,12 @@ var active_button = Vector2(0, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Control/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer.get_children()[0].grab_focus()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(active_button)
 	match active_button.x:
 		0.0:
 			if active_button.y > $Control/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer.get_child_count():
@@ -19,6 +19,7 @@ func _process(delta):
 
 
 func controller_input(_controller, action, is_main, _is_pressed):
+	print_debug("HJSRTJDHC")
 	if not _is_pressed:
 		return
 	if is_main:
