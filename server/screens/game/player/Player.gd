@@ -19,6 +19,8 @@ var upwards_dash = false #Flag that triggers upward dash
 var downwards_dash = false #Flag that triggers downwards dash
 
 var enabled = true
+var touching_tilemap_right = false
+var touching_tilemap_left = false
 
 func _ready():
 	_start_dash_tween()
@@ -91,13 +93,22 @@ func _integrate_forces(state):
 			linear_velocity.y = 0
 			apply_impulse(Vector2.ZERO, Vector2(0,force_dash))
 			downwards_dash = false
-
-		if input_direction_x < 0.0 && linear_velocity.x > -speed_run:
+		
+		# Esto evita que el jugador se quede pegado al lateral de los bloques.
+		if not (touching_tilemap_left or touching_tilemap_right):
+			if input_direction_x < 0.0 && linear_velocity.x > -speed_run:
+				applied_force = Vector2(-force_run, 0)
+			elif input_direction_x > 0.0 && linear_velocity.x < speed_run:
+				applied_force = Vector2(force_run, 0)
+			else:	
+				applied_force = Vector2(0, 0)
+		elif touching_tilemap_right and input_direction_x < 0.0 && linear_velocity.x > -speed_run:
 			applied_force = Vector2(-force_run, 0)
-		elif input_direction_x > 0.0 && linear_velocity.x < speed_run:
+		elif touching_tilemap_left and input_direction_x > 0.0 && linear_velocity.x < speed_run:
 			applied_force = Vector2(force_run, 0)
-		else:
+		else:	
 			applied_force = Vector2(0, 0)
+
 		$"Player SM".integrate_forces(state)
 
 		# For debugging collisions
@@ -111,7 +122,7 @@ func _on_FeetSensor_body_entered(body):
 		return
 	on_floor = true
 	collision_number += 1
-	# print(body.name + " entered "  + self.name)
+#	print(body.name + " entered "  + self.name)
 
 
 func _on_FeetSensor_body_exited(body):
@@ -133,3 +144,17 @@ func _on_Dash_Tween_tween_completed(_object, _key):
 	$"Dash Bar".color = Color("ffffff")
 	$"Dash Bar".visible = false
 	SfxManager.PlayerDashBarSound()
+
+
+func _on_PlayerNew_body_shape_entered(body_id, body, body_shape, local_shape):
+	if body.name == "TileMap" and local_shape == 2:
+		touching_tilemap_right = true
+	elif body.name == "TileMap" and local_shape == 1:
+		touching_tilemap_left = true
+
+
+func _on_PlayerNew_body_shape_exited(body_id, body, body_shape, local_shape):
+	if body.name == "TileMap" and local_shape == 2:
+		touching_tilemap_right = false
+	elif body.name == "TileMap" and local_shape == 1:
+		touching_tilemap_left = false

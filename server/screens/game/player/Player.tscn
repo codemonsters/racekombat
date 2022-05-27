@@ -180,6 +180,8 @@ margin_top = -50.0
 margin_right = 24.0
 margin_bottom = -45.0
 
+[connection signal="body_shape_entered" from="." to="." method="_on_PlayerNew_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_PlayerNew_body_shape_exited"]
 [connection signal="body_entered" from="FeetSensor" to="." method="_on_FeetSensor_body_entered"]
 [connection signal="body_exited" from="FeetSensor" to="." method="_on_FeetSensor_body_exited"]
 [connection signal="tween_completed" from="Dash Tween" to="." method="_on_Dash_Tween_tween_completed"]
