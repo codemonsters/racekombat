@@ -69,9 +69,9 @@ func _on_Limite_body_entered(body):
 	$Meta.set_deferred("monitoring", true)
 	$Camera2D.speed = $Camera2D.base_speed
 	$"CanvasLayer/Progress Bar".visible = true
-	SfxManager.PlayerStartSound()
 	GamePad.stop_search_for_controllers()
 	emit_signal("run_started")
+	SfxManager2.CourseEnter()
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.set_deferred("monitoring", true)
 	$Camera2D/KillArea.visible = true
