@@ -92,6 +92,7 @@ Server="*res://addons/GodotGamePad/Networking/Server.gd"
 GamePad="*res://addons/GodotGamePad/Networking/GamePad.tscn"
 SfxManager="*res://screens/music/SfxManager.gd"
 MusicManager="*res://screens/music/MusicManager.gd"
+SfxManager2="*res://screens/music/SFXManager2.gd"
 
 [display]
 
