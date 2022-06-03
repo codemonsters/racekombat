@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
 [ext_resource path="res://screens/game/Progress Bar.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/fire_cannon.png" type="Texture" id=15]
+[ext_resource path="res://assets/spawn_pipe.png" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -507,8 +508,8 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1155, 511 )
-scale = Vector2( 0.45, 0.5 )
+position = Vector2( 1155, 474 )
+scale = Vector2( 0.9, 0.7 )
 collision_layer = 2
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -538,14 +539,15 @@ collision_layer = 0
 shape = SubResource( 41 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 640, 360 )
 current = true
 script = ExtResource( 6 )
 
 [node name="KillArea" type="Area2D" parent="Camera2D"]
 position = Vector2( -640, -360 )
-monitoring = false
 collision_layer = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillArea"]
 position = Vector2( 77, 156 )
@@ -627,6 +629,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Meta" type="Area2D" parent="."]
+visible = false
 scale = Vector2( 10, 72 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meta"]
@@ -652,6 +655,12 @@ position = Vector2( 1160, 0 )
 
 [node name="trampoline" parent="." instance=ExtResource( 13 )]
 position = Vector2( 793, 593 )
+
+[node name="Spawn Tube 1" type="Sprite" parent="."]
+position = Vector2( 162, 240 )
+scale = Vector2( 1.4, 2 )
+z_index = 2
+texture = ExtResource( 16 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]

@@ -27,6 +27,7 @@ func _ready():
 	$Camera2D._on_Tilemap_2_0_tilemap_generated()
 	_create_meta($Meta)
 	$Meta.set_deferred("monitoring", false)
+
 	
 
 func controller_input(_controller, action, _is_main, is_pressed):
@@ -41,7 +42,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 	#
 	if not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
-		new_player.position = Vector2(300, 300)
+		new_player.position = Vector2(152, 240)
 		new_player.modulate = player_colors[players.size() % player_colors.size()]
 		add_child(new_player)
 		players.append({_controller: new_player})

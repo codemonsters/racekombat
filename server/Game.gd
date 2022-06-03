@@ -58,6 +58,8 @@ func _ready():
 		"True when comitting")
 
 func _on_GamePad_controller_connected(id):
+#	for i in range(0, 50):
+#		controller_manager.new(GamePadController.new(controller_manager, i))
 	print("Network GamePad connected (id = " + str(id) + ")")
 
 	# Add the controller to the manager

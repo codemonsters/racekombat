@@ -24,6 +24,7 @@ var touching_tilemap_left = false
 
 func _ready():
 	_start_dash_tween()
+
 	# TODO: deberíamos asignar el número de colisiones reportadas (contacts reported) a el número de personajes + 1
 
 func _handle_input(action, is_pressed):
