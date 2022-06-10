@@ -1,10 +1,9 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://screens/game/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
 [ext_resource path="res://screens/game/objects/Arrows.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/objects/Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://screens/game/Tilemap2_0.tscn" type="PackedScene" id=5]
 [ext_resource path="res://screens/game/MovementCamera.gd" type="Script" id=6]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L4.png" type="Texture" id=7]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L2.png" type="Texture" id=8]
@@ -468,7 +467,6 @@ animations = [ {
 
 [node name="Waiting Room" type="Node2D"]
 script = ExtResource( 1 )
-CourseResource = ExtResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2( 2, 3 )
@@ -539,7 +537,6 @@ collision_layer = 0
 shape = SubResource( 41 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2( 640, 360 )
 current = true
 script = ExtResource( 6 )
@@ -567,7 +564,6 @@ __meta__ = {
 position = Vector2( 93, 360 )
 frames = SubResource( 48 )
 animation = "start"
-frame = 1
 playing = true
 
 [node name="KillAreaFloor" type="Area2D" parent="Camera2D"]
@@ -629,7 +625,6 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Meta" type="Area2D" parent="."]
-visible = false
 scale = Vector2( 10, 72 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meta"]
@@ -657,7 +652,7 @@ position = Vector2( 1160, 0 )
 position = Vector2( 793, 593 )
 
 [node name="Spawn Tube 1" type="Sprite" parent="."]
-position = Vector2( 162, 240 )
+position = Vector2( 162, 400 )
 scale = Vector2( 1.4, 2 )
 z_index = 2
 texture = ExtResource( 16 )

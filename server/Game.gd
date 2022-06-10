@@ -8,7 +8,9 @@ const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while 
 onready var current_scene_container = get_node("CurrentScene")
 onready var WaitingRoomResource = preload("res://screens/game/WaitingRoom.tscn")
 onready var MenuResource = preload("res://screens/menu/Menu.tscn")
-onready var CourseScreenResource = preload("res://screens/menu/CourseScreen.tscn")
+onready var CourseSelectionScreenResource = preload("res://screens/menu/CourseScreen.tscn")
+onready var CourseResource = "res://screens/game/Tilemap2_0.tscn"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,7 +77,7 @@ func change_to_saladeespera():
 
 
 func change_to_courses():
-	_change_screen(CourseScreenResource)
+	_change_screen(CourseSelectionScreenResource)
 
 
 func _change_screen(target_screen_resource):

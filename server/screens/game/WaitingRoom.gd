@@ -4,7 +4,7 @@ var players : Array
 var player_id := 0
 var bodies_in_door = []
 
-export(PackedScene) var CourseResource
+var CourseResource 
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
@@ -20,6 +20,9 @@ signal flag_taken
 
 
 func _ready():
+	CourseResource = load(get_parent().get_parent().CourseResource)
+	print_debug(get_parent().get_parent().CourseResource)
+	print(CourseResource)
 	MusicManager.WaitingRoomMusicPlay()
 	var course = CourseResource.instance()
 	course.position = Vector2(1216, 609)
@@ -28,12 +31,10 @@ func _ready():
 	_create_meta($Meta)
 	$Meta.set_deferred("monitoring", false)
 
-	
 
 func controller_input(_controller, action, _is_main, is_pressed):
 	var player_found := false
 	var player_index : int # Posición del jugador en la lista
-	var controller_index : int
 	for i in players.size():
 		if _controller in players[i].keys():
 			player_found = true
@@ -42,7 +43,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 	#
 	if not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
-		new_player.position = Vector2(152, 240)
+		new_player.position = Vector2(152, 400)
 		new_player.modulate = player_colors[players.size() % player_colors.size()]
 		add_child(new_player)
 		players.append({_controller: new_player})
@@ -78,6 +79,7 @@ func _on_Limite_body_entered(body):
 	$Camera2D/KillArea/AnimatedSprite.set_animation("default")
 
 
+# warning-ignore:integer_division
 func _on_DoorOpeningArea_body_entered(body):
 	bodies_in_door.append(body)
 	if bodies_in_door.size() >= floor(players.size() / 2) + 1:
@@ -86,6 +88,7 @@ func _on_DoorOpeningArea_body_entered(body):
 
 func _on_DoorOpeningArea_body_exited(body):
 	bodies_in_door.erase(body)
+# warning-ignore:integer_division
 	if bodies_in_door.size() < floor(players.size() / 2) + 1 && bodies_in_door.size() == 0:
 		$Door.close()
 
@@ -105,9 +108,11 @@ func _on_Meta_body_entered(body):
 			yield(get_tree().create_timer(1.0), "timeout")
 			_teleport_to_waiting_room()
 
+
 func _disable_players():
 	for player in players:
 		player.values()[0].enabled = false
+
 
 func _teleport_to_waiting_room():
 	$Limite.set_deferred("monitoring", true)
@@ -124,6 +129,7 @@ func _teleport_to_waiting_room():
 	GamePad.search_for_controllers()
 	emit_signal("run_ended")
 
+
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		_teleport_to_waiting_room()
@@ -132,14 +138,18 @@ func _unhandled_input(event):
 func _on_KillArea_body_entered(body):
 	_kill_player(search_player_from_body(body))
 
+
 func _on_KillAreaFloor_body_entered(body):
 	_kill_player(search_player_from_body(body))
+
 
 func _on_KillAreaLeft_body_entered(body):
 	_kill_player(search_player_from_body(body))
 
+
 func _on_KillAreaRight_body_entered(body):
 	_kill_player(search_player_from_body(body))
+
 
 func _on_KillAreaTop_body_entered(body):
 	_kill_player(search_player_from_body(body))
@@ -150,10 +160,12 @@ func _kill_player(player):
 	if player != null and player.get_node("Player SM").state.name != "Dead":
 		_respawn_player(player)
 
+
 func search_player_from_body(body):
 	for player in players:
 		if player.values()[0] == body:
 			return player.values()[0]
+
 
 func _respawn_player(player):
 	player.enabled = false
@@ -163,4 +175,3 @@ func _respawn_player(player):
 	player.enabled = true
 	player.get_node("Player SM").transition_to("Idle")
 	player.global_position = $"Camera2D".global_position - Vector2(100, 100)
-
