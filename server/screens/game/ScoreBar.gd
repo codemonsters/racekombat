@@ -20,9 +20,7 @@ func _ready():
 	$"Colored/Reduced Bar".rect_size.x = min_pos
 	
 	$"Colored/Reduced Bar".rect_position.x = get_parent().rect_size.x - min_pos
-	
-	manager.waiting_room.connect("run_started", self, "_change_other_visibility")
-	manager.waiting_room.connect("run_ended", self, "_change_other_visibility")
+
 
 func _process(delta):
 	var step = max(1.0, SPEED * delta)

@@ -35,6 +35,7 @@ func _ready():
 	var _im_just_trash = $CurrentScene/Menu.connect("change_to_saladeespera", self,
 									   "change_to_saladeespera")
 	
+# warning-ignore:return_value_discarded
 	$CurrentScene/Menu.connect("change_to_courses", self,
 									   "change_to_courses")
 	

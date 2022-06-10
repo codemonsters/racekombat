@@ -37,7 +37,7 @@ func _create_tilemap():
 
 # Añade a tilemap un suelo de ancho width y de profundidad height a partir de la posición (pox_x, pos_y)
 func _anhade_suelo_con_monticulos(tilemap, length, height, min_height, max_height, pos_x, pos_y):
-	var noise = OpenSimplexNoise.new()
+
 	noise.seed = randi()
 	noise.lacunarity = 2.0 # ¿? Valor default 2.0
 	noise.octaves = 9.0	#Fluidez de los cambios cuanto mas alto mas fluido (0 min ,9 max)

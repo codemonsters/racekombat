@@ -38,6 +38,7 @@ func _ready():
 	waiting_room.connect("run_ended", self, "_on_run_ended")
 	waiting_room.connect("flag_taken", self, "_on_flag_taken")
 	$Timer.wait_time = TICK_TIME
+# warning-ignore:return_value_discarded
 	$Timer.connect("timeout", self, "_timer_ticked")
 
 func _add_player(body):
