@@ -46,8 +46,4 @@ func enter(_msg := {}) -> void:
 	$SmokeParticles.emitting = true
 	SfxManager.PlayerDashSound()
 
-func _integrate_forces(state):
-	# if reset_vertical_vel == true:
-	# 	state.linear_velocity.y = 0
-	# 	reset_vertical_vel = false
-	pass
+

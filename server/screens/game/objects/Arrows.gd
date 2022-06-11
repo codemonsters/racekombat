@@ -30,10 +30,10 @@ func _on_FlickerTimer_timeout():
 
 func _change_all_colors(color, delay):
 	if delay == 0: # Para evitar crear timers de cero
-		for i in $Node.get_children().size():
-			$Node.get_child(i).color[-1] = color
+		for j in $Node.get_children().size():
+			$Node.get_child(j).color[-1] = color
 	else:
-		for i in $Node.get_children().size():
-			$Node.get_child(i).color[-1] = color
+		for k in $Node.get_children().size():
+			$Node.get_child(k).color[-1] = color
 			yield(get_tree().create_timer(delay), "timeout")
 
