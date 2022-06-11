@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/platformer_in_the_forest.png" type="Texture" id=2]
 [ext_resource path="res://screens/game/objects/Arrows.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/objects/Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://screens/game/Tilemap2_0.tscn" type="PackedScene" id=5]
 [ext_resource path="res://screens/game/MovementCamera.gd" type="Script" id=6]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L4.png" type="Texture" id=7]
 [ext_resource path="res://assets/screens/game/backgrounds/blue_L2.png" type="Texture" id=8]
@@ -15,6 +14,7 @@
 [ext_resource path="res://screens/game/objects/trampoline.tscn" type="PackedScene" id=13]
 [ext_resource path="res://screens/game/Progress Bar.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/fire_cannon.png" type="Texture" id=15]
+[ext_resource path="res://assets/spawn_pipe.png" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -467,7 +467,6 @@ animations = [ {
 
 [node name="Waiting Room" type="Node2D"]
 script = ExtResource( 1 )
-CourseResource = ExtResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2( 2, 3 )
@@ -507,8 +506,8 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1155, 511 )
-scale = Vector2( 0.45, 0.5 )
+position = Vector2( 1155, 474 )
+scale = Vector2( 0.9, 0.7 )
 collision_layer = 2
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -544,8 +543,8 @@ script = ExtResource( 6 )
 
 [node name="KillArea" type="Area2D" parent="Camera2D"]
 position = Vector2( -640, -360 )
-monitoring = false
 collision_layer = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillArea"]
 position = Vector2( 77, 156 )
@@ -565,7 +564,6 @@ __meta__ = {
 position = Vector2( 93, 360 )
 frames = SubResource( 48 )
 animation = "start"
-frame = 1
 playing = true
 
 [node name="KillAreaFloor" type="Area2D" parent="Camera2D"]
@@ -652,6 +650,12 @@ position = Vector2( 1160, 0 )
 
 [node name="trampoline" parent="." instance=ExtResource( 13 )]
 position = Vector2( 793, 593 )
+
+[node name="Spawn Tube 1" type="Sprite" parent="."]
+position = Vector2( 162, 400 )
+scale = Vector2( 1.4, 2 )
+z_index = 2
+texture = ExtResource( 16 )
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]

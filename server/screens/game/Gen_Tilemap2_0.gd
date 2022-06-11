@@ -37,7 +37,7 @@ func _create_tilemap():
 
 # Añade a tilemap un suelo de ancho width y de profundidad height a partir de la posición (pox_x, pos_y)
 func _anhade_suelo_con_monticulos(tilemap, length, height, min_height, max_height, pos_x, pos_y):
-	var noise = OpenSimplexNoise.new()
+
 	noise.seed = randi()
 	noise.lacunarity = 2.0 # ¿? Valor default 2.0
 	noise.octaves = 9.0	#Fluidez de los cambios cuanto mas alto mas fluido (0 min ,9 max)
@@ -85,7 +85,7 @@ func _create_hueco(tilemap, lenght, height, min_height,max_height, pos_x, pos_y)
 					tilemap.set_cellv(Vector2(pos_x+x, pos_y-y), VACUM_CELL_ID)
 	tilemap.update_bitmask_region()
 	
-func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, pos_y):#Crea plataforma en el aire
+func _create_plataforma(tilemap, length, height, min_height,max_height, pos_x, pos_y):#Crea plataforma en el aire
 	var distance_entre_plataforma = 20 #Distancia entre los plataforma
 	var width_plataforma = 7 #Ancho de los plataforma
 	var final_pos_plataforma = 20 #Pos_x del bloque final de cada plataforma
@@ -96,7 +96,7 @@ func _create_plataforma(tilemap, lenght, height, min_height,max_height, pos_x, p
 	var altura_plataformas = 0 #Altura en la que se construye la plataforma contando desde la altura del tile mas alto
 	var grosor_plataformas = 2
 	var altura_anadida_hueco = 10 #Altura en la que se construye la plataforma cuando hay un hueco
-	while((final_pos_plataforma + distance_entre_plataforma) < lenght ):
+	while((final_pos_plataforma + distance_entre_plataforma) < length ):
 		distance = final_pos_plataforma + distance_entre_plataforma
 		altura_plataformas = 5 #Seteamos la altura dentro del while 
 		altura_plataformas = altura_plataformas + randi()%6

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://screens/game/player/states/Dead.gd" type="Script" id=1]
 [ext_resource path="res://screens/game/player/states/Dash.gd" type="Script" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://assets/particles/smoke_09.png" type="Texture" id=23]
 [ext_resource path="res://assets/particles/smoke_06.png" type="Texture" id=24]
 [ext_resource path="res://assets/particles/smoke_02.png" type="Texture" id=25]
+[ext_resource path="res://screens/game/player/states/Born.gd" type="Script" id=26]
 
 [sub_resource type="PhysicsMaterial" id=9]
 friction = 0.8
@@ -110,7 +111,7 @@ playing = true
 
 [node name="Player SM" type="Node" parent="."]
 script = ExtResource( 7 )
-initialState = NodePath("Idle")
+initialState = NodePath("Born")
 
 [node name="Idle" type="Node" parent="Player SM"]
 script = ExtResource( 6 )
@@ -138,6 +139,9 @@ texture = SubResource( 5 )
 
 [node name="Dead" type="Node" parent="Player SM"]
 script = ExtResource( 1 )
+
+[node name="Born" type="Node" parent="Player SM"]
+script = ExtResource( 26 )
 
 [node name="DashCountdown" type="Timer" parent="."]
 process_mode = 0

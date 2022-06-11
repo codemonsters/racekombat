@@ -16,7 +16,7 @@ func _ready():
 
 func _on_StartButton_pressed():
 	emit_signal("change_to_saladeespera")
-	SfxManager.StartButtonSound()
+	SfxManager.PlayerStartSound()
 	MusicManager.MenuMusicPlay(false)
 
 func _on_CourseButton_pressed():

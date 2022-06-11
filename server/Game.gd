@@ -8,7 +8,9 @@ const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while 
 onready var current_scene_container = get_node("CurrentScene")
 onready var WaitingRoomResource = preload("res://screens/game/WaitingRoom.tscn")
 onready var MenuResource = preload("res://screens/menu/Menu.tscn")
-onready var CourseScreenResource = preload("res://screens/menu/CourseScreen.tscn")
+onready var CourseSelectionScreenResource = preload("res://screens/menu/CourseScreen.tscn")
+onready var CourseResource = "res://screens/game/Tilemap2_0.tscn"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +35,7 @@ func _ready():
 	var _im_just_trash = $CurrentScene/Menu.connect("change_to_saladeespera", self,
 									   "change_to_saladeespera")
 	
+# warning-ignore:return_value_discarded
 	$CurrentScene/Menu.connect("change_to_courses", self,
 									   "change_to_courses")
 	
@@ -58,6 +61,8 @@ func _ready():
 		"True when comitting")
 
 func _on_GamePad_controller_connected(id):
+#	for i in range(0, 50):
+#		controller_manager.new(GamePadController.new(controller_manager, i))
 	print("Network GamePad connected (id = " + str(id) + ")")
 
 	# Add the controller to the manager
@@ -73,7 +78,7 @@ func change_to_saladeespera():
 
 
 func change_to_courses():
-	_change_screen(CourseScreenResource)
+	_change_screen(CourseSelectionScreenResource)
 
 
 func _change_screen(target_screen_resource):
