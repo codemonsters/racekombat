@@ -3,8 +3,10 @@ extends Node2D
 var players : Array
 var player_id := 0
 var bodies_in_door = []
+var death_queue = []
 
 var CourseResource 
+var rng = RandomNumberGenerator.new()
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
@@ -20,6 +22,7 @@ signal flag_taken
 
 
 func _ready():
+	rng.randomize()
 	CourseResource = load(get_parent().get_parent().CourseResource)
 	print_debug(get_parent().get_parent().CourseResource)
 	print(CourseResource)
@@ -30,6 +33,7 @@ func _ready():
 	$Camera2D._on_Tilemap_2_0_tilemap_generated()
 	_create_meta($Meta)
 	$Meta.set_deferred("monitoring", false)
+	$Respawner.connect("timeout", self, "_try_to_respawn_player")
 
 
 func controller_input(_controller, action, _is_main, is_pressed):
@@ -134,6 +138,10 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		_teleport_to_waiting_room()
 
+func search_player_from_body(body):
+	for player in players:
+		if player.values()[0] == body:
+			return player.values()[0]
 
 func _on_KillArea_body_entered(body):
 	_kill_player(search_player_from_body(body))
@@ -154,24 +162,21 @@ func _on_KillAreaRight_body_entered(body):
 func _on_KillAreaTop_body_entered(body):
 	_kill_player(search_player_from_body(body))
 
-
 # Para evitar repetición en las KillAreas
 func _kill_player(player):
 	if player != null and player.get_node("Player SM").state.name != "Dead":
-		_respawn_player(player)
+		player.enabled = false
+		player.get_node("Player SM").transition_to("Dead")
+		emit_signal("player_killed", player)
+		death_queue.append(player)
+		if $Respawner.is_stopped():
+			$Respawner.start()
 
-
-func search_player_from_body(body):
-	for player in players:
-		if player.values()[0] == body:
-			return player.values()[0]
-
-
-func _respawn_player(player):
-	player.enabled = false
-	player.get_node("Player SM").transition_to("Dead")
-	emit_signal("player_killed", player)
-	yield(get_tree().create_timer(0.5), "timeout")
-	player.enabled = true
-	player.get_node("Player SM").transition_to("Idle")
-	player.global_position = $"Camera2D".global_position - Vector2(100, 100)
+func _try_to_respawn_player():
+	if death_queue.size() > 0:
+		death_queue[0].enabled = true
+		death_queue[0].get_node("Player SM").transition_to("Idle")
+		death_queue[0].global_position = $"Camera2D".global_position - Vector2(rng.randi_range(-50, 100), rng.randi_range(-50, 100))
+		death_queue.pop_front()
+	else:
+		$Respawner.stop()
