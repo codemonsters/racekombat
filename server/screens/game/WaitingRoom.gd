@@ -10,7 +10,7 @@ var rng = RandomNumberGenerator.new()
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
-const player_colors = [Color("d6ca55"), Color("d65555"), Color("44ab44"), Color("634191")]
+const player_colors = [Color("FF7400"), Color("FFFF00"), Color("d65555"), Color("00DC00"), Color("634191"), Color("00B9B9"), Color("ffe7d6"), Color("")]
 #const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 signal player_added

@@ -45,5 +45,5 @@ func controller_input(_controller, action, is_main, _is_pressed):
 
 func _on_Button_pressed(button_label):
 	get_parent().get_parent().CourseResource = courses[button_label]
-	print(courses[button_label])
+
 	get_parent().get_parent().change_to_saladeespera()
