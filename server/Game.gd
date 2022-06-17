@@ -22,13 +22,13 @@ func _ready():
 		KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_N, KEY_M)
 	)
 	
-	# Añadidos solo para hacer pruebas en las que se necesitan muchos jugadores
-#	controller_manager.add_controller(KeyboardController.new(controller_manager,
-#		KEY_T, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P)
-#	)
-#	controller_manager.add_controller(KeyboardController.new(controller_manager,
-#		KEY_F, KEY_G, KEY_H, KEY_J, KEY_K, KEY_L)
-#	)
+#	DEBUG: Esto sirve para que cada tecla numérica cree un personaje (para debug de muchos jugadores)
+#	for i in range(48, 57):
+#		controller_manager.add_controller(KeyboardController.new(controller_manager,
+#			i, 0, 0, 0, 0, 0)
+#		)
+	
+	
 	
 	# Conecta la señal con la función. La hay que asignar a una variable pq sino 
 	# lanza un warning :S
