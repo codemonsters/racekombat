@@ -543,8 +543,8 @@ script = ExtResource( 6 )
 
 [node name="KillArea" type="Area2D" parent="Camera2D"]
 position = Vector2( -640, -360 )
-collision_layer = 0
 monitoring = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/KillArea"]
 position = Vector2( 77, 156 )
@@ -564,6 +564,7 @@ __meta__ = {
 position = Vector2( 93, 360 )
 frames = SubResource( 48 )
 animation = "start"
+frame = 1
 playing = true
 
 [node name="KillAreaFloor" type="Area2D" parent="Camera2D"]
@@ -656,6 +657,8 @@ position = Vector2( 162, 400 )
 scale = Vector2( 1.4, 2 )
 z_index = 2
 texture = ExtResource( 16 )
+
+[node name="Respawner" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Limite" to="." method="_on_Limite_body_entered"]
 [connection signal="body_entered" from="DoorOpeningArea" to="." method="_on_DoorOpeningArea_body_entered"]

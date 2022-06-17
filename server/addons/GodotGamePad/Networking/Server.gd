@@ -1,7 +1,7 @@
 extends Node
 
 const SERVER_PORT = 31416
-const MAX_PLAYERS = 4
+const MAX_PLAYERS = 20
 
 var ip_adress = '192.168.0.1'
 var clients = {}

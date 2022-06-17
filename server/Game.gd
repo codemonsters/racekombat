@@ -2,8 +2,7 @@ extends Node2D
 
 
 var controller_manager: ControllersManager
-const DISABLE_SEARCH = false # INFO: Set to false to connect controllers *while debugging*
-# var players = {}
+const DISABLE_SEARCH = false # INFO: Set to false to connect controllers while debugging
 
 onready var current_scene_container = get_node("CurrentScene")
 onready var WaitingRoomResource = preload("res://screens/game/WaitingRoom.tscn")
