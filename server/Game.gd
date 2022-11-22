@@ -75,10 +75,12 @@ func _on_GamePad_controller_disconnected(id):
 func change_to_saladeespera():
 	_change_screen(WaitingRoomResource)
 
-
 func change_to_courses():
 	_change_screen(CourseSelectionScreenResource)
 
+func change_to_menu():
+#	_change_screen(MenuResource)
+	get_tree().reload_current_scene()
 
 func _change_screen(target_screen_resource):
 	current_scene_container.get_child(0).queue_free()

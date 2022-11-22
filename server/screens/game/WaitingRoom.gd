@@ -3,6 +3,7 @@ extends Node2D
 var players : Array
 var player_id := 0
 var bodies_in_door = []
+var bodies_in_exit = []
 var death_queue = []
 
 var CourseResource 
@@ -19,6 +20,7 @@ signal player_killed
 signal run_started
 signal run_ended
 signal flag_taken
+signal change_to_menu
 
 
 func _ready():
@@ -34,6 +36,9 @@ func _ready():
 	_create_meta($Meta)
 	$Meta.set_deferred("monitoring", false)
 	$Respawner.connect("timeout", self, "_try_to_respawn_player")
+	$LimiteExit.set_deferred("monitoring", true)
+	connect("change_to_menu", get_tree().root.get_node("Main"), "change_to_menu")
+
 
 
 func controller_input(_controller, action, _is_main, is_pressed):
@@ -82,6 +87,8 @@ func _on_Limite_body_entered(body):
 	$Camera2D/KillArea.visible = true
 	$Camera2D/KillArea/AnimatedSprite.set_animation("default")
 
+func _on_LimiteExit_body_entered(body):
+	emit_signal("change_to_menu")
 
 # warning-ignore:integer_division
 func _on_DoorOpeningArea_body_entered(body):
@@ -95,6 +102,19 @@ func _on_DoorOpeningArea_body_exited(body):
 # warning-ignore:integer_division
 	if bodies_in_door.size() < floor(players.size() / 2) + 1 && bodies_in_door.size() == 0:
 		$Door.close()
+
+# warning-ignore:integer_division
+func _on_ExitOpeningArea_body_entered(body):
+	bodies_in_exit.append(body)
+	if bodies_in_exit.size() >= floor(players.size() / 2) + 1:
+		$Exit.open()
+
+
+func _on_ExitOpeningArea_body_exited(body):
+	bodies_in_exit.erase(body)
+# warning-ignore:integer_division
+	if bodies_in_exit.size() < floor(players.size() / 2) + 1 && bodies_in_door.size() == 0:
+		$Exit.close()
 
 
 func _create_meta(area): #Crea la meta con su posición x e y
@@ -120,6 +140,7 @@ func _disable_players():
 
 func _teleport_to_waiting_room():
 	$Limite.set_deferred("monitoring", true)
+#	$LimiteExit.set_deferred("monitoring", true)
 	$Camera2D.position = Vector2(640, 360)
 	$Camera2D.speed = 0
 	$Camera2D/KillArea.set_deferred("monitoring", false)
