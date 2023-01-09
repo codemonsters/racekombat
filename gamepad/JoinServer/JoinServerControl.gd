@@ -13,13 +13,18 @@ var join_attempted = false
 
 func _ready():
 	ProjectSettings.set("input_devices/pointing/ios/touch_delay", 0)
-	
+
+	if Client.disconnecting == true:
+		message.display_message("Disconnected...", true, 2, 2)
+	Client.disconnecting = false
+
 	for child in self.get_children():
 		if child.get('modulate') and child != $BackgroundTextureRect and child != message:
 			child.set_modulate(Color(1,1,1,0))
 			changeSceneTween.interpolate_property(child, 'modulate', 
 			Color(1,1,1,0), Color(1,1,1,1), 0.5,
 			Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+
 	changeSceneTween.start()
 
 

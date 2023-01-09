@@ -9,6 +9,7 @@ var _id = null
 var connected = false
 var layout_dict = {}
 
+var disconnecting = false
 
 func _ready():
 # warning-ignore:return_value_discarded
@@ -32,10 +33,12 @@ func join_server():
 	else:
 		print('No Host IP Adress')
 
-
-func quit_game():
+func disconnect_server():
 	get_tree().set_network_peer(null)
-
+	print('Disconnecting From Server')
+	connected = false
+	disconnecting = true
+	get_tree().change_scene("res://JoinServer/JoinServerControl.tscn")
 
 func on_connected_to_server():
 	print('Connected To Server')
@@ -49,5 +52,6 @@ func on_connection_failed():
 func on_server_disconnected():
 	print('Disconnected From Server')
 	connected = false
+	disconnecting = true
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://JoinServer/JoinServerControl.tscn")

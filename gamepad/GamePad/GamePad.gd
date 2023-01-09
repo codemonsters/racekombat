@@ -86,3 +86,7 @@ func _on_direction_calculated(side, direction, intensity, is_joystick):
 		else:
 			for rpc in rpcs_to_send:
 				rpc_unreliable_id(1, '_on_input_direction_calculated', side, direction, intensity)
+
+
+func _on_DisconnectButton_pressed():
+	Client.disconnect_server()
