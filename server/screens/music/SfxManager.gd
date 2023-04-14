@@ -12,36 +12,41 @@ var dash_bar: AudioStream = preload("res://assets/sounds/DashBar.mp3")
 func PlayerStartSound():
 	self.set_stream(player_start)
 	self.set_pitch_scale(1)
-	self.volume_db = -10
+	self.volume_db = -5
 	self.play()
 
 func PlayerStepSound():
 	self.set_stream(step)
-	self.volume_db = 1
+	self.volume_db = 0.5
 	self.play()
 
 func PlayerJumpSound():
 	rd.randomize()
 	self.set_stream(jump)
+	self.volume_db = 1
 	self.set_pitch_scale(rd.randf_range(1.0, 3.0))
 	self.play()
 
 func PlayerSpawnSound():
 	self.set_stream(player_spawn)
+	self.volume_db = 1
 	self.set_pitch_scale(1)
 	self.play()
 
 func PlayerDeathSound():
 	self.set_stream(player_dead)
+	self.volume_db = 1
 	self.set_pitch_scale(1)
 	self.play()
 
 func PlayerDashSound():
 	self.set_stream(dash)
+	self.volume_db = 1
 	self.set_pitch_scale(1)
 	self.play()
 
 func PlayerDashBarSound():
 	self.set_stream(dash_bar)
+	self.volume_db = 1
 	self.set_pitch_scale(1)
 	self.play()

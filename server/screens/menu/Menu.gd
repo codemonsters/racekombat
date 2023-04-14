@@ -6,7 +6,7 @@ signal change_to_courses
 var active_button = 0
 
 func _ready():
-	MusicManager.MenuMusicPlay(true)
+	MusicManager.MenuMusicPlay()
 	$"Title Tween".interpolate_property($Title, "global_position:x",
 		null, 640, 1.0,
 		Tween.TRANS_LINEAR, Tween.EASE_IN, 0.03
@@ -17,7 +17,6 @@ func _ready():
 func _on_StartButton_pressed():
 	emit_signal("change_to_saladeespera")
 	SfxManager.PlayerStartSound()
-	MusicManager.MenuMusicPlay(false)
 
 func _on_CourseButton_pressed():
 	emit_signal("change_to_courses")

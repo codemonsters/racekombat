@@ -81,6 +81,7 @@ func _on_Limite_body_entered(body):
 	$"CanvasLayer/Progress Bar".visible = true
 	GamePad.stop_search_for_controllers()
 	emit_signal("run_started")
+	MusicManager.UnmuffleMusic()
 	SfxManager2.CourseEnter()
 	yield(get_tree().create_timer(3.0),"timeout")
 	$Camera2D/KillArea.set_deferred("monitoring", true)
