@@ -6,7 +6,7 @@ var bodies_in_door = []
 var bodies_in_exit = []
 var death_queue = []
 
-var CourseResource 
+var CourseResource
 var rng = RandomNumberGenerator.new()
 var playing = false
 
@@ -73,7 +73,7 @@ func player_disconnect(_controller):
 			emit_signal("player_removed", player.values()[0])
 			player.values()[0].queue_free()
 			players.erase(player)
-	
+
 		SfxManager.PlayerSpawnSound()
 
 
