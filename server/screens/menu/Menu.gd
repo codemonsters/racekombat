@@ -15,11 +15,13 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	emit_signal("change_to_saladeespera")
+	emit_signal("change_to_courses")
 	SfxManager.PlayerStartSound()
 
 func _on_CourseButton_pressed():
-	emit_signal("change_to_courses")
+	pass
+	# TODO: llevar al usuario a una pantalla de créditos
+	# emit_signal("change_to_courses")
 	
 
 func _on_ExitButton_pressed():
