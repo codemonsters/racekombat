@@ -144,11 +144,8 @@ func _disable_players():
 
 
 func _teleport_to_waiting_room():
-<<<<<<< HEAD
 	print("run ended")
-=======
 	playing = false
->>>>>>> 63c619a9d4e35b08f8a7e35df1a8175d29fe0cbf
 	$Limite.set_deferred("monitoring", true)
 #	$LimiteExit.set_deferred("monitoring", true)
 	$Camera2D.position = Vector2(640, 360)
