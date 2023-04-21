@@ -8,6 +8,7 @@ var death_queue = []
 
 var CourseResource 
 var rng = RandomNumberGenerator.new()
+var playing = false
 
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
@@ -50,7 +51,9 @@ func controller_input(_controller, action, _is_main, is_pressed):
 			player_index = i
 			break
 	#
-	if not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
+	if not player_found and playing:
+		return
+	elif not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
 		new_player.position = Vector2(152, 400)
 		new_player.modulate = player_colors[players.size() % player_colors.size()]
@@ -75,6 +78,7 @@ func player_disconnect(_controller):
 
 
 func _on_Limite_body_entered(body):
+	playing = true
 	$Limite.set_deferred("monitoring", false)
 	$Meta.set_deferred("monitoring", true)
 	$Camera2D.speed = $Camera2D.base_speed
@@ -140,6 +144,7 @@ func _disable_players():
 
 
 func _teleport_to_waiting_room():
+	playing = false
 	$Limite.set_deferred("monitoring", true)
 #	$LimiteExit.set_deferred("monitoring", true)
 	$Camera2D.position = Vector2(640, 360)
