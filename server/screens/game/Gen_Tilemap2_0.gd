@@ -40,8 +40,8 @@ func _anhade_suelo_con_monticulos(tilemap, length, height, min_height, max_heigh
 
 	noise.seed = randi()
 	noise.lacunarity = 2.0 # ¿? Valor default 2.0
-	noise.octaves = 9.0	#Fluidez de los cambios cuanto mas alto mas fluido (0 min ,9 max)
-	noise.period = 1.0	# frecuencia con la que se produce un cambio de altura
+	noise.octaves = 8.0 # Fluidez de los cambios cuanto mas alto mas fluido (0 min ,9 max)
+	noise.period = 1.0 # frecuencia con la que se produce un cambio de altura
 	noise.persistence = 1	# ¿cuánto afectan los cambios anteriores a los futuros (1 max, 0 min)?
 	
 	var y = 0

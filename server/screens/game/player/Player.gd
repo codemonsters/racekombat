@@ -15,6 +15,8 @@ var facingDirection = 1 # 0 = Izquierda | 1 = Derecha
 var on_floor = false
 var collision_number = 0
 
+var just_born = true
+
 var upwards_dash = false #Flag that triggers upward dash
 var downwards_dash = false #Flag that triggers downwards dash
 
@@ -29,6 +31,9 @@ func _ready():
 
 func _handle_input(action, is_pressed):
 	if is_pressed:
+		if just_born and input_direction_x == 0:
+			input_direction_x += 1.0
+			return
 		match action:
 			"up":
 				input_direction_y += 1.0
@@ -45,6 +50,11 @@ func _handle_input(action, is_pressed):
 			"dash":
 				_dash()
 	else:
+		if just_born:
+			print("HGFD")
+			just_born = false
+			input_direction_x -= 1.0
+			return
 		match action:
 			"left":
 				input_direction_x += 1.0
