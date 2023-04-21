@@ -44,6 +44,7 @@ func _ready():
 
 
 func _process(delta):
+	print(position.x - camera_width < alturas_medias_camara.size() * tile_side - tile_side)
 	# Comprueba que la cámara no se siga desplazándose hacia la derecha si no quedan más tiles
 	if position.x - camera_width < alturas_medias_camara.size() * tile_side - tile_side:
 		position.x += speed * delta * get_camera_speed_multiplier()

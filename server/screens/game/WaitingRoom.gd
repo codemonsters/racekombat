@@ -119,8 +119,8 @@ func _on_ExitOpeningArea_body_exited(body):
 
 
 func _create_meta(area): #Crea la meta con su posición x e y
-	area.position.x = get_parent().get_node("Waiting Room/Tilemap 2_0").MAP_LENGTH*32+1280 #Modificar solo el primer parámetro
-	area.position.y = -10*32+720
+	area.position.x = 500 * 32 + 1280 # El primer valor en ambas operaciones indica la posición (x,y)
+	area.position.y = -10 * 32 + 720 # no cambiar: [* 32 + 1280] o [* 32 + 720]
 
 
 func _on_Meta_body_entered(body):
@@ -140,6 +140,7 @@ func _disable_players():
 
 
 func _teleport_to_waiting_room():
+	print("run ended")
 	$Limite.set_deferred("monitoring", true)
 #	$LimiteExit.set_deferred("monitoring", true)
 	$Camera2D.position = Vector2(640, 360)
