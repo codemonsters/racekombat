@@ -23,6 +23,7 @@ func _process(_delta):
 #		print("Received data: %s" % [pkt.get_string_from_utf8()])
 		# Reply so it knows we received the message.
 # warning-ignore:return_value_discarded
+		print_debug(layout)
 		peer.put_packet(layout)
 
 
