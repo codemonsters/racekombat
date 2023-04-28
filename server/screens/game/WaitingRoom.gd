@@ -27,8 +27,6 @@ signal change_to_menu
 func _ready():
 	rng.randomize()
 	CourseResource = load(get_parent().get_parent().CourseResource)
-	print_debug(get_parent().get_parent().CourseResource)
-	print(CourseResource)
 	MusicManager.WaitingRoomMusicPlay()
 	var course = CourseResource.instance()
 	course.position = Vector2(1216, 609)
@@ -131,7 +129,6 @@ func _on_Meta_body_entered(body):
 	for player in players:
 		if player.values()[0] == body:
 			$Meta.set_deferred("monitoring", false)
-			print("Llegaste a la meta")
 			emit_signal("flag_taken", player.values()[0]) # Envía al ganador
 			_disable_players()
 			yield(get_tree().create_timer(1.0), "timeout")
@@ -144,7 +141,6 @@ func _disable_players():
 
 
 func _teleport_to_waiting_room():
-	print("run ended")
 	playing = false
 	$Limite.set_deferred("monitoring", true)
 #	$LimiteExit.set_deferred("monitoring", true)

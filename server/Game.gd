@@ -94,10 +94,8 @@ func _input(event):
 		get_tree().set_input_as_handled()
 
 func _on_GamePad_button_pressed(button, id):
-	# print("id: " + String(id) + " pressed: " + String(button) + " received")
 	controller_manager.input_gamepad(id, button, true)
 
 
 func _on_GamePad_button_released(button, id):
-	# print("id: " + String(id) + " released: " + String(button) + " received")
 	controller_manager.input_gamepad(id, button, false)
