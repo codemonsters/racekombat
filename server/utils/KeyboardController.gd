@@ -7,6 +7,7 @@ var _key_left: int
 var _key_right: int
 var _key_action: int
 var _key_dash: int
+var _id = 0
 
 
 func _init(controllersManager: ControllersManager, key_up: int, key_down: int, key_left: int, key_right: int, key_action: int, key_dash: int):

@@ -54,7 +54,8 @@ func controller_input(_controller, action, _is_main, is_pressed):
 	elif not player_found: # Si el controlador no tiene un jugador asignado, lo creamos
 		var new_player = PlayerResource.instance()
 		new_player.position = Vector2(152, 400)
-		new_player.modulate = player_colors[players.size() % player_colors.size()]
+#		new_player.modulate = player_colors[players.size() % player_colors.size()]
+		new_player.modulate = UdpBroadcast.get_color(_controller._id)
 		add_child(new_player)
 		players.append({_controller: new_player})
 		emit_signal("player_added", new_player)

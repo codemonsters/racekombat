@@ -1,6 +1,6 @@
 extends Node
 
-
+const colors = [Color("FF7400"), Color("FFFF00"), Color("d65555"), Color("00DC00"), Color("634191"), Color("00B9B9"), Color("ffe7d6"), Color("")]
 const UDP_PORT = 4242
 
 var server := UDPServer.new()
@@ -19,6 +19,8 @@ func _process(_delta):
 	if server.is_connection_available():
 		var peer : PacketPeerUDP = server.take_connection()
 		var pkt = peer.get_packet()
+		var l = layout
+		
 #		print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()])
 #		print("Received data: %s" % [pkt.get_string_from_utf8()])
 		# Reply so it knows we received the message.
@@ -42,3 +44,10 @@ func stop_broadcast():
 	
 	is_broadcasting = false
 #	print('UDP Broadcast Stopped')
+
+
+func get_color(id: int) -> Color:
+	var v = 0
+	for i in str(id):
+		v += int(i)
+	return colors[v % len(colors)]

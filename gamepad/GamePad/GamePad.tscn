@@ -52,9 +52,6 @@ margin_top = -540.0
 margin_right = 960.0
 margin_bottom = 540.0
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
