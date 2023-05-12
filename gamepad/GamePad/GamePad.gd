@@ -29,8 +29,6 @@ func _ready():
 #		right_sideControl.spawn_control(singleButton, 'left', 'X')
 #		right_sideControl.spawn_control(singleButton, 'top', 'Y')
 	else:
-		$BackgroundTextureRect.modulate
-		 layout_dict.get("color_bg")
 		for side in sides:
 			if layout_dict.get(side) != "empty":
 				var side_control : Control = self.get("%sControl" % side)

@@ -34,6 +34,9 @@ func _process(_delta):
 		var layout = JSON.parse(udp.get_packet().get_string_from_utf8()).result
 		if typeof(layout) == TYPE_DICTIONARY:
 			Client.layout_dict = layout
+			var color = layout["player_color"]
+			print(color)
+			VisualServer.set_default_clear_color(color)
 		Client.host_ip_address = udp.get_packet_ip()
 		Client.join_server()
 		
