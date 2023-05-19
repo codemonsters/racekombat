@@ -6,6 +6,7 @@ var columns = []
 var courses = {
 		"Randomly created": "res://screens/game/Tilemap2_0.tscn",
 		"World 1": "res://screens/game/courses/world1.tscn",
+		"World 2": "res://screens/game/courses/world2.tscn",
 }
 
 
