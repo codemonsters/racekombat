@@ -36,7 +36,8 @@ func _process(_delta):
 			Client.layout_dict = layout
 			var color = layout["player_color"]
 			print(color)
-			VisualServer.set_default_clear_color(color)
+			var color_list = color.split(",")
+			Client.color = Color(color_list[0], color_list[1], color_list[2], color_list[3])
 		Client.host_ip_address = udp.get_packet_ip()
 		Client.join_server()
 		

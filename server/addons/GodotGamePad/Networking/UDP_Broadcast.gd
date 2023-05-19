@@ -20,17 +20,15 @@ func _process(_delta):
 		var peer : PacketPeerUDP = server.take_connection()
 		var pkt = peer.get_packet()
 		var l = layout
-		l["player_color"] = get_color(get_tree().get_rpc_sender_id())
-		print(l["player_color"])
-		print_debug(l)
+		print_debug(get_tree().get_rpc_sender_id())
+		l["player_color"] = get_color(int(peer.get_packet_ip().split(".")[-1]))
 		
 #		print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()])
 #		print("Received data: %s" % [pkt.get_string_from_utf8()])
 		# Reply so it knows we received the message.
 # warning-ignore:return_value_discarded
-		print_debug(layout)
-		peer.put_packet(JSON.print(layout).to_utf8())
-
+		peer.put_packet(JSON.print(l).to_utf8())
+		print_debug(l)
 
 func start_broadcast():
 # warning-ignore:return_value_discarded
@@ -50,8 +48,9 @@ func stop_broadcast():
 
 
 func get_color(id: int) -> Color:
+	print(id)
 	var v = 0
 	for i in str(id):
 		v += int(i)
-	print_debug(v % len(colors), "------")
+	print_debug({"resto": v % len(colors), "id": id, "color": colors[v % len(colors)]}, "------")
 	return colors[v % len(colors)]

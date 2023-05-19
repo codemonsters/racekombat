@@ -8,6 +8,7 @@ var host_ip_address = null
 var _id = null
 var connected = false
 var layout_dict = {}
+var color = "#151b29"
 
 var disconnecting = false
 
@@ -39,9 +40,11 @@ func disconnect_server():
 	connected = false
 	disconnecting = true
 	get_tree().change_scene("res://JoinServer/JoinServerControl.tscn")
+	VisualServer.set_default_clear_color(Color("#151b29"))
 
 func on_connected_to_server():
 	print('Connected To Server')
+	VisualServer.set_default_clear_color(color)
 	connected = true
 
 

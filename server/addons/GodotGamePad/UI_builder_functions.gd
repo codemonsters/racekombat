@@ -206,7 +206,6 @@ static func load_layout_info() -> Dictionary:
 		var error = file.open(layoutInfo_save_path, File.READ)
 		if error == OK:
 			layout_info = file.get_var()
-		print_debug(layout_info)
 		file.close()
 	else:
 		print('No Layout Saved')
