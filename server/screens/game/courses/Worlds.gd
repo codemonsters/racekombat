@@ -1,7 +1,7 @@
 class_name Worlds extends Node2D
 
 
-export var MAP_LENGTH: int
+export var MAP_LENGTH: int # Ancho del mundo
 export var MAP_HEIGHT: int
 export var MAX_ALTURA: int
 export var MIN_ALTURA: int
