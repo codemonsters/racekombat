@@ -51,7 +51,6 @@ func _handle_input(action, is_pressed):
 				_dash()
 	else:
 		if just_born:
-			print("HGFD")
 			just_born = false
 			input_direction_x -= 1.0
 			return

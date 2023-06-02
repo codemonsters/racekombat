@@ -11,8 +11,7 @@ extends Worlds
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	FLOOR_CELL_ID = 4
-	VACUM_CELL_ID = 1
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -358,12 +358,11 @@ points = PoolVector2Array( 1.75842, 29.972, 1.75842, 27.704, 1.86646, 25.976, 4.
 
 [node name="Tilemap 2_0" type="Node2D"]
 script = ExtResource( 3 )
-MAP_LENGTH = 41
-MAP_HEIGHT = 14
-MAX_ALTURA = 1
-MIN_ALTURA = -14
-FLOOR_CELL_ID = 4
-VACUM_CELL_ID = 1
+MAP_LENGTH = 59
+MAP_HEIGHT = 20
+MAX_ALTURA = 20
+MIN_ALTURA = -20
+FLOOR_CELL_ID = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 65 )
