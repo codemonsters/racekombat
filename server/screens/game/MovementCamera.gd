@@ -20,11 +20,11 @@ var _alturas_medias_tilemap := []
 # Lista que contiene las posiciones_y medias que debe recorrer la cámara en cada tile
 var alturas_medias_camara := []
 # Altura que se le resta a la posicion_y media para que no se vea demasiado suelo
-var altura_offset := 200
+var altura_offset := 120
 # Posicion_y hacia la que la cámara tenderá a moverse, sale de alturas_medias_camara
 var target_y : int
 # Velocidad máxima vertical a la que se desplaza la cámara para moverse hacia target_y suavemente
-var y_max_speed := 50
+var y_max_speed := 70
 # Variable en la que se almacena el Tilemap
 var _tilemap
 # Tamaño de los tiles
@@ -79,7 +79,7 @@ func get_camera_speed_multiplier():
 		return 1 + camera_speed_multiplier
 
 
-# Devuelve una lista con la altura y que debe tener la cámara en cada punto.
+# Devuelve una lista con la altura "y" que debe tener la cámara en cada punto.
 # Esta altura es la media de las posiciones y del tilemap que ve la cámara en cada punto.
 # Unidades expresadas en celdas
 func get_camera_average_y_values():
@@ -96,6 +96,7 @@ func get_camera_average_y_values():
 			sum += y
 		resultados.append(sum / coordenadasy_medias.size())
 	return resultados
+	
 
 
 func _on_Tilemap_2_0_tilemap_generated():
