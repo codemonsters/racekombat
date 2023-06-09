@@ -1,8 +1,8 @@
 class_name Worlds extends Node2D
 
 
-export var MAP_LENGTH: int
-export var MAP_HEIGHT: int
+export var MAP_LENGTH: int # Ancho del mundo
+#export var MAP_HEIGHT: int
 export var MAX_ALTURA: int
 export var MIN_ALTURA: int
 export var FLOOR_CELL_ID: int
@@ -17,6 +17,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+# devuelve una lista con la altura media de cada columna de tiles del mapa
 func calcular_y_media():
 	var resultados := []
 	for x in range(MAP_LENGTH):
@@ -25,6 +27,8 @@ func calcular_y_media():
 		# Loopea por todo el mapa de columna en columna y coge la altura del tile más alto.
 		for y in range(-MAX_ALTURA, -MIN_ALTURA + 1):
 			var cell_id = $TileMap.get_cell(x, y)
+#			if cell_id ==4:
+#				breakpoint
 			if cell_id == FLOOR_CELL_ID and not dentro_de_solido:
 				dentro_de_solido = true
 				coordenadasy_suelos.append(y)

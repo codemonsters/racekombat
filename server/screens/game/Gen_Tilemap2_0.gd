@@ -6,6 +6,7 @@ extends Worlds
 #El suelo se genera con una funcion de ruido y su pos_y fluctua entre MIN_ALTURA y MAX_ALTURA 
 #En el eje x todo el escenario esta comprendido entre 0 y MAP_LENGTH
 
+var MAP_HEIGHT
 var FACTOR_ALTO_MONTICULOS = 25
 var POS_X_INICIAL = 0
 var POS_Y_INICIAL = 0 #Y esta invertida - es una pos_y mas alta y + una mas baja

@@ -612,7 +612,6 @@ __meta__ = {
 position = Vector2( 93, 360 )
 frames = SubResource( 48 )
 animation = "start"
-frame = 1
 playing = true
 
 [node name="KillAreaFloor" type="Area2D" parent="Camera2D"]
