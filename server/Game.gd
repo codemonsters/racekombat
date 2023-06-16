@@ -64,13 +64,13 @@ func _ready():
 func _on_GamePad_controller_connected(id):
 #	for i in range(0, 50):
 #		controller_manager.new(GamePadController.new(controller_manager, i))
-	print("Network GamePad connected (id = " + str(id) + ")")
+	print_debug("Network GamePad connected (id = " + str(id) + ")")
 
 	# Add the controller to the manager
 	controller_manager.add_controller(GamePadController.new(controller_manager, id))
 
 func _on_GamePad_controller_disconnected(id):
-	print("Network GamePad DISCONNECTED (id = " + str(id) + ")")
+	print_debug("Network GamePad DISCONNECTED (id = " + str(id) + ")")
 	controller_manager.remove_controller(id)
 
 

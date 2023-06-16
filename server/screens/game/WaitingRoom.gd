@@ -27,13 +27,12 @@ signal change_to_menu
 func _ready():
 	rng.randomize()
 	CourseResource = load(get_parent().get_parent().CourseResource)
-	print_debug(get_parent().get_parent().CourseResource)
-	print(CourseResource)
 	MusicManager.WaitingRoomMusicPlay()
 	var course = CourseResource.instance()
 	course.position = Vector2(1216, 609)
 	add_child(course)
 	$Camera2D._on_Tilemap_2_0_tilemap_generated()
+	$"CanvasLayer/Progress Bar".on_Tilemap_2_0_tilemap_generated()
 	_create_meta($Meta)
 	$Meta.set_deferred("monitoring", false)
 	$Respawner.connect("timeout", self, "_try_to_respawn_player")
@@ -69,7 +68,7 @@ func controller_input(_controller, action, _is_main, is_pressed):
 func player_disconnect(_controller):
 	for player in players:
 		if player.keys()[0] == _controller:
-			print("Controller disconnected, removing player from game")
+			print_debug("Controller disconnected, removing player from game")
 			emit_signal("player_removed", player.values()[0])
 			player.values()[0].queue_free()
 			players.erase(player)
@@ -123,15 +122,18 @@ func _on_ExitOpeningArea_body_exited(body):
 
 
 func _create_meta(area): #Crea la meta con su posición x e y
-	area.position.x = 500 * 32 + 1280 # El primer valor en ambas operaciones indica la posición (x,y)
+	area.position.x = $"Tilemap 2_0".MAP_LENGTH * 32 + 1280 # El primer valor en ambas operaciones indica la posición (x,y)
 	area.position.y = -10 * 32 + 720 # no cambiar: [* 32 + 1280] o [* 32 + 720]
+	area.scale.y = max(-$"Tilemap 2_0".MIN_ALTURA, $"Tilemap 2_0".MAX_ALTURA) * 32 * 4
+	# NOTA: Esto de la escala es mejorable, estamos ampliando la escala y, para evitar problemas, lo 
+	# multiplicamos por cuatro y maloserá que no funcione.
+	# TODO: si peta la meta, mirar aquí :s
 
 
 func _on_Meta_body_entered(body):
 	for player in players:
 		if player.values()[0] == body:
 			$Meta.set_deferred("monitoring", false)
-			print("Llegaste a la meta")
 			emit_signal("flag_taken", player.values()[0]) # Envía al ganador
 			_disable_players()
 			yield(get_tree().create_timer(1.0), "timeout")
@@ -144,7 +146,6 @@ func _disable_players():
 
 
 func _teleport_to_waiting_room():
-	print("run ended")
 	playing = false
 	$Limite.set_deferred("monitoring", true)
 #	$LimiteExit.set_deferred("monitoring", true)
