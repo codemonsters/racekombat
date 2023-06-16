@@ -32,25 +32,25 @@ friction = 0.8
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "fall",
-"speed": 5.0
+"name": "run",
+"speed": 10.0
 } ]
 
 [sub_resource type="CanvasItemMaterial" id=3]
@@ -107,7 +107,6 @@ script = ExtResource( 4 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Player SM" type="Node" parent="."]
