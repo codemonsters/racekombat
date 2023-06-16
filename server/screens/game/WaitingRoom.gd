@@ -122,8 +122,12 @@ func _on_ExitOpeningArea_body_exited(body):
 
 
 func _create_meta(area): #Crea la meta con su posición x e y
-	area.position.x = 500 * 32 + 1280 # El primer valor en ambas operaciones indica la posición (x,y)
+	area.position.x = $"Tilemap 2_0".MAP_LENGTH * 32 + 1280 # El primer valor en ambas operaciones indica la posición (x,y)
 	area.position.y = -10 * 32 + 720 # no cambiar: [* 32 + 1280] o [* 32 + 720]
+	area.scale.y = max(-$"Tilemap 2_0".MIN_ALTURA, $"Tilemap 2_0".MAX_ALTURA) * 32 * 4
+	# NOTA: Esto de la escala es mejorable, estamos ampliando la escala y, para evitar problemas, lo 
+	# multiplicamos por cuatro y maloserá que no funcione.
+	# TODO: si peta la meta, mirar aquí :s
 
 
 func _on_Meta_body_entered(body):
