@@ -21,9 +21,9 @@ func _process(_delta):
 		active_button.x = len(columns) - 1
 	elif active_button.x < 0: # Overflow left
 		active_button.x = 0
-	
+
 	var container = columns[active_button.x]
-	
+
 	if active_button.y > len(container.get_children()) - 1: # Overflow down
 		active_button.y = len(container.get_children()) - 1
 	elif active_button.y < 0: # Overflow up
@@ -51,4 +51,5 @@ func controller_input(_controller, action, is_main, _is_pressed):
 
 func _on_Button_pressed(button_label):
 	get_parent().get_parent().CourseResource = courses[button_label]
+
 	get_parent().get_parent().change_to_saladeespera()

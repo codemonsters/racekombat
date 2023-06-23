@@ -1,24 +1,19 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://screens/game/player/states/Dead.gd" type="Script" id=1]
 [ext_resource path="res://screens/game/player/states/Dash.gd" type="Script" id=2]
-[ext_resource path="res://assets/crocodile/idle/frame-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/idle_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://screens/game/player/Player.gd" type="Script" id=4]
 [ext_resource path="res://screens/game/player/states/Air.gd" type="Script" id=5]
 [ext_resource path="res://screens/game/player/states/Idle.gd" type="Script" id=6]
 [ext_resource path="res://screens/game/player/states/Player SM.gd" type="Script" id=7]
-[ext_resource path="res://assets/crocodile/jump fall/frame.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/walk_spritesheet.png" type="Texture" id=8]
 [ext_resource path="res://assets/particles/smoke_08.png" type="Texture" id=9]
-[ext_resource path="res://assets/crocodile/run/frame-4.png" type="Texture" id=10]
-[ext_resource path="res://assets/crocodile/run/frame-3.png" type="Texture" id=11]
-[ext_resource path="res://assets/crocodile/jump up/frame.png" type="Texture" id=12]
+[ext_resource path="res://assets/player/jump_spritesheet.png" type="Texture" id=10]
 [ext_resource path="res://assets/particles/smoke_03.png" type="Texture" id=13]
 [ext_resource path="res://assets/particles/smoke_07.png" type="Texture" id=14]
 [ext_resource path="res://screens/game/player/states/Run.gd" type="Script" id=15]
-[ext_resource path="res://assets/crocodile/run/frame-1.png" type="Texture" id=16]
-[ext_resource path="res://assets/crocodile/run/frame-2.png" type="Texture" id=17]
 [ext_resource path="res://assets/particles/smoke_05.png" type="Texture" id=18]
-[ext_resource path="res://assets/crocodile/idle/frame-2.png" type="Texture" id=19]
 [ext_resource path="res://assets/particles/smoke_10.png" type="Texture" id=20]
 [ext_resource path="res://assets/particles/smoke_04.png" type="Texture" id=21]
 [ext_resource path="res://assets/particles/smoke_01.png" type="Texture" id=22]
@@ -30,24 +25,56 @@
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.8
 
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 10 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 8 )
+region = Rect2( 96, 0, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ SubResource( 9 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 19 ) ],
+"frames": [ SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ SubResource( 12 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
@@ -90,8 +117,8 @@ frame_9/delay_sec = 0.0
 length = 2.0
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 30.0
-height = 26.0
+radius = 16.0
+height = 34.0
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 29, 4 )
@@ -104,9 +131,10 @@ contact_monitor = true
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Player SM" type="Node" parent="."]
@@ -152,17 +180,17 @@ autostart = true
 [node name="Node" type="Node" parent="."]
 
 [node name="RayDown" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 40 )
+position = Vector2( 0, 32 )
 shape = SubResource( 6 )
 
 [node name="RayLeft" type="CollisionShape2D" parent="."]
-position = Vector2( -29, 0 )
+position = Vector2( -16, 0 )
 rotation = 1.5708
 scale = Vector2( 1, 2 )
 shape = SubResource( 6 )
 
 [node name="RayRight" type="CollisionShape2D" parent="."]
-position = Vector2( 29, 0 )
+position = Vector2( 16, 0 )
 rotation = -1.5708
 shape = SubResource( 6 )
 
@@ -170,7 +198,7 @@ shape = SubResource( 6 )
 shape = SubResource( 7 )
 
 [node name="FeetSensor" type="Area2D" parent="."]
-position = Vector2( 0, 40 )
+position = Vector2( 0, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetSensor"]
 position = Vector2( 0, 5 )
@@ -180,9 +208,9 @@ shape = SubResource( 8 )
 
 [node name="Dash Bar" type="ColorRect" parent="."]
 margin_left = -24.0
-margin_top = -50.0
+margin_top = -39.0
 margin_right = 24.0
-margin_bottom = -45.0
+margin_bottom = -34.0
 
 [connection signal="body_shape_entered" from="." to="." method="_on_PlayerNew_body_shape_entered"]
 [connection signal="body_shape_exited" from="." to="." method="_on_PlayerNew_body_shape_exited"]

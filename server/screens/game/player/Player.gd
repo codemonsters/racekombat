@@ -145,7 +145,7 @@ func _on_FeetSensor_body_exited(body):
 
 func _start_dash_tween():
 	$"Dash Tween".interpolate_property($"Dash Bar", "rect_size:x",
-		0, 48, $DashCountdown.wait_time,
+		0, 30, $DashCountdown.wait_time,
 		Tween.TRANS_LINEAR, Tween.EASE_IN
 	)
 	$"Dash Tween".start()
