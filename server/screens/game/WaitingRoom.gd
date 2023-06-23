@@ -5,6 +5,7 @@ var player_id := 0
 var bodies_in_door = []
 var bodies_in_exit = []
 var death_queue = []
+var perma_death = []
 
 var CourseResource
 var rng = RandomNumberGenerator.new()
@@ -13,7 +14,6 @@ var playing = false
 const PlayerResource = preload("res://screens/game/player/Player.tscn")
 # Lista que utilizaremos para dar un tinte distinto a cada jugador
 const player_colors = [Color("FF7400"), Color("FFFF00"), Color("d65555"), Color("00DC00"), Color("634191"), Color("00B9B9"), Color("ffe7d6"), Color("")]
-#const PlayerResource = preload("res://screens/game/player/Player.tscn")
 
 signal player_added
 signal player_removed
@@ -203,9 +203,23 @@ func _kill_player(player):
 
 func _try_to_respawn_player():
 	if death_queue.size() > 0:
-		death_queue[0].enabled = true
-		death_queue[0].get_node("Player SM").transition_to("Idle")
-		death_queue[0].global_position = $"Camera2D".global_position - Vector2(rng.randi_range(-50, 100), rng.randi_range(-50, 100))
+		var dead_player: RigidBody2D = death_queue[0]
+		var respawn_pos: Vector2 = $"Camera2D".global_position - Vector2(rng.randi_range(-50, 100), rng.randi_range(-50, 100))
+		
+		if respawn_pos.x >= ($Meta.position.x - 200): # Pequeño margen
+			death_queue.pop_front()
+			perma_death.append(dead_player)
+			return
+		if players.size() == perma_death.size():
+			perma_death = []
+			$Meta.set_deferred("monitoring", false)
+			_disable_players()
+			yield(get_tree().create_timer(1.0), "timeout")
+			_teleport_to_waiting_room()
+
+		dead_player.enabled = true
+		dead_player.get_node("Player SM").transition_to("Idle")
+		dead_player.global_position = respawn_pos
 		death_queue.pop_front()
 	else:
 		$Respawner.stop()
