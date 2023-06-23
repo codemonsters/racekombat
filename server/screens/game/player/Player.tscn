@@ -134,7 +134,6 @@ script = ExtResource( 4 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Player SM" type="Node" parent="."]
