@@ -35,8 +35,8 @@ func _ready():
 	var _im_just_trash = $CurrentScene/Menu.connect("change_to_saladeespera", self,
 									   "change_to_saladeespera")
 	
-# Sí, esto ↓ también era una opción pero lo descubrimos más tarde. Dejémoslo así, queda bonito :)
-# warning-ignore:return_value_discarded
+	# Sí, esto ↓ también era una opción pero lo descubrimos más tarde. Dejémoslo así, queda bonito :)
+	# warning-ignore:return_value_discarded
 	$CurrentScene/Menu.connect("change_to_courses", self,
 									   "change_to_courses")
 	
@@ -81,8 +81,8 @@ func change_to_courses():
 	_change_screen(CourseSelectionScreenResource)
 
 func change_to_menu():
-#	_change_screen(MenuResource)
-	get_tree().reload_current_scene()
+	_change_screen(MenuResource)
+#	get_tree().reload_current_scene()
 
 func _change_screen(target_screen_resource):
 	current_scene_container.get_child(0).queue_free()

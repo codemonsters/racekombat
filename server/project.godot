@@ -123,6 +123,13 @@ wav={
 "force/mono": false
 }
 
+[input]
+
+esc={
+"deadzone": 0.5,
+"events": [  ]
+}
+
 [layer_names]
 
 2d_physics/layer_1="Player"

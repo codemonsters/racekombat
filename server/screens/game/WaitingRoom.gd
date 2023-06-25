@@ -206,20 +206,20 @@ func _try_to_respawn_player():
 		var dead_player: RigidBody2D = death_queue[0]
 		var respawn_pos: Vector2 = $"Camera2D".global_position - Vector2(rng.randi_range(-50, 100), rng.randi_range(-50, 100))
 		
-		if respawn_pos.x >= ($Meta.position.x - 200): # Pequeño margen
+		if respawn_pos.x >= ($Meta.position.x - 200): # No respawnear después de la meta
 			death_queue.pop_front()
 			perma_death.append(dead_player)
 			return
-		if players.size() == perma_death.size():
-			perma_death = []
-			$Meta.set_deferred("monitoring", false)
-			_disable_players()
-			yield(get_tree().create_timer(1.0), "timeout")
-			_teleport_to_waiting_room()
 
 		dead_player.enabled = true
 		dead_player.get_node("Player SM").transition_to("Idle")
 		dead_player.global_position = respawn_pos
 		death_queue.pop_front()
+	elif players.size() == perma_death.size(): # Todos los jugadores están perma-muertos
+		death_queue = perma_death
+		perma_death = []
+		$Meta.set_deferred("monitoring", false)
+		_disable_players()
+		_teleport_to_waiting_room()
 	else:
 		$Respawner.stop()

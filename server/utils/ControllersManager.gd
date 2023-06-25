@@ -39,7 +39,6 @@ func remove_controller(id: int):
 func controller_input(controller: Controller, action: String, is_pressed: bool):
 	if _main_controller == null:
 		_main_controller = controller
-	
 	if controller.get_instance_id() != _main_controller.get_instance_id():
 		_main_node.get_node("CurrentScene").get_child(0).controller_input(controller, action, false, is_pressed)
 	else:
