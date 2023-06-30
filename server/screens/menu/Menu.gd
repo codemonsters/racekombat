@@ -15,7 +15,10 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	emit_signal("change_to_courses")
+	get_parent().get_parent().change_to_courses()
+#	emit_signal("change_to_courses") 
+#	Esta señal solo funcionaba al principio, pero no al salir de un nivel y renacer
+#	Esta manera es más sencilla
 	SfxManager.PlayerStartSound()
 
 func _on_CourseButton_pressed():
@@ -67,7 +70,6 @@ func controller_input(_controller, action, is_main, _is_pressed):
 			"action":
 				$Control.get_children()[active_button].set_pressed(true)
 				$Control.get_children()[active_button].emit_signal("pressed")
-
 
 func player_disconnect(_controller):
 	pass

@@ -45,11 +45,16 @@ func controller_input(_controller, action, is_main, _is_pressed):
 			"right":
 				active_button.x += 1
 			"action":
-				$Control.get_children()[active_button].set_pressed(true)
-				$Control.get_children()[active_button].emit_signal("pressed")
+				var button = $Control/VBoxContainer/MarginContainer/HBoxContainer.get_children()[active_button.x].get_children()[active_button.y]
+				button.set_pressed(true)
+				button.emit_signal("pressed")
 
 
 func _on_Button_pressed(button_label):
 	get_parent().get_parent().CourseResource = courses[button_label]
 
 	get_parent().get_parent().change_to_saladeespera()
+
+
+func _on_Button_mouse_entered(button_location):
+	active_button = button_location
