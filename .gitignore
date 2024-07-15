@@ -17,4 +17,5 @@ logs/
 # Mac-related
 .DS_Store
 
-server/exports/*
+server/export/*
+gamepad/android/*

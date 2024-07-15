@@ -157,7 +157,7 @@ const inspector_save_path = SAVE_DIR + 'inspector.dat'
 const layoutInfo_save_path = SAVE_DIR + 'layout.dat'
 
 
-static func save_Inspector(inspector: EditorInspectorPlugin):
+static func save_Inspector(inspector):
 	var dir = Directory.new()
 	if !dir.dir_exists(SAVE_DIR):
 		dir.make_dir_recursive(SAVE_DIR)
@@ -171,7 +171,7 @@ static func save_Inspector(inspector: EditorInspectorPlugin):
 	file.close()
 
 
-static func load_Inspector() -> EditorInspectorPlugin:
+static func load_Inspector():
 	var inspector = null
 	
 	var file = File.new()

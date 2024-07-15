@@ -82,6 +82,7 @@ _global_script_class_icons={
 
 config/name="RaceKombat Server"
 run/main_scene="res://Game.tscn"
+boot_splash/show_image=false
 config/icon="res://assets/logo.png"
 config/auto_accept_quit=false
 

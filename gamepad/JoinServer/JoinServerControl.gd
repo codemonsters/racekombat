@@ -9,9 +9,25 @@ onready var message = $Message
 var faded_in = false
 var connection_attempts = 0
 var join_attempted = false
+var config: ConfigFile
 
 
 func _ready():
+	$ConfirmationDialog.get_cancel().connect("pressed", self, "download")
+	$ConfirmationDialog.get_ok().connect("pressed", self, "close")
+	
+	# on startup, check if is first launch
+	config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err == OK:
+		var show_popup = config.get_value("startup", "show_popup", true)
+		# show the popup if `show_popup` is true
+	else:
+		# couldn't load config file, show the popup
+		$ConfirmationDialog.get_ok().text = "Play!"
+		$ConfirmationDialog.get_cancel().text = "Download!"
+		$ConfirmationDialog.popup()
+	
 	ProjectSettings.set("input_devices/pointing/ios/touch_delay", 0)
 
 	if Client.disconnecting == true:
@@ -81,3 +97,10 @@ func _on_CancelButton_pressed():
 	loading_img.stop()
 	UdpBroadcast.stop_broadcast()
 	message.display_message("Cancelled...", true, 2, 2)
+
+func download():
+	 OS.shell_open("https://github.com/codemonsters/racekombat/releases") 
+
+func close():
+	config.set_value("startup", "show_popup", false)
+	config.save("user://settings.cfg")
